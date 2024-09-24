@@ -1,6 +1,7 @@
 import '@/app/ui/global.css';
 import type { Metadata } from "next";
 import { raleway } from "./ui/fonts"
+import NavBar from "./ui/navbar"
 
 export const metadata: Metadata = {
   title: "Ecommerce Videography",
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body
         className={`${raleway.className} antialiased`}
       >
+        <NavBar />
         {children}
       </body>
     </html>
