@@ -1,11 +1,14 @@
+import './globals.css';
+
 export default function Home() {
-  return (
-    <div className="relative flex items-center justify-center min-h-screen p-8">
-      <main>
-          <p className="text-xl">
-            by Malachi Valle
-          </p>
-      </main>
-    </div>
+  return ( 
+      <div className="top-0 absolute w-full flex flex-col justify-center">
+        <main>
+          <div className="bg-background w-screen min-h-screen">
+            placeholder
+          </div>
+          <div className="w-50 h-50">new div</div>
+        </main>
+      </div>
   );
 }

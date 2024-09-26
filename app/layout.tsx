@@ -1,4 +1,4 @@
-import '@/app/ui/global.css';
+import './globals.css';
 import type { Metadata } from "next";
 import { raleway } from "./ui/fonts"
 import NavBar from "./ui/navbar"
@@ -14,13 +14,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    //global font size, not sure if tailwind is the best way to apply this
+    <html lang="en" className='text-[22px]'>
       <body
         className={`${raleway.className} antialiased`}
       >
         <NavBar />
         {children}
       </body>
+      
     </html>
   );
 }
