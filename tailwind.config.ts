@@ -11,7 +11,6 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        myBlue: "#0000FF",
       },
       backgroundImage: {
         'camera': "url('/camera-backdrop.jpg')",
