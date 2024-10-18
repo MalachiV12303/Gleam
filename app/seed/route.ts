@@ -14,7 +14,7 @@ async function seedCameras() {
       type VARCHAR(255) NOT NULL,
       brand VARCHAR(255) NOT NULL,
       megapixels DECIMAL(3,1) NOT NULL,
-      price DECIMAL(19,4) NOT NULL,
+      price DECIMAL(19,4) NOT NULL
     );
   `;
 
