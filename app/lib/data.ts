@@ -1,20 +1,47 @@
-const cameras = [
-    {
-        id: '4447777',
-        name: 'EOS Rebel T7',
-        type: 'DSLR',
-        brand: 'Canon',
-        megapixels: 24.1,
-        price: 599.99,
-    },
-    {
-        id: '0909090',
-        name: 'Z30',
-        type: 'Mirrorless',
-        brand: 'Nikon',
-        megapixels: 20.9,
-        price: 849.99,
-    },
-  ];
-export { cameras };
+import { sql } from '@vercel/postgres';
+import {
+    Camera,
+    CamerasDetail,
+  } from './definitions';
+
+export async function fetchCameras() {
+    try {
+      const data = await sql<Camera>`
+        SELECT
+          id,
+          name,
+          brand,
+          price
+        FROM cameras
+        ORDER BY name ASC
+      `;
   
+      const cameras = data.rows;
+      return cameras;
+    } catch (err) {
+      console.error('Database Error:', err);
+      throw new Error('Failed to fetch all cameras.');
+    }
+  }
+
+export async function fetchCameraDetail() {
+    try {
+      const data = await sql<CamerasDetail>`
+        SELECT
+          id,
+          name,
+          type,
+          brand,
+          megapixels,
+          price
+        FROM cameras
+        ORDER BY name ASC
+      `;
+  
+      const cameras = data.rows;
+      return cameras;
+    } catch (err) {
+      console.error('Database Error:', err);
+      throw new Error('Failed to fetch all cameras.');
+    }
+  }
