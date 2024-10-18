@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import { db } from '@vercel/postgres';
-import { cameras } from '../lib/data';
+import { cameras } from '../lib/temp-data';
 
 const client = await db.connect();
 
