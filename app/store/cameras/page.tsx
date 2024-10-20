@@ -1,12 +1,12 @@
 import { fetchCameras } from '@/app/lib/data';
-import CameraCatalogue from '@/app/ui/store/catalogue';
+import ItemList from '@/app/ui/store/itemlist';
 
 export default async function Page() {
     const cameras = await fetchCameras();
     return(
         <div>
             <p>Store Page</p>
-            <CameraCatalogue 
+            <ItemList 
                 cameras={cameras}/>
         </div>
     );

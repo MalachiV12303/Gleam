@@ -3,7 +3,7 @@ import {
 } from '@/app/lib/definitions';
 import { Item } from '@/app/ui/store/item'
 
-export default function CameraCatalogue({
+export default function ItemList({
   cameras,
 }: {
   cameras: Camera[];
