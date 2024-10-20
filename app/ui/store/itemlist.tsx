@@ -10,9 +10,6 @@ export default function ItemList({
 }) {
   return (
     <div className="w-full">
-      <h1 className={`mb-8 text-xl md:text-2xl`}>
-        Catalogue
-      </h1>
       <div>
         {cameras?.map((camera) => (
           <div key={camera.id}>
