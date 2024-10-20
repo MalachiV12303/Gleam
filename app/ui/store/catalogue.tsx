@@ -1,8 +1,9 @@
 import {
   Camera,
 } from '@/app/lib/definitions';
+import { Item } from '@/app/ui/store/item'
 
-export default async function CameraCatalogue({
+export default function CameraCatalogue({
   cameras,
 }: {
   cameras: Camera[];
@@ -15,15 +16,7 @@ export default async function CameraCatalogue({
       <div>
         {cameras?.map((camera) => (
           <div key={camera.id}>
-              <p>
-                {camera.name}
-              </p>
-              <p>
-                {camera.brand}
-              </p>
-              <p>
-                {camera.price}
-              </p>
+              <Item id={camera.id} name={camera.name} brand={camera.brand} price={camera.price}/>
           </div>
         ))}
       </div>
