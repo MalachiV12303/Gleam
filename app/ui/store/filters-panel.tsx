@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useOptimistic, useTransition } from 'react';
 
-export default function FiltersPanel({ filters }: { filters: string[];}) {
+export default function FiltersPanel({ filters }: { filters: string[]; }) {
   let router = useRouter();
   let [activeFilters, setActiveFilters] = useOptimistic(filters);
   let [isPending, startTransition] = useTransition();
@@ -18,35 +18,34 @@ export default function FiltersPanel({ filters }: { filters: string[];}) {
     });
   }
 
-  const FILTERS=["DSLR","Mirrorless", "Canon", "Nikon", "Sony", "Panasonic"];
+  const FILTERS = ["DSLR", "Mirrorless", "Canon", "Nikon", "Sony", "Panasonic"];
 
   return (
-    <>
-    <p>Filters</p>
-    <div className="flex gap-6 sm:block overflow-y-scroll">
-      {FILTERS.map((filter) => (
-        <label
-          key={filter}
-          className="flex gap-2 items-center whitespace-nowrap"
-        >
-          <input
-            checked={activeFilters.includes(filter)}
-            onChange={(e) => {
-              let { name, checked } = e.target;
-              let newFilters = checked
-                ? [...activeFilters, name]
-                : activeFilters.filter((g) => g !== name);
-              updateFilters(newFilters);
-            }}
-            name={filter}
-            type="checkbox"
-            className="accent-blue-500"
-          />
-          {filter}
-        </label>
-        
-      ))}
+    <div className="mt-4">
+      <p className="underline">Filters</p>
+      <div className="flex-col sm:block">
+        {FILTERS.map((filter) => (
+          <label
+            key={filter}
+            className="ml-2 p-1 flex gap-2 items-center whitespace-nowrap"
+          >
+            <input
+              checked={activeFilters.includes(filter)}
+              onChange={(e) => {
+                let { name, checked } = e.target;
+                let newFilters = checked
+                  ? [...activeFilters, name]
+                  : activeFilters.filter((g) => g !== name);
+                updateFilters(newFilters);
+              }}
+              name={filter}
+              type="checkbox"
+              className="accent-blue-500"
+            />
+            {filter}
+          </label>
+        ))}
+      </div>
     </div>
-    </>
   );
 }

@@ -53,7 +53,6 @@ export async function fetchCameras() {
 
   export async function fetchFilteredCameras(query: string[]) {
     try {
-      console.log("fetchFilteredCameras query is " + query);
         const data = await sql<CameraType>`
         SELECT
           id,

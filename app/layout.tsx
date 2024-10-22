@@ -1,4 +1,5 @@
 import './globals.css';
+
 import type { Metadata } from "next";
 import { raleway } from "./ui/fonts"
 import NavBar from "./ui/navbar"
