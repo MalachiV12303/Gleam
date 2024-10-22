@@ -6,7 +6,6 @@ export default function Home() {
         <main>
           <div className="bg-camera bg-cover bg-center bg-no-repeat overflow-hidden min-h-screen">
           </div>
-          <div className="h-[16rem]">placeholder</div>
         </main>
       </div>
   );

@@ -5,20 +5,15 @@ export function StoreItem({ item }: { item: CameraType | LenseType ;}){
     const isCamera = (value: CameraType | LenseType): value is CameraType => {
         return true;
     };
-    
     if(isCamera(item)){
+        // console.log(item);
         return(
-            <>
-                <p>
-                    Camera Type Item
-                </p>
-                <div>
-                    {item.name}
-                    {item.brand}
-                    {item.value}
-                    {item.id}
-                </div>
-            </>
+            <div className="p-4">
+                <p className="">{item.name}</p>
+                <p>{item.brand}</p> 
+                <p>{item.value}</p>
+                <p>{item.id}</p> 
+            </div>
         )
     }
     else{

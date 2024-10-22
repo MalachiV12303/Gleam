@@ -17,11 +17,14 @@ export default function FiltersPanel({ filters }: { filters: string[];}) {
       router.push(`?${newParams}`);
     });
   }
-  
+
+  const FILTERS=["DSLR","Mirrorless", "Canon", "Nikon", "Sony", "Panasonic"];
+
   return (
     <>
-    <div className="flex gap-6 sm:block overflow-x-scroll pb-4 sm:pb-0 -mx-4 px-4 sm:-mx-0 sm:px-0">
-      {["DSLR", "Mirrorless", "Canon", "Nikon"].map((filter) => (
+    <p>Filters</p>
+    <div className="flex gap-6 sm:block overflow-y-scroll">
+      {FILTERS.map((filter) => (
         <label
           key={filter}
           className="flex gap-2 items-center whitespace-nowrap"

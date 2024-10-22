@@ -9,20 +9,20 @@ async function seedCameras() {
 
   await client.sql`
     CREATE TABLE IF NOT EXISTS cameras (
-      id CHAR(7) PRIMARY KEY,
+      id CHAR(8) PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
       type VARCHAR(255) NOT NULL,
       brand VARCHAR(255) NOT NULL,
       megapixels DECIMAL(3,1) NOT NULL,
-      price DECIMAL(19,4) NOT NULL
+      value DECIMAL(19,4) NOT NULL
     );
   `;
 
   const insertedCameras = await Promise.all(
     cameras.map(
       (camera) => client.sql`
-        INSERT INTO cameras (id, name, type, brand, megapixels, price)
-        VALUES (${camera.id}, ${camera.name}, ${camera.type}, ${camera.brand}, ${camera.megapixels}, ${camera.price})
+        INSERT INTO cameras (id, name, type, brand, megapixels, value)
+        VALUES (${camera.id}, ${camera.name}, ${camera.type}, ${camera.brand}, ${camera.megapixels}, ${camera.value})
         ON CONFLICT (id) DO NOTHING;
       `,
     ),
