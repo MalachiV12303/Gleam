@@ -1,23 +1,27 @@
 import { sql } from '@vercel/postgres';
 import {
-    Camera,
+    CameraType,
     CamerasDetail,
+    ItemsTableType,
   } from './definitions';
+import { useSearchParams } from 'next/navigation';
 
 export async function fetchCameras() {
     try {
-      const data = await sql<Camera>`
+      const data = await sql<CameraType>`
         SELECT
           id,
           name,
           brand,
-          price
+          price,
+          megapixels,
         FROM cameras
         ORDER BY name ASC
       `;
   
       const cameras = data.rows;
       return cameras;
+      
     } catch (err) {
       console.error('Database Error:', err);
       throw new Error('Failed to fetch all cameras.');
@@ -44,4 +48,30 @@ export async function fetchCameraDetail() {
       console.error('Database Error:', err);
       throw new Error('Failed to fetch all cameras.');
     }
+  }
+
+  export async function fetchFilteredCameras(query: string[]) {
+    try {
+      console.log("fetchFilteredCameras query: " + query)
+        const data = await sql<CameraType>`
+        SELECT
+          id,
+          name,
+          brand,
+          price,
+          megapixels
+        FROM cameras
+        WHERE 
+          cameras.brand ILIKE ${`%${query}%`}
+        ORDER BY name ASC
+      `;
+      return data.rows;
+    } catch (err) {
+      console.error('Database Error:', err);
+      throw new Error('Failed to fetch filtered items.');
+    }
+  }
+
+  export function collectFilters(){
+    
   }
