@@ -7,20 +7,6 @@ export type CameraType = {
   value: number;
   megapixels: number;
 };
-export type LenseType = {
-  id: string;
-  name: string;
-  type: string;
-  brand: string;
-  value: number;
-  minfocal: string;
-  maxfocal: string;
-}
-
-export type ItemList = {
-  cameras: CameraType[] | '';
-  lenses: LenseType[] | '';
-};
 
 export type CameraTableType = {
   id: string;

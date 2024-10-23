@@ -2,7 +2,6 @@ import { sql } from '@vercel/postgres';
 import {
     CameraType,
   } from './definitions';
-import { useSearchParams } from 'next/navigation';
 
 export async function fetchCameras() {
     try {

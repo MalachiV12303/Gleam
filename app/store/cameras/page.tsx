@@ -1,22 +1,19 @@
 import ItemsPanel from '@/app/ui/store/items-panel';
 import FiltersPanel from '@/app/ui/store/filters-panel';
 import { Suspense } from 'react';
-import { fetchCameras, fetchFilteredCameras } from '@/app/lib/data';
+import { fetchFilteredCameras } from '@/app/lib/data';
 
 export default async function Page({
-    params,
     searchParams,
 }: {
-    params: string;
     searchParams: { [key: string]: string | string[] | undefined };
 }) {
-    let one = params;
-    let filters = Array.isArray(searchParams.filter)
+    const filters = Array.isArray(searchParams.filter)
         ? searchParams.filter
         : searchParams.filter
             ? [searchParams.filter]
             : [];
-    let cameras = await fetchFilteredCameras(filters);
+    const cameras = await fetchFilteredCameras(filters);
     return (
         <>
             <div className="flex-col mx-auto w-9/12 mt-[4rem] max-h-screen content-center">

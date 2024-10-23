@@ -1,11 +1,11 @@
 import { formatCurrency } from '@/app/lib/utils';
-import { CameraType, LenseType } from "@/app/lib/definitions";
+import { CameraType } from "@/app/lib/definitions";
 
-export function StoreItem({ item }: { item: CameraType | LenseType ;}){
-    const isCamera = (value: CameraType | LenseType): value is CameraType => {
+export function StoreItem({ item }: { item: CameraType;}){
+    const isCamera = (value: CameraType): value is CameraType => {
         return true;
     };
-    let formattedValue=formatCurrency(item.value ?? '0');
+    const formattedValue=formatCurrency(item.value ?? '0');
     if(isCamera(item)){
         return(
             <div className="snap-start m-4 flex">

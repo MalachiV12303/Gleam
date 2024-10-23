@@ -5,12 +5,12 @@ import { useOptimistic, useTransition } from 'react';
 import clsx from 'clsx';
 
 export default function FiltersPanel({ filters }: { filters: string[]; }) {
-  let router = useRouter();
-  let [activeFilters, setActiveFilters] = useOptimistic(filters);
-  let [isPending, startTransition] = useTransition();
+  const router = useRouter();
+  const [activeFilters, setActiveFilters] = useOptimistic(filters);
+  const [isPending, startTransition] = useTransition();
 
   function updateFilters(filters: string[]) {
-    let newParams = new URLSearchParams(
+    const newParams = new URLSearchParams(
       filters.map((filter) => ["filter", filter])
     );
     startTransition(() => {
@@ -22,7 +22,7 @@ export default function FiltersPanel({ filters }: { filters: string[]; }) {
   const FILTERS = ["DSLR", "Mirrorless", "Canon", "Nikon", "Sony", "Panasonic"];
 
   return (
-    <div className="mt-4">
+    <div className="mt-4" data-pending={isPending ? "" : undefined}>
       <p className="underline">Filters</p>
       <div className="flex-col sm:block">
         {FILTERS.map((filter) => (
@@ -37,8 +37,8 @@ export default function FiltersPanel({ filters }: { filters: string[]; }) {
             <input
               checked={activeFilters.includes(filter)}
               onChange={(e) => {
-                let { name, checked } = e.target;
-                let newFilters = checked
+                const { name, checked } = e.target;
+                const newFilters = checked
                   ? [...activeFilters, name]
                   : activeFilters.filter((g) => g !== name);
                 updateFilters(newFilters);
