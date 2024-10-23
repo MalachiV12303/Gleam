@@ -29,25 +29,7 @@ export type CameraTableType = {
   price: number;
 }
 
-export type CamerasDetail = {
-  id: string;
-  name: string;
-  type: string;
-  brand: string;
-  megapixels: number;
-  price: number;
-};
-
 export type Filter = {
   type: 'camera' | 'lense' | 'aerial' | 'access';
   value: string;
-};
-
-export type ItemsTableType = {
-  itemtype: 'camera' | 'lense' | 'aerial' | 'access' | '';
-  id: string;
-  name: string;
-  type: string;
-  brand: string;
-  price: number;
 };

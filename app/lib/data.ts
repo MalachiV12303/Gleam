@@ -1,8 +1,6 @@
 import { sql } from '@vercel/postgres';
 import {
     CameraType,
-    CamerasDetail,
-    ItemsTableType,
   } from './definitions';
 import { useSearchParams } from 'next/navigation';
 
