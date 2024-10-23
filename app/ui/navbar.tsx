@@ -7,24 +7,15 @@ export default function NavBar(){
             <nav className="bg-background flex items-center justify-center sticky top-0 z-50 gap-12 min-h-[4rem]">
                     <Link
                         className={`${styles.button}`}
+                        href="/">
+                        <span>Home</span>
+                    </Link>
+                    <Link
+                        className={`${styles.button}`}
                         href="/store/cameras">
-                        <span>Cameras</span>
+                        <span>Store</span>
                     </Link>
-                    <Link
-                        className={styles.button}
-                        href="/store/lenses">
-                        <span>Lenses</span>
-                    </Link>
-                    <Link
-                        className={styles.button}
-                        href="/store/aerial">
-                        <span>Aerial</span>
-                    </Link>
-                    <Link
-                        className={styles.button}
-                        href="/store/accessories">
-                        <span>Accessories</span>
-                    </Link>
+
             </nav>
         </header>
     );

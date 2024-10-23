@@ -7,7 +7,6 @@ export function StoreItem({ item }: { item: CameraType | LenseType ;}){
     };
     let formattedValue=formatCurrency(item.value ?? '0');
     if(isCamera(item)){
-        // console.log(item);
         return(
             <div className="snap-start m-4 flex">
                 <div className="flex-1">

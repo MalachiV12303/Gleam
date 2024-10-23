@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useOptimistic, useTransition } from 'react';
+import clsx from 'clsx';
 
 export default function FiltersPanel({ filters }: { filters: string[]; }) {
   let router = useRouter();
@@ -27,8 +28,12 @@ export default function FiltersPanel({ filters }: { filters: string[]; }) {
         {FILTERS.map((filter) => (
           <label
             key={filter}
-            className="ml-2 p-1 flex gap-2 items-center whitespace-nowrap"
-          >
+            className={clsx(
+              'ml-2 p-1 flex gap-2 items-center whitespace-nowrap',
+              {
+                'line-through opacity-50': activeFilters.includes(filter),
+              }
+        )}>
             <input
               checked={activeFilters.includes(filter)}
               onChange={(e) => {
@@ -40,7 +45,7 @@ export default function FiltersPanel({ filters }: { filters: string[]; }) {
               }}
               name={filter}
               type="checkbox"
-              className="accent-blue-500"
+              className="hidden"
             />
             {filter}
           </label>
