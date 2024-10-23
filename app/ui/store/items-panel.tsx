@@ -11,7 +11,7 @@ export default async function ItemPanel({
   query: CameraType[];
 }) {
   return (
-      <div className="w-full h-full no-scrollbar snap-y snap-mandatory overflow-scroll">
+      <div className="mt-4 w-full h-full no-scrollbar snap-y snap-mandatory overflow-scroll">
         <div>
         {query?.map((item) => (
           <div>
@@ -19,7 +19,7 @@ export default async function ItemPanel({
           </div>
           ))}
         </div>
-        <div className="h-[70vh]"></div>
+        <div className="h-[75vh]"></div>
       </div>
   );
 }

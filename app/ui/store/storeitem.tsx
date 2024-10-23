@@ -9,7 +9,7 @@ export function StoreItem({ item }: { item: CameraType | LenseType ;}){
     if(isCamera(item)){
         // console.log(item);
         return(
-            <div className="snap-center m-4 p-1 flex">
+            <div className="snap-start m-4 flex">
                 <div className="flex-1">
                     <label className="text-base underline">{item.name} - {item.type}</label>
                     <p className="text-sm"> Megapixels: {item.megapixels}</p>

@@ -20,7 +20,7 @@ export default async function Page({
     return (
         <>
             <div className="flex-col mx-auto w-9/12 mt-[4rem] max-h-screen content-center">
-                <div id="store" className="flex h-[70vh] gap-8">
+                <div id="store" className="flex max-h-[64vh] gap-8">
                     <div className="basis-1/4 ">
                         <FiltersPanel filters={filters} />
                     </div>
