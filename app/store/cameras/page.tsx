@@ -2,6 +2,7 @@ import ItemsPanel from '@/app/ui/store/items-panel';
 import FiltersPanel from '@/app/ui/store/filters-panel';
 import { Suspense } from 'react';
 import { fetchFilteredCameras } from '@/app/lib/data';
+import { ptsans } from "@/app/ui/fonts"
 
 export default async function Page({
     searchParams,
@@ -16,7 +17,7 @@ export default async function Page({
     const cameras = await fetchFilteredCameras(filters);
     return (
         <>
-            <div className="flex-col mx-auto w-9/12 mt-[4rem] max-h-screen content-center">
+            <div className={`${ptsans.className} flex-col mx-auto w-9/12 mt-[4rem] max-h-screen content-center`}>
                 <div>
                     search placeholder
                 </div>

@@ -5,6 +5,9 @@ import { useOptimistic, useTransition } from 'react';
 import clsx from 'clsx';
 
 export default function FiltersPanel({ filters }: { filters: string[]; }) {
+  const CAMERATYPEFILTERS = ["DSLR", "Mirrorless"];
+  const BRANDFILTERS = ["Canon", "Nikon", "Sony", "Panasonic"];
+
   const router = useRouter();
   const [activeFilters, setActiveFilters] = useOptimistic(filters);
   const [isPending, startTransition] = useTransition();
@@ -19,12 +22,19 @@ export default function FiltersPanel({ filters }: { filters: string[]; }) {
     });
   }
 
-  const CAMERATYPEFILTERS = ["DSLR", "Mirrorless"];
-  const BRANDFILTERS = ["Canon", "Nikon", "Sony", "Panasonic"];
+  function FilterSet({ e }: { e: string[]; }){
+    return(
+      <div>
+        {e}
+      </div>
+    )
+  }
+
+  
   return (
     <div className="mt-4" data-pending={isPending ? "" : undefined}>
       <div className="flex-col sm:block">
-        <p className="underline">type</p>
+        <p>type</p>
         {CAMERATYPEFILTERS.map((filter) => (
           <label
             key={filter}
@@ -50,7 +60,7 @@ export default function FiltersPanel({ filters }: { filters: string[]; }) {
             {filter}
           </label>
         ))}
-        <p className="underline">brand</p>
+        <p>brand</p>
         {BRANDFILTERS.map((filter) => (
           <label
             key={filter}

@@ -11,7 +11,7 @@ export function StoreItem({ item }: { item: CameraType;}){
             <div className="snap-start m-4 flex">
                 <div className="flex-1">
                     <label className="text-base">{item.name}</label>
-                    <p className="text-sm"> Megapixels: {item.megapixels}</p>
+                    <p className="text-sm">{item.megapixels} megapixels</p>
                     <p className="text-xs opacity-75"> #: {item.id}</p>
                 </div>
                 <div>
