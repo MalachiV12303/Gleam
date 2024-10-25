@@ -1,13 +1,11 @@
 'use client';
 
-import { RadioGroup, Radio } from "@nextui-org/radio";
 import { useRouter } from 'next/navigation';
 import { useOptimistic, useTransition } from 'react';
 import clsx from 'clsx';
 import React from "react";
 
 export default function FiltersPanel({ params }: { params: string[]; }) {
-  const PRODUCTTYPES = ["camera", "lense", "aerial"]
   const CAMERATYPEFILTERS = ["DSLR", "Mirrorless"];
   const BRANDFILTERS = ["Canon", "Nikon", "Sony", "Panasonic"];
 

@@ -3,18 +3,13 @@ import FiltersPanel from '@/app/ui/store/filters-panel';
 import { Suspense } from 'react';
 import { fetchFilteredCameras } from '@/app/lib/data';
 import { ptsans } from "@/app/ui/fonts"
-import { useRouter } from 'next/router';
-import { RadioGroup, Radio } from "@nextui-org/radio";
 import React from 'react';
-import clsx from 'clsx';
 
 export default async function Page({
     searchParams,
 }: {
     searchParams: { [key: string]: string | string[] | undefined };
 }) {
-    const PRODUCTTYPES = ["camera", "lense", "aerial"]
-
     const params = Array.isArray(searchParams.filter)
         ? searchParams.filter
         : searchParams.filter
