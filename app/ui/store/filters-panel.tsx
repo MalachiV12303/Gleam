@@ -14,20 +14,15 @@ export default function FiltersPanel({ params }: { params: string[]; }) {
   const router = useRouter();
   const [activeFilters, setActiveFilters] = useOptimistic(params);
   const [isPending, startTransition] = useTransition();
-  const [selected, setSelected] = React.useState("camera");
+
   function updateFilters(filters: string[], key: string) {
-    console.log("START OF UPDATE FILTERS")
     const newParams = new URLSearchParams(
       filters.map((filter) => [key, filter])
     );
-    console.log("newParams: " + newParams);
     startTransition(() => {
-      console.log("startTransition called\nsetActiveFilters(" + filters + ")")
       setActiveFilters(filters);
       router.push(`?${newParams}`);
     });
-    console.log("filters: " + filters);
-    console.log("active filters: " + activeFilters);
   }
 
   function FilterSet({ set }: { set: string[]; }) {
@@ -66,22 +61,6 @@ export default function FiltersPanel({ params }: { params: string[]; }) {
   return (
     <div className="mt-4">
       <div className="flex-col sm:block">
-
-        <RadioGroup
-          label="category"
-          value={selected}
-          onValueChange={setSelected}
-        >
-          {PRODUCTTYPES.map((state) => (
-            <Radio checked={selected === "camera"} key={state} value={state}
-              className={clsx(
-                'ml-4 flex items-center py-1',
-                {
-                  'opacity-50 line-through': selected.includes(state),
-                }
-              )}>{state}-type</Radio>
-          ))}
-        </RadioGroup>
         <div className="pl-3">
           <p>type</p>
           <FilterSet set={CAMERATYPEFILTERS} />

@@ -3,7 +3,7 @@
 import {
   CameraType,
 } from '@/app/lib/definitions';
-import { StoreItem } from '@/app/ui/store/storeitem'
+import { StoreItem } from '@/app/ui/store/store-item'
 
 export default function ItemsPanel({
   query,
