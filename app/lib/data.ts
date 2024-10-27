@@ -2,6 +2,7 @@ import { sql } from '@vercel/postgres';
 import {
     CameraType,
   } from './definitions';
+import { SearchParams } from 'nuqs/server';
 
 export async function fetchCameras() {
     try {
@@ -48,8 +49,18 @@ export async function fetchCameras() {
 //     }
 //   }
 
-  export async function fetchFilteredCameras(query: string[]) {
+  export async function fetchFilteredCameras(canon: boolean, nikon: boolean, sony: boolean, pana: boolean) {
     try {
+        let brands="";
+        if(canon)
+          brands=brands.concat("canon")
+        if(nikon)
+          brands=brands.concat("nikon")
+        if(sony)
+          brands=brands.concat("sony")
+        if(pana)
+          brands=brands.concat("pana")
+
         const data = await sql<CameraType>`
         SELECT
           id,
@@ -60,14 +71,17 @@ export async function fetchCameras() {
           value
         FROM cameras
         WHERE 
-          cameras.brand ILIKE ${`%${query}%`} OR
-          cameras.type ILIKE ${`%${query}%`}
+          cameras.brand ILIKE ${`%${brands}%`}
         ORDER BY name ASC
       `;
-      return data.rows;
+      if(data.rowCount===0){
+        return null;
+      }
+      else
+        return data.rows;
     } catch (err) {
       console.error('Database Error:', err);
-      throw new Error('Failed to fetch filtered items.');
+      throw new Error('Failed to fetch filtered cameras.');
     }
   }
 

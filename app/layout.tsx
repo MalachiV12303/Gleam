@@ -3,6 +3,7 @@ import './globals.css';
 import type { Metadata } from "next";
 import { raleway } from "./ui/fonts"
 import NavBar from "./ui/navbar"
+import { NuqsAdapter } from 'nuqs/adapters/next';
 
 export const metadata: Metadata = {
   title: "Ecommerce Videography",
@@ -21,7 +22,7 @@ export default function RootLayout({
         className={`${raleway.className} antialiased`}
       >
         <NavBar />
-        {children}
+        <NuqsAdapter>{children}</NuqsAdapter>
       </body>
       
     </html>
