@@ -1,5 +1,4 @@
 import {
-  createParser,
   createSearchParamsCache,
   createSerializer,
   parseAsBoolean,
@@ -23,6 +22,5 @@ export const searchParamsCache = createSearchParamsCache({
   sony: parseAsBoolean.withDefault(false),
   pana: parseAsBoolean.withDefault(false)
 })
-
 
 export const serialize = createSerializer(searchParams)

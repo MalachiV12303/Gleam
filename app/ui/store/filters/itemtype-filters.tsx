@@ -15,6 +15,8 @@ export function TypeSelector(){
             shallow: false
     }).withDefault("cam"));
     
+    if (isLoading) return <div>Loading...</div>
+
     return(
         <div className="flex justify-between items-center divide-x border-x-[1px]"> 
             {ITEMTYPES.map((type)=>(

@@ -2,7 +2,6 @@ import { sql } from '@vercel/postgres';
 import {
     CameraType,
   } from './definitions';
-import { SearchParams } from 'nuqs/server';
 
 export async function fetchCameras() {
     try {

@@ -2,11 +2,11 @@ import { Suspense } from 'react';
 
 import ItemsPanel from '@/app/ui/store/items-panel';
 import FiltersPanel from '@/app/ui/store/filters-panel';
-import { fetchCameras, fetchFilteredCameras } from '@/app/lib/data';
+import { fetchFilteredCameras } from '@/app/lib/data';
 import { ptsans } from "@/app/ui/fonts"
 import React from 'react';
 
-import { parseAsString, type SearchParams } from 'nuqs/server';
+import { type SearchParams } from 'nuqs/server';
 import { searchParamsCache } from '@/app/lib/searchParams';
 import { TypeSelector } from '../ui/store/filters/itemtype-filters';
 
