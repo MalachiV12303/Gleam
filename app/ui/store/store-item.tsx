@@ -15,7 +15,7 @@ export function StoreItem({ item }: { item: CameraType;}){
                     <p className="text-xs opacity-75"> #: {item.id}</p>
                 </div>
                 <div>
-                    <p className="text-base">{formattedValue}</p>
+                    <p className="text-sm">{formattedValue}</p>
                 </div>
             </div>
         )

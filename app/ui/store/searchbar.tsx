@@ -12,7 +12,7 @@ export default function SearchBar(){
         <div className="flex w-full">
             <input value={name || ''} onChange={e => setName(e.target.value)} 
             placeholder="search..."
-            className="opacity-75 bg-transparent w-full border-transparent outline-none"/>
+            className="opacity-75 w-full border-transparent outline-none bg-transparent"/>
         </div>
     )
 }
