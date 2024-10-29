@@ -2,38 +2,42 @@ import { Suspense } from 'react';
 
 import ItemsPanel from '@/app/ui/store/items-panel';
 import FiltersPanel from '@/app/ui/store/filters-panel';
-import { fetchFilteredCameras } from '@/app/lib/data';
+import { fetchFilteredCameras, fetchSearchedItems } from '@/app/lib/data';
 import { ptsans } from "@/app/ui/fonts"
 import React from 'react';
 
 import { type SearchParams } from 'nuqs/server';
 import { searchParamsCache } from '@/app/lib/searchParams';
 import { TypeSelector } from '../ui/store/filters/itemtype-filters';
+import SearchBar from '../ui/store/searchbar';
 
 type PageProps = {
     searchParams: Promise<SearchParams>
 }
 
 export default async function Page({ searchParams }: PageProps) {
-    const { itemtype, canon, nikon, sony, pana } = searchParamsCache.parse(await searchParams)
+    const { search, itemtype, canon, nikon, sony, pana } = searchParamsCache.parse(await searchParams)
     let items=null;
     if(itemtype==="cam"){
-        items = await fetchFilteredCameras(canon, nikon, sony, pana);
+        items = await fetchFilteredCameras(search, canon, nikon, sony, pana);
+    }
+    if(search!==''){
+        items= await fetchSearchedItems(search);
     }
 
     return (
         <>
-            <div className={`${ptsans.className} flex-col mx-auto w-9/12 mt-[4rem] max-h-screen`}>
+            <div className={`${ptsans.className} flex-col mx-auto w-9/12 mt-[4rem] max-h-screen `}>
                 <div className="p-3">
-                    Search: 
+                    <SearchBar />
                 </div>
-                <div id="store" className="flex max-h-[68vh] gap-8">
-                    <div className="basis-1/4 ">
+                <div id="store" className="flex max-h-[68vh]">
+                    <div className="basis-1/4 h-full">
                         <Suspense>
                             <TypeSelector />
                         </Suspense>
                         <Suspense>
-                            <FiltersPanel />
+                            <FiltersPanel it={itemtype}/>
                         </Suspense>
                     </div>
                     <div className="basis-3/4">

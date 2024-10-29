@@ -41,8 +41,8 @@ export function LenseFilters() {
             shallow: false
         }).withDefault(false));
 
-        if (isLoading) return <div>Loading...</div>
-        
+        if (isLoading) return <div>loading...</div>
+
     return (
         <>
             <div className="flex-col">

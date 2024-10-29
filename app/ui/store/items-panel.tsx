@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import {
   CameraType,
@@ -16,12 +16,15 @@ export default function ItemsPanel({
     <div className="w-full max-h-full overflow-y-auto scrollbar ">
       <div className="h-full">
         {
-          items ? 
-          items.map((item) => (
-            <div key={item.name}>
-              <StoreItem item={item} />
+          items ?
+            items.map((item) => (
+              <div key={item.name}>
+                <StoreItem item={item} />
+              </div>
+            )) : 
+            <div className="m-8 mx-auto flex">
+                <p className="text-m mx-auto"> no items found...</p>
             </div>
-          )) : <div className="m-4">returned items is null</div>
         }
       </div>
     </div>

@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import React from "react";
-import { parseAsBoolean, useQueryState } from 'nuqs';
+import clsx from 'clsx'
+import React from "react"
+import { parseAsBoolean, useQueryState } from 'nuqs'
 
 export function CameraFilters() {
   const [isLoading, startTransition] = React.useTransition()
@@ -29,8 +29,8 @@ export function CameraFilters() {
       shallow: false
     }).withDefault(false));
 
-    if (isLoading) return <div>Loading...</div>
-    
+    if (isLoading) return <div>loading...</div>
+
   return (
     <>
       <div className="flex-col">

@@ -7,7 +7,8 @@ import {
 // Note: import from 'nuqs/server' to avoid the "use client" directive
 
 export const searchParams = {
-  itemtype: parseAsString.withDefault("camera"),
+  search: parseAsString.withDefault(''),
+  itemtype: parseAsString.withDefault('cam'),
   canon: parseAsBoolean.withDefault(false),
   nikon: parseAsBoolean.withDefault(false),
   sony: parseAsBoolean.withDefault(false),
@@ -16,6 +17,7 @@ export const searchParams = {
 
 export const searchParamsCache = createSearchParamsCache({
   // List your search param keys and associated parsers here:
+  search: parseAsString.withDefault(''),
   itemtype: parseAsString.withDefault("cam"),
   canon: parseAsBoolean.withDefault(false),
   nikon: parseAsBoolean.withDefault(false),

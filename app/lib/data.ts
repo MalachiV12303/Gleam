@@ -48,7 +48,7 @@ export async function fetchCameras() {
 //     }
 //   }
 
-  export async function fetchFilteredCameras(canon: boolean, nikon: boolean, sony: boolean, pana: boolean) {
+  export async function fetchFilteredCameras( search:string, canon: boolean, nikon: boolean, sony: boolean, pana: boolean ) {
     try {
         let brands="";
         if(canon)
@@ -84,6 +84,29 @@ export async function fetchCameras() {
     }
   }
 
-  export function collectFilters(){
-    
+  export async function fetchSearchedItems( search : string ) {
+    try {
+        const data = await sql<CameraType>`
+        SELECT
+          id,
+          name,
+          type,
+          brand,
+          megapixels,
+          value
+        FROM cameras
+        WHERE 
+          cameras.brand ILIKE ${`%${search}%`} OR
+          cameras.name ILIKE ${`%${search}%`}
+        ORDER BY name ASC
+      `;
+      if(data.rowCount === 0){
+        return null;
+      }
+      else
+        return data.rows;
+    } catch (err) {
+      console.error('Database Error:', err);
+      throw new Error('Failed to fetch searched items.');
+    }
   }
