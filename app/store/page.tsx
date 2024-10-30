@@ -20,7 +20,7 @@ export default async function Page({ searchParams }: PageProps) {
     const { search, type, itemtype, canon, nikon, sony, pana } = searchParamsCache.parse(await searchParams)
     let items = null;
     if (itemtype === "cam") {
-        items = await fetchFilteredCameras( type, canon, nikon, sony, pana);
+        items = await fetchFilteredCameras(type, canon, nikon, sony, pana);
     }
     if (search !== '') {
         items = await fetchSearchedItems(search);
@@ -28,23 +28,25 @@ export default async function Page({ searchParams }: PageProps) {
 
     return (
         <>
-            <div className={`${raleway.className} flex-col mx-auto w-full sm:w-9/12 mt-12 sm:mt-16 max-h-screen`}>
-                <div className="p-4">
-                    <SearchBar />
-                </div>
-                <div id="store" className="flex flex-col sm:flex-row max-h-[68vh]">
-                    <div className="basis-1/4 h-full">
-                        <Suspense>
-                            <TypeSelector />
-                        </Suspense>
-                        <Suspense>
-                            <FiltersPanel it={itemtype} />
-                        </Suspense>
+            <div className="w-screen">
+                <div className={`${raleway.className} flex-col mx-auto w-full sm:w-9/12`}>
+                    <div className="p-4">
+                        <SearchBar />
                     </div>
-                    <div className="basis-3/4">
-                        <Suspense fallback={loadingAnim()}>
-                            <ItemsPanel items={items} />
-                        </Suspense>
+                    <div id="store" className="flex flex-col sm:flex-row max-h-[68dvh]">
+                        <div className="basis-1/4 h-full">
+                            <Suspense>
+                                <TypeSelector />
+                            </Suspense>
+                            <Suspense>
+                                <FiltersPanel it={itemtype} />
+                            </Suspense>
+                        </div>
+                        <div className="basis-3/4">
+                            <Suspense fallback={loadingAnim()}>
+                                <ItemsPanel items={items} />
+                            </Suspense>
+                        </div>
                     </div>
                 </div>
             </div>

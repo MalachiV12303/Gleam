@@ -1,4 +1,5 @@
 
+
 export default function Layout({
   children,
 }: {
@@ -6,8 +7,8 @@ export default function Layout({
 }) {
   return (
     <>
-      <div className="top-0 absolute w-full h-screen flex">
-        {children}
+      <div className="absolute w-screen flex">
+        <main>{children}</main>
       </div>
     </>
   );

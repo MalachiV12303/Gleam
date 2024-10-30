@@ -50,6 +50,9 @@ export async function fetchCameras() {
 
   export async function fetchFilteredCameras( type:string, canon: boolean, nikon: boolean, sony: boolean, pana: boolean ) {
     try {
+
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        
         let brands="";
         if(canon)
           brands=brands.concat("canon")

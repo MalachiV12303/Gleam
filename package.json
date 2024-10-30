@@ -13,6 +13,7 @@
     "@types/bcrypt": "^5.0.2",
     "@vercel/postgres": "^0.10.0",
     "clsx": "^2.1.1",
+    "framer-motion": "^11.11.10",
     "lint": "^0.8.19",
     "next": "14.2.13",
     "nuqs": "^2.0.4",

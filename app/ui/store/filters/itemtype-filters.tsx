@@ -17,7 +17,7 @@ export function TypeSelector(){
     }).withDefault(''))
     
     return(
-        <div className="flex justify-between items-center divide-x border-foreground border-x-[1px] border-b-[1px] h-6"> 
+        <div className="flex justify-between items-center divide-x border-foreground sm:border-x-[1px] border-b-[1px] h-6"> 
             {ITEMTYPES.map((type)=>(
                 <label
                     key={type}
