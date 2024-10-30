@@ -13,7 +13,7 @@ export default function ItemsPanel({
   items: CameraType[] | LenseType[] | AerialType[] | null;
 }) {
   return (
-    <div className="w-full max-h-[55vh] overflow-y-auto no-scrollbar sm:scrollbar sm:max-h-full">
+    <div className="w-full max-h-[55vh] overflow-y-auto scrollbar sm:max-h-full">
       <div className="h-full">
         {
           items ?
