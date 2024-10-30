@@ -4,7 +4,7 @@ import styles from '@/app/ui/animations.module.css';
 import ItemsPanel from '@/app/ui/store/items-panel';
 import FiltersPanel from '@/app/ui/store/filters-panel';
 import { fetchFilteredCameras, fetchSearchedItems } from '@/app/lib/data';
-import { ptsans, raleway } from "@/app/ui/fonts"
+import { raleway } from "@/app/ui/fonts"
 import React from 'react';
 
 import { type SearchParams } from 'nuqs/server';
