@@ -48,7 +48,7 @@ export async function fetchCameras() {
 //     }
 //   }
 
-  export async function fetchFilteredCameras( search:string, canon: boolean, nikon: boolean, sony: boolean, pana: boolean ) {
+  export async function fetchFilteredCameras( type:string, canon: boolean, nikon: boolean, sony: boolean, pana: boolean ) {
     try {
         let brands="";
         if(canon)
@@ -70,7 +70,8 @@ export async function fetchCameras() {
           value
         FROM cameras
         WHERE 
-          cameras.brand ILIKE ${`%${brands}%`}
+          cameras.brand ILIKE ${`%${brands}%`} AND
+          cameras.type ILIKE ${`%${type}%`}
         ORDER BY name ASC
       `;
       if(data.rowCount===0){

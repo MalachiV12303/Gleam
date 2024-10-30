@@ -19,7 +19,7 @@ export default function FiltersPanel({
   }
   return (
     <>
-    <div className="text-sm flex-col mt-2">
+    <div className="text-sm flex-col mt-2 sm:mt-4">
       {selectFilters(it)}
     </div>
     </>

@@ -3,96 +3,84 @@ import React from "react";
 import { parseAsBoolean, useQueryState } from 'nuqs';
 
 export function LenseFilters() {
-    const [isLoading, startTransition] = React.useTransition()
-
     const [canon, setCanon] = useQueryState('canon',
         parseAsBoolean.withOptions({
-            startTransition,
             shallow: false
         }).withDefault(false));
-
     const [nikon, setNikon] = useQueryState('nikon',
         parseAsBoolean.withOptions({
-            startTransition,
             shallow: false
         }).withDefault(false));
 
     const [sony, setSony] = useQueryState('sony',
         parseAsBoolean.withOptions({
-            startTransition,
             shallow: false
         }).withDefault(false));
-
     const [pana, setPana] = useQueryState('pana',
         parseAsBoolean.withOptions({
-            startTransition,
             shallow: false
         }).withDefault(false));
 
     const [sigma, setSigma] = useQueryState('sigma',
         parseAsBoolean.withOptions({
-            startTransition,
             shallow: false
         }).withDefault(false));
 
     const [tamron, setTamron] = useQueryState('tamr',
         parseAsBoolean.withOptions({
-            startTransition,
             shallow: false
         }).withDefault(false));
 
-        if (isLoading) return <div>loading...</div>
-
     return (
         <>
-            <div className="flex-col">
-                <div className="p-2">
-                    <p>brand</p>
+                <div className="mx-4 flex gap-8">
+                    <div>
+                    <p className="hidden underline sm:block">brand</p>
                     <label
-                        className={clsx('ml-4 flex py-1', { 'opacity-50 line-through': canon })}>
+                        className={clsx('flex sm:py-1', { 'opacity-50 line-through': canon })}>
                         <button
                             onClick={() =>
                                 setCanon(!canon)}>
-                            Canon
+                            canon
                         </button>
                     </label>
                     <label
-                        className={clsx('ml-4 flex py-1', { 'opacity-50 line-through': nikon })}>
+                        className={clsx('flex sm:py-1', { 'opacity-50 line-through': nikon })}>
                         <button
                             onClick={() => setNikon(!nikon)}>
-                            Nikon
+                            nikon
                         </button>
                     </label>
                     <label
-                        className={clsx('ml-4 flex py-1', { 'opacity-50 line-through': sony })}>
+                        className={clsx('flex sm:py-1', { 'opacity-50 line-through': sony })}>
                         <button
                             onClick={() => setSony(!sony)}>
-                            Sony
+                            sony
                         </button>
                     </label>
                     <label
-                        className={clsx('ml-4 flex py-1', { 'opacity-50 line-through': pana })}>
+                        className={clsx('flex sm:py-1', { 'opacity-50 line-through': pana })}>
                         <button
                             onClick={() => setPana(!pana)}>
-                            Panasonic
+                            panasonic
                         </button>
                     </label>
                     <label
-                        className={clsx('ml-4 flex py-1', { 'opacity-50 line-through': sigma })}>
+                        className={clsx('flex sm:py-1', { 'opacity-50 line-through': sigma })}>
                         <button
                             onClick={() => setSigma(!sigma)}>
-                            Sigma
+                            sigma
                         </button>
                     </label>
                     <label
-                        className={clsx('ml-4 flex py-1', { 'opacity-50 line-through': tamron })}>
+                        className={clsx('flex sm:py-1', { 'opacity-50 line-through': tamron })}>
                         <button
                             onClick={() => setTamron(!tamron)}>
-                            Tamron
+                            tamron
                         </button>
                     </label>
+                    </div>
                 </div>
-            </div>
         </>
     );
 }

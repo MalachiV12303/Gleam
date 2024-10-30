@@ -1,68 +1,92 @@
 import clsx from 'clsx'
 import React from "react"
-import { parseAsBoolean, useQueryState } from 'nuqs'
+import { parseAsBoolean, parseAsString, useQueryState } from 'nuqs'
 
 export function CameraFilters() {
-  const [isLoading, startTransition] = React.useTransition()
-
+  const [ type , setType] = useQueryState('type', 
+    parseAsString.withOptions({
+      shallow: false
+    }).withDefault(''))
   const [canon, setCanon] = useQueryState('canon',
     parseAsBoolean.withOptions({
-      startTransition
+      shallow: false
     }).withDefault(false));
-
   const [nikon, setNikon] = useQueryState('nikon',
     parseAsBoolean.withOptions({
-      startTransition
+      shallow: false
     }).withDefault(false));
-
   const [sony, setSony] = useQueryState('sony',
     parseAsBoolean.withOptions({
-      startTransition,
       shallow: false
     }).withDefault(false));
-
   const [pana, setPana] = useQueryState('pana',
     parseAsBoolean.withOptions({
-      startTransition,
       shallow: false
     }).withDefault(false));
-
-    if (isLoading) return <div>loading...</div>
 
   return (
     <>
-        <div className="mx-4">
+      <div className="mx-4 flex gap-8">
+        <div>
+          <p className="hidden underline sm:block">type</p>
+          <label
+            className={clsx('flex sm:py-1', { 'opacity-50 line-through': type === 'dslr' })}>
+            <button
+              onClick={() => {if(type==="dslr"){
+                setType(null)
+              }else{
+                setType("dslr")
+              }
+                }}>
+              digital
+            </button>
+          </label>
+          <label
+            className={clsx('flex sm:py-1', { 'opacity-50 line-through': type === 'mir' })}>
+            <button
+              onClick={() => {if(type==="mir"){
+                setType(null)
+              }else{
+                setType("mir")
+              }
+                }}>
+              mirrorless
+            </button>
+          </label>
+        </div>
+        <div>
           <p className="hidden underline sm:block">brand</p>
           <label
             className={clsx('flex sm:py-1', { 'opacity-50 line-through': canon })}>
             <button
               onClick={() =>
                 setCanon(!canon)}>
-              Canon
+              canon
             </button>
           </label>
           <label
             className={clsx('flex sm:py-1', { 'opacity-50 line-through': nikon })}>
             <button
               onClick={() => setNikon(!nikon)}>
-              Nikon
+              nikon
             </button>
           </label>
           <label
             className={clsx('flex sm:py-1', { 'opacity-50 line-through': sony })}>
             <button
               onClick={() => setSony(!sony)}>
-              Sony
+              sony
             </button>
           </label>
           <label
             className={clsx('flex sm:py-1', { 'opacity-50 line-through': pana })}>
             <button
               onClick={() => setPana(!pana)}>
-              Panasonic
+              panasonic
             </button>
           </label>
         </div>
+      </div>
     </>
   );
 }
