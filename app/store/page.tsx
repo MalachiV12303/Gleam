@@ -1,9 +1,10 @@
 import { Suspense } from 'react';
+import styles from '@/app/ui/animations.module.css';
 
 import ItemsPanel from '@/app/ui/store/items-panel';
 import FiltersPanel from '@/app/ui/store/filters-panel';
 import { fetchFilteredCameras, fetchSearchedItems } from '@/app/lib/data';
-import { ptsans } from "@/app/ui/fonts"
+import { ptsans, raleway } from "@/app/ui/fonts"
 import React from 'react';
 
 import { type SearchParams } from 'nuqs/server';
@@ -17,18 +18,18 @@ type PageProps = {
 
 export default async function Page({ searchParams }: PageProps) {
     const { search, itemtype, canon, nikon, sony, pana } = searchParamsCache.parse(await searchParams)
-    let items=null;
-    if(itemtype==="cam"){
+    let items = null;
+    if (itemtype === "cam") {
         items = await fetchFilteredCameras(search, canon, nikon, sony, pana);
     }
-    if(search!==''){
-        items= await fetchSearchedItems(search);
+    if (search !== '') {
+        items = await fetchSearchedItems(search);
     }
 
     return (
         <>
-            <div className={`${ptsans.className} flex-col mx-auto w-9/12 mt-[4rem] max-h-screen `}>
-                <div className="p-3">
+            <div className={`${raleway.className} flex-col mx-auto w-full sm:w-9/12 mt-12 sm:mt-16 max-h-screen`}>
+                <div className="p-4">
                     <SearchBar />
                 </div>
                 <div id="store" className="flex flex-col sm:flex-row max-h-[70vh]">
@@ -37,18 +38,33 @@ export default async function Page({ searchParams }: PageProps) {
                             <TypeSelector />
                         </Suspense>
                         <Suspense>
-                            <FiltersPanel it={itemtype}/>
+                            <FiltersPanel it={itemtype} />
                         </Suspense>
                     </div>
                     <div className="basis-3/4">
-                        <Suspense fallback={<div>loading...</div>}>
+                        <Suspense fallback={loadingAnim()}>
                             <ItemsPanel items={items} />
                         </Suspense>
+
                     </div>
                 </div>
             </div>
         </>
     );
+
+    function loadingAnim() {
+        return (
+            <>
+                <div className={`${styles.spinnerbox} mx-auto`}>
+                    <div className={`${styles.configureborder1} bg-foreground`}>
+                        <div className={`${styles.configurecore} bg-background`}></div>
+                    </div>
+                    <div className={`${styles.configureborder2} bg-foreground`}>
+                        <div className={`${styles.configurecore} bg-background`}></div>
+                    </div>
+                </div>
+            </>);
+    }
 }
 
 // async function TypeViewer() {

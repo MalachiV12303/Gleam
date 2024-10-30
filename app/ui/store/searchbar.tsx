@@ -5,7 +5,8 @@ import React from "react";
 
 export default function SearchBar(){
     const [name, setName]= useQueryState('search', parseAsString.withOptions({
-        shallow: false
+        shallow: false,
+        throttleMs: 1000
     }).withDefault(''))
 
     return(

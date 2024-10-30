@@ -7,14 +7,12 @@ export function CameraFilters() {
 
   const [canon, setCanon] = useQueryState('canon',
     parseAsBoolean.withOptions({
-      startTransition,
-      shallow: false
+      startTransition
     }).withDefault(false));
 
   const [nikon, setNikon] = useQueryState('nikon',
     parseAsBoolean.withOptions({
-      startTransition,
-      shallow: false
+      startTransition
     }).withDefault(false));
 
   const [sony, setSony] = useQueryState('sony',
@@ -33,10 +31,10 @@ export function CameraFilters() {
 
   return (
     <>
-        <div className="p-2">
-          <p>brand</p>
+        <div className="mx-4">
+          <p className="hidden underline sm:block">brand</p>
           <label
-            className={clsx('ml-4 flex sm:py-1', { 'opacity-50 line-through': canon })}>
+            className={clsx('flex sm:py-1', { 'opacity-50 line-through': canon })}>
             <button
               onClick={() =>
                 setCanon(!canon)}>
@@ -44,21 +42,21 @@ export function CameraFilters() {
             </button>
           </label>
           <label
-            className={clsx('ml-4 flex sm:py-1', { 'opacity-50 line-through': nikon })}>
+            className={clsx('flex sm:py-1', { 'opacity-50 line-through': nikon })}>
             <button
               onClick={() => setNikon(!nikon)}>
               Nikon
             </button>
           </label>
           <label
-            className={clsx('ml-4 flex sm:py-1', { 'opacity-50 line-through': sony })}>
+            className={clsx('flex sm:py-1', { 'opacity-50 line-through': sony })}>
             <button
               onClick={() => setSony(!sony)}>
               Sony
             </button>
           </label>
           <label
-            className={clsx('ml-4 flex sm:py-1', { 'opacity-50 line-through': pana })}>
+            className={clsx('flex sm:py-1', { 'opacity-50 line-through': pana })}>
             <button
               onClick={() => setPana(!pana)}>
               Panasonic
