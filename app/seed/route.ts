@@ -8,7 +8,7 @@ async function seedCameras() {
 
   await client.sql`
     CREATE TABLE IF NOT EXISTS cameras (
-      id CHAR(8) PRIMARY KEY,
+      id CHAR(9) PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
       type VARCHAR(255) NOT NULL,
       brand VARCHAR(255) NOT NULL,
