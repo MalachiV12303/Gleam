@@ -1,7 +1,6 @@
 import { formatCurrency } from '@/app/lib/utils';
 import { CameraType, LenseType } from "@/app/lib/definitions";
 import Link from 'next/link';
-import { serialize } from '@/app/lib/searchParams';
 
 export function StoreItem({ item }: { item: CameraType | LenseType;}){
     const isCamera = (value: CameraType): value is CameraType => {
