@@ -3,7 +3,7 @@ import { raleway } from "@/app/ui/fonts"
 import CameraItem from "@/app/ui/item/cameraitem";
 import React from 'react';
 
-export default function Page( params : {id: string}) {
+export default function Page({ params }: { params: { id: string } }) {
     function displayItem(id : string){
         console.log(id)
         return <CameraItem/>
