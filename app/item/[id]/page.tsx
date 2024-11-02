@@ -9,11 +9,11 @@ import { parseAsString, useQueryState } from "nuqs";
 import React from 'react';
 
 export default function Page({ params }: { params: { id: string } }) {
-    const [ itemtype, setItemtype ] = useQueryState('itemtype', parseAsString.withDefault(''));
+    const [ itemtype, setItemtype ] = useQueryState('itemtype', parseAsString);
 
     function displayItem(id : string){
         if(itemtype === "cam")
-            return <CameraItem/>
+            return <CameraItem id={id}/>
         else if(itemtype === "len")
             return <LenseItem/>
         else if(itemtype === "aer")
@@ -21,19 +21,22 @@ export default function Page({ params }: { params: { id: string } }) {
         else
             return id;
     }
-    
-    const t=params.id.substring(0,1)
+    const t=params.id.substring(0,1);
     if((params.id.length===9) && (t==='c' ||t==='l'||t==='a')){
         switch (t){
-            case 'c':
-                setItemtype('cam');
-            case 'l':
-                setItemtype('len');
-            case 'a':
-                setItemtype('aer');
+            case "c":
+                setItemtype("cam");
+                break;
+            case "l":
+                setItemtype("len");
+                break;
+            case "a":
+                setItemtype("aer");
+                break;
             default:
                 setItemtype(null);
-        }
+                break;
+        };
     }
 
     return (
