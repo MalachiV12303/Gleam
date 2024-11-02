@@ -7,6 +7,7 @@ import {
 // Note: import from 'nuqs/server' to avoid the "use client" directive
 
 export const searchParams = {
+  id: parseAsString.withDefault(''),
   search: parseAsString.withDefault(''),
   type: parseAsString.withDefault(''),
   itemtype: parseAsString.withDefault('cam'),
@@ -18,6 +19,7 @@ export const searchParams = {
 
 export const searchParamsCache = createSearchParamsCache({
   // List your search param keys and associated parsers here:
+  id: parseAsString.withDefault(''),
   search: parseAsString.withDefault(''),
   type: parseAsString.withDefault(''),
   itemtype: parseAsString.withDefault("cam"),

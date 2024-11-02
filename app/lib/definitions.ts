@@ -7,6 +7,15 @@ export type CameraType = {
   value: number;
   megapixels: number;
 };
+
+export type CameraDetail = {
+  name: string;
+  type: string;
+  brand: string;
+  value: number;
+  megapixels: number;
+};
+
 export type LenseType = {
   id: string;
   name: string;

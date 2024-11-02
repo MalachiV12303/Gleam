@@ -1,5 +1,6 @@
 import { sql } from '@vercel/postgres';
 import {
+  CameraDetail,
     CameraType,
   } from './definitions';
 
@@ -26,33 +27,33 @@ export async function fetchCameras() {
     }
   }
 
-// export async function fetchCameraDetail() {
-//     try {
-//       const data = await sql<CamerasDetail>`
-//         SELECT
-//           id,
-//           name,
-//           type,
-//           brand,
-//           megapixels,
-//           price
-//         FROM cameras
-//         ORDER BY name ASC
-//       `;
-  
-//       const cameras = data.rows;
-//       return cameras;
-//     } catch (err) {
-//       console.error('Database Error:', err);
-//       throw new Error('Failed to fetch all cameras.');
-//     }
-//   }
+export async function fetchCamera(id: string) {
+
+    try {
+      const data = await sql<CameraDetail>`
+        SELECT
+          name,
+          type,
+          brand,
+          value,
+          megapixels
+        FROM cameras
+        WHERE
+          cameras.id ILIKE ${`%${id}%`}
+        ORDER BY name ASC
+        LIMIT 1
+      `;
+      const camera = data.rows;
+      return camera.at(0);
+    } catch (err) {
+      console.error('Database Error:', err);
+      throw new Error('Failed to fetch camera.');
+    }
+  }
 
   export async function fetchFilteredCameras( type:string, canon: boolean, nikon: boolean, sony: boolean, pana: boolean ) {
     try {
-
-        await new Promise((resolve) => setTimeout(resolve, 3000));
-        
+        //await new Promise((resolve) => setTimeout(resolve, 3000));
         let brands="";
         if(canon)
           brands=brands.concat("canon")

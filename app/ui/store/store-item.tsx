@@ -3,16 +3,20 @@ import { CameraType, LenseType } from "@/app/lib/definitions";
 import Link from 'next/link';
 
 export function StoreItem({ item }: { item: CameraType | LenseType;}){
+    const formattedValue=formatCurrency(item.value ?? '0')
+    const params = new URLSearchParams()
+    params.set("id", item.id)
+
     const isCamera = (value: CameraType): value is CameraType => {
-        return true;
+        return true
     };
     
-    const formattedValue=formatCurrency(item.value ?? '0');
-
+    
     if(isCamera(item)){
+        params.set("itemtype", "cam")
         return(
             <div className="snap-start m-4 flex">
-                <Link href={`/item/${item.id}`} className="flex-1">
+                <Link href={`/item?${params}`} className="flex-1">
                     <p className="text-sm sm:text-base">{item.name}</p>
                     <p className="text-xs sm:text-sm">{item.megapixels} megapixels</p>
                     <p className="text-xs opacity-75"> #: {item.id}</p>
