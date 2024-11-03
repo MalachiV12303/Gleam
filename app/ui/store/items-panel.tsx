@@ -1,16 +1,14 @@
-'use client'
-
 import {
   CameraType,
   LenseType,
   AerialType,
-} from '@/app/lib/definitions';
+} from '@/app/lib/definitions'
 import { StoreItem } from '@/app/ui/store/store-item'
 
 export default function ItemsPanel({
   items,
 }: {
-  items: CameraType[] | LenseType[] | AerialType[] | null;
+  items: CameraType[] | LenseType[] | AerialType[] | null
 }) {
   return (
     <div className="w-full max-h-[55vh] overflow-y-auto p-2 scrollbar sm:max-h-full">
@@ -27,7 +25,7 @@ export default function ItemsPanel({
             </div>
         }
     </div>
-  );
+  )
 }
 
 

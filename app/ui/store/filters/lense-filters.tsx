@@ -1,35 +1,34 @@
-import clsx from 'clsx';
-import React from "react";
-import { parseAsBoolean, useQueryState } from 'nuqs';
+import clsx from 'clsx'
+import React from 'react'
+import { useQueryState } from 'nuqs'
+import { searchParams } from '@/app/lib/searchParams'
 
 export function LenseFilters() {
+
     const [canon, setCanon] = useQueryState('canon',
-        parseAsBoolean.withOptions({
+        searchParams.canon.withOptions({
             shallow: false
-        }).withDefault(false));
+        }))
     const [nikon, setNikon] = useQueryState('nikon',
-        parseAsBoolean.withOptions({
+        searchParams.nikon.withOptions({
             shallow: false
-        }).withDefault(false));
-
+        }))
     const [sony, setSony] = useQueryState('sony',
-        parseAsBoolean.withOptions({
+        searchParams.sony.withOptions({
             shallow: false
-        }).withDefault(false));
+        }))
     const [pana, setPana] = useQueryState('pana',
-        parseAsBoolean.withOptions({
+        searchParams.pana.withOptions({
             shallow: false
-        }).withDefault(false));
-
+        }))
     const [sigma, setSigma] = useQueryState('sigma',
-        parseAsBoolean.withOptions({
+        searchParams.sigma.withOptions({
             shallow: false
-        }).withDefault(false));
-
+        }))
     const [tamron, setTamron] = useQueryState('tamr',
-        parseAsBoolean.withOptions({
+        searchParams.tamr.withOptions({
             shallow: false
-        }).withDefault(false));
+        }))
 
     return (
         <>

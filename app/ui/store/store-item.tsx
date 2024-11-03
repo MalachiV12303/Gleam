@@ -1,6 +1,6 @@
-import { formatCurrency } from '@/app/lib/utils';
-import { CameraType, LenseType } from "@/app/lib/definitions";
-import Link from 'next/link';
+import { formatCurrency } from '@/app/lib/utils'
+import { CameraType, LenseType } from '@/app/lib/definitions'
+import Link from 'next/link'
 
 export function StoreItem({ item }: { item: CameraType | LenseType;}){
     const formattedValue=formatCurrency(item.value ?? '0')
@@ -9,9 +9,7 @@ export function StoreItem({ item }: { item: CameraType | LenseType;}){
 
     const isCamera = (value: CameraType): value is CameraType => {
         return true
-    };
-    
-    
+    }
     if(isCamera(item)){
         params.set("itemtype", "cam")
         return(

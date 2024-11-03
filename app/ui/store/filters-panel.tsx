@@ -1,14 +1,16 @@
 'use client'
-import { CameraFilters } from './filters/camera-filters';
-import { LenseFilters } from './filters/lense-filters';
+
+import { CameraFilters } from './filters/camera-filters'
+import { LenseFilters } from './filters/lense-filters'
 
 export default function FiltersPanel({
-  it,
+  type,
 }: {
-  it: string | null;
+  type: string | null
 }) {
-  function selectFilters( i : string | null ){
-    switch(i){
+
+  function selectFilters(i: string | null) {
+    switch (i) {
       case "cam":
         return <CameraFilters />
       case "len":
@@ -17,11 +19,10 @@ export default function FiltersPanel({
         return <div className="flex w-full h-48 justify-center items-center"><p>aerial filters in progress...</p></div>
     }
   }
+
   return (
-    <>
     <div className="text-sm flex-col mt-2 sm:mt-4">
-      {selectFilters(it)}
+      {selectFilters(type)}
     </div>
-    </>
-  );
+  )
 }

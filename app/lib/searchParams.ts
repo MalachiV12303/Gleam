@@ -15,6 +15,8 @@ export const searchParams = {
   nikon: parseAsBoolean.withDefault(false),
   sony: parseAsBoolean.withDefault(false),
   pana: parseAsBoolean.withDefault(false),
+  sigma: parseAsBoolean.withDefault(false),
+  tamr: parseAsBoolean.withDefault(false),
 }
 
 export const searchParamsCache = createSearchParamsCache({
@@ -26,7 +28,9 @@ export const searchParamsCache = createSearchParamsCache({
   canon: parseAsBoolean.withDefault(false),
   nikon: parseAsBoolean.withDefault(false),
   sony: parseAsBoolean.withDefault(false),
-  pana: parseAsBoolean.withDefault(false)
+  pana: parseAsBoolean.withDefault(false),
+  sigma: parseAsBoolean.withDefault(false),
+  tamr: parseAsBoolean.withDefault(false),
 })
 
 export const serialize = createSerializer(searchParams)

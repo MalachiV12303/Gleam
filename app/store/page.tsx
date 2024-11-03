@@ -9,7 +9,7 @@ import React from 'react';
 
 import { type SearchParams } from 'nuqs/server';
 import { searchParamsCache } from '@/app/lib/searchParams';
-import { TypeSelector } from '../ui/store/filters/itemtype-filters';
+import { ItemTypeSelector } from '../ui/store/filters/itemtype-filters';
 import SearchBar from '../ui/store/searchbar';
 
 type PageProps = {
@@ -36,10 +36,10 @@ export default async function Page({ searchParams }: PageProps) {
                     <div id="store" className="flex flex-col sm:flex-row max-h-[68dvh]">
                         <div className="basis-1/4 h-full">
                             <Suspense>
-                                <TypeSelector />
+                                <ItemTypeSelector />
                             </Suspense>
                             <Suspense>
-                                <FiltersPanel it={itemtype} />
+                                <FiltersPanel type={itemtype} />
                             </Suspense>
                         </div>
                         <div className="basis-3/4">
