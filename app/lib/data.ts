@@ -1,12 +1,12 @@
 import { sql } from '@vercel/postgres';
 import {
   CameraDetail,
-    CameraType,
+    ItemType,
   } from './definitions';
 
 export async function fetchCameras() {
     try {
-      const data = await sql<CameraType>`
+      const data = await sql<ItemType>`
         SELECT
           id,
           name,
@@ -36,7 +36,7 @@ export async function fetchCamera(id: string) {
           type,
           brand,
           value,
-          megapixels,
+          details -> 'megapixels' AS megapixels,
           details -> 'res' AS res,
           details ->> 'shutter' AS shutter,
           details -> 'sd' AS sd,
@@ -69,13 +69,12 @@ export async function fetchCamera(id: string) {
         if(pana)
           brands=brands.concat("pana")
 
-        const data = await sql<CameraType>`
+        const data = await sql<ItemType>`
         SELECT
           id,
           name,
           type,
           brand,
-          megapixels,
           value,
           details,
           description
@@ -98,13 +97,12 @@ export async function fetchCamera(id: string) {
 
   export async function fetchSearchedItems( search : string ) {
     try {
-        const data = await sql<CameraType>`
+        const data = await sql<ItemType>`
         SELECT
           id,
           name,
           type,
           brand,
-          megapixels,
           value
         FROM cameras
         WHERE 

@@ -12,7 +12,6 @@ async function seedCameras() {
       name VARCHAR(255) NOT NULL,
       type VARCHAR(20) NOT NULL,
       brand VARCHAR(20) NOT NULL,
-      megapixels DECIMAL(3,1) NOT NULL,
       value DECIMAL(19,4) NOT NULL,
       details JSON NOT NULL,
       description TEXT
@@ -22,8 +21,8 @@ async function seedCameras() {
   const insertedCameras = await Promise.all(
     cameras.map(
       (camera) => client.sql`
-        INSERT INTO cameras (id, name, type, brand, megapixels, value, details, description)
-        VALUES (${camera.id}, ${camera.name}, ${camera.type}, ${camera.brand}, ${camera.megapixels}, ${camera.value}, ${camera.details}, ${camera.description})
+        INSERT INTO cameras (id, name, type, brand, value, details, description)
+        VALUES (${camera.id}, ${camera.name}, ${camera.type}, ${camera.brand}, ${camera.value}, ${camera.details}, ${camera.description})
         ON CONFLICT (id) DO NOTHING;
       `,
     ),

@@ -1,13 +1,13 @@
 import { formatCurrency } from '@/app/lib/utils'
-import { CameraType, LenseType } from '@/app/lib/definitions'
+import { ItemType, LenseType } from '@/app/lib/definitions'
 import Link from 'next/link'
 
-export function StoreItem({ item }: { item: CameraType | LenseType }){
+export function StoreItem({ item }: { item: ItemType | LenseType }){
     const formattedValue=formatCurrency(item.value ?? '0')
     const params = new URLSearchParams()
     params.set("id", item.id)
 
-    const isCamera = (value: CameraType): value is CameraType => {
+    const isCamera = (value: ItemType): value is ItemType => {
         return true
     }
     if(isCamera(item)){
@@ -16,7 +16,6 @@ export function StoreItem({ item }: { item: CameraType | LenseType }){
             <div className="snap-start m-4 flex">
                 <Link href={`/item?${params}`} className="flex-1">
                     <p className="text-sm sm:text-base">{item.name}</p>
-                    <p className="text-xs sm:text-sm">{item.megapixels} megapixels</p>
                     <p className="text-xs opacity-75"> #: {item.id}</p>
                 </Link>
                 <div>

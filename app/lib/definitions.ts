@@ -1,13 +1,12 @@
 
-export type CameraType = {
+export type ItemType = {
   id: string;
   name: string;
   type: string;
   brand: string;
   value: number;
-  megapixels: number;
   details: JSON;
-  description: string;
+  description: string | null;
 };
 
 export type CameraDetail = {
