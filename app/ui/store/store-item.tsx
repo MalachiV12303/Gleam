@@ -2,7 +2,7 @@ import { formatCurrency } from '@/app/lib/utils'
 import { CameraType, LenseType } from '@/app/lib/definitions'
 import Link from 'next/link'
 
-export function StoreItem({ item }: { item: CameraType | LenseType;}){
+export function StoreItem({ item }: { item: CameraType | LenseType }){
     const formattedValue=formatCurrency(item.value ?? '0')
     const params = new URLSearchParams()
     params.set("id", item.id)

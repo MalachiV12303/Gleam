@@ -36,7 +36,12 @@ export async function fetchCamera(id: string) {
           type,
           brand,
           value,
-          megapixels
+          megapixels,
+          details -> 'res' AS res,
+          details ->> 'shutter' AS shutter,
+          details -> 'sd' AS sd,
+          details -> 'lens' AS lens,
+          description
         FROM cameras
         WHERE
           cameras.id ILIKE ${`%${id}%`}
@@ -71,7 +76,9 @@ export async function fetchCamera(id: string) {
           type,
           brand,
           megapixels,
-          value
+          value,
+          details,
+          description
         FROM cameras
         WHERE 
           cameras.brand ILIKE ${`%${brands}%`} AND

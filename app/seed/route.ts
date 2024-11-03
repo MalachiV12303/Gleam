@@ -5,23 +5,25 @@ const client = await db.connect();
 
 async function seedCameras() {
   await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
-
+//
   await client.sql`
     CREATE TABLE IF NOT EXISTS cameras (
       id CHAR(9) PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
-      type VARCHAR(255) NOT NULL,
-      brand VARCHAR(255) NOT NULL,
+      type VARCHAR(20) NOT NULL,
+      brand VARCHAR(20) NOT NULL,
       megapixels DECIMAL(3,1) NOT NULL,
-      value DECIMAL(19,4) NOT NULL
+      value DECIMAL(19,4) NOT NULL,
+      details JSON NOT NULL,
+      description TEXT
     );
   `;
 
   const insertedCameras = await Promise.all(
     cameras.map(
       (camera) => client.sql`
-        INSERT INTO cameras (id, name, type, brand, megapixels, value)
-        VALUES (${camera.id}, ${camera.name}, ${camera.type}, ${camera.brand}, ${camera.megapixels}, ${camera.value})
+        INSERT INTO cameras (id, name, type, brand, megapixels, value, details, description)
+        VALUES (${camera.id}, ${camera.name}, ${camera.type}, ${camera.brand}, ${camera.megapixels}, ${camera.value}, ${camera.details}, ${camera.description})
         ON CONFLICT (id) DO NOTHING;
       `,
     ),

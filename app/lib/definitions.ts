@@ -6,6 +6,8 @@ export type CameraType = {
   brand: string;
   value: number;
   megapixels: number;
+  details: JSON;
+  description: string;
 };
 
 export type CameraDetail = {
@@ -14,6 +16,11 @@ export type CameraDetail = {
   brand: string;
   value: number;
   megapixels: number;
+  res: number;
+  shutter: string;
+  sd: string[];
+  lens: string[];
+  description: string;
 };
 
 export type LenseType = {
@@ -23,6 +30,8 @@ export type LenseType = {
   brand: string;
   value: number;
   megapixels: number;
+  details: JSON;
+  description: string;
 };
 export type AerialType = {
   id: string;
