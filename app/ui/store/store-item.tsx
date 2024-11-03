@@ -7,9 +7,6 @@ export function StoreItem({ item }: { item: ItemType }){
     const params = new URLSearchParams()
     params.set("id", item.id)
 
-    const isCamera = (value: ItemType): value is ItemType => {
-        return true
-    }
     if(item.id.substring(0,1)==='c'){
         params.set("itemtype", "cam")
         return(

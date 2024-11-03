@@ -17,7 +17,7 @@ type PageProps = {
 }
 
 export default async function Page({ searchParams }: PageProps) {
-    const { search, type, itemtype, canon, nikon, sony, pana } = searchParamsCache.parse(await searchParams)
+    const { type, itemtype, canon, nikon, sony, pana } = searchParamsCache.parse(await searchParams)
     let items = null;
     if (itemtype === "cam") {
         items = await fetchFilteredCameras(type, canon, nikon, sony, pana);
