@@ -1,14 +1,13 @@
 import {
-  CameraType,
-  LenseType,
-  AerialType,
+  ItemType,
+
 } from '@/app/lib/definitions'
 import { StoreItem } from '@/app/ui/store/store-item'
 
 export default function ItemsPanel({
   items,
 }: {
-  items: CameraType[] | LenseType[] | AerialType[] | null
+  items: ItemType[] | null
 }) {
   return (
     <div className="w-full max-h-[55vh] overflow-y-auto p-2 scrollbar sm:max-h-full">

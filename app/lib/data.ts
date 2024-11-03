@@ -27,8 +27,7 @@ export async function fetchCameras() {
     }
   }
 
-export async function fetchCamera(id: string) {
-
+export async function fetchCameraItem(id: string) {
     try {
       const data = await sql<CameraDetail>`
         SELECT
@@ -55,6 +54,8 @@ export async function fetchCamera(id: string) {
       throw new Error('Failed to fetch camera.');
     }
   }
+
+
 
   export async function fetchFilteredCameras( type:string, canon: boolean, nikon: boolean, sony: boolean, pana: boolean ) {
     try {
@@ -94,6 +95,47 @@ export async function fetchCamera(id: string) {
       throw new Error('Failed to fetch filtered cameras.');
     }
   }
+
+
+  export async function fetchStoreLenses( type:string, canon: boolean, nikon: boolean, sony: boolean, pana: boolean ) {
+    try {
+        //await new Promise((resolve) => setTimeout(resolve, 3000));
+        let brands="";
+        if(canon)
+          brands=brands.concat("canon")
+        if(nikon)
+          brands=brands.concat("nikon")
+        if(sony)
+          brands=brands.concat("sony")
+        if(pana)
+          brands=brands.concat("pana")
+
+        const data = await sql<ItemType>`
+        SELECT
+          id,
+          name,
+          type,
+          brand,
+          value,
+          details
+        FROM lenses
+        WHERE 
+          lenses.brand ILIKE ${`%${brands}%`} AND
+          lenses.type ILIKE ${`%${type}%`}
+        ORDER BY name ASC
+      `;
+      if(data.rowCount===0){
+        return null;
+      }
+      else
+        return data.rows;
+    } catch (err) {
+      console.error('Database Error:', err);
+      throw new Error('Failed to fetch filtered cameras.');
+    }
+  }
+
+
 
   export async function fetchSearchedItems( search : string ) {
     try {

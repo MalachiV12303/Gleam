@@ -18,5 +18,27 @@ const cameras = [
         description: 'Packed with the options that creators, vloggers and streamers want, the Z30 sports a flip-out touchscreen to keep you in front of the camera. Featuring 4K video that will help you stand out, fast, reliable autofocus, crystal clear audio, creative in-camera filters and convenient controls—all in a compact, lightweight package that will inspire your best work yet',
     },
   ];
-export { cameras };
+
+
+  const lenses = [
+    {
+        id: 'l69123919',
+        name: 'RF70-200mm F2.8L IS USM Telephoto Zoom Lens',
+        type: 'Telephoto Zoom',
+        brand: 'Canon',
+        value: 2099.99,
+        details: JSON.parse('{"minfl": 70, "maxfl": 200, "maxap" : "f/2.8", "mount" : ["Canon EF"]}'),
+    },
+    {
+        id: 'l75860420',
+        name: 'AF-S NIKKOR 50mm f/1.8G Standard Lens',
+        type: 'Standard Prime',
+        brand: 'Nikon',
+        value: 199.99,
+        details: JSON.parse('{"minfl": 70, "maxfl": 200, "maxap" : "f/2.8", "mount" : ["Nikon DX","Nikon FX"]}'),
+    },
+  ];
+
+
+export { cameras, lenses };
   

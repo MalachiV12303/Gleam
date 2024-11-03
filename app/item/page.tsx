@@ -5,7 +5,7 @@ import AerialItem from "@/app/ui/item/aerialitem";
 import { CameraItem } from "@/app/ui/item/cameraitem";
 import LenseItem from "@/app/ui/item/lenseitem";
 import React, { Suspense } from 'react';
-import { fetchCamera } from "../lib/data";
+import { fetchCameraItem } from "../lib/data";
 import { notFound } from "next/navigation";
 import { searchParamsCache } from "../lib/searchParams";
 import { SearchParams } from "nuqs/server";
@@ -15,14 +15,14 @@ type PageProps = {
     searchParams: Promise<SearchParams>
 }
 
-export default async function Page({ searchParams }: PageProps, ret : string) {
+export default async function Page({ searchParams }: PageProps) {
     const itemtype = searchParamsCache.parse(await searchParams).itemtype;
     const id = searchParamsCache.parse(await searchParams).id;
 
     if (id === null || id === undefined) {
         return notFound();
     }
-    const cam = await fetchCamera(id);
+    const cam = await fetchCameraItem(id);
     function displayItem() {
         if (itemtype === "cam")
             return <Suspense><CameraItem item={cam} /></Suspense>

@@ -3,7 +3,7 @@ import styles from '@/app/ui/animations.module.css';
 
 import ItemsPanel from '@/app/ui/store/items-panel';
 import FiltersPanel from '@/app/ui/store/filters-panel';
-import { fetchFilteredCameras, fetchSearchedItems } from '@/app/lib/data';
+import { fetchFilteredCameras, fetchStoreLenses } from '@/app/lib/data';
 import { raleway } from "@/app/ui/fonts"
 import React from 'react';
 
@@ -22,8 +22,8 @@ export default async function Page({ searchParams }: PageProps) {
     if (itemtype === "cam") {
         items = await fetchFilteredCameras(type, canon, nikon, sony, pana);
     }
-    if (search !== '') {
-        items = await fetchSearchedItems(search);
+    else if (itemtype === 'len') {
+        items = await fetchStoreLenses(type, canon, nikon, sony, pana);
     }
 
     return (

@@ -22,31 +22,6 @@ export type CameraDetail = {
   description: string;
 };
 
-export type LenseType = {
-  id: string;
-  name: string;
-  type: string;
-  brand: string;
-  value: number;
-  megapixels: number;
-  details: JSON;
-  description: string;
-};
-export type AerialType = {
-  id: string;
-  name: string;
-  type: string;
-  brand: string;
-  value: number;
-  megapixels: number;
-};
-
-export type CameraTableType = {
-  id: string;
-  name: string;
-  brand: string;
-  price: number;
-}
 
 export type Filter = {
   type: 'camera' | 'lense' | 'aerial' | 'access';
