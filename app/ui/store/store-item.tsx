@@ -6,8 +6,8 @@ export function StoreItem({ item }: { item: CameraDetail | LenseDetail }) {
     const formattedValue = formatCurrency(item.value ?? '0')
     const params = new URLSearchParams()
     params.set("id", item.id)
-
-    if (item.id.substring(0,1)==='c') {
+    
+    if ("megapixels" in item) {
         params.set("itemtype", "cam")
         return (
                 <Link href={`/item?${params}`} className="flex snap-start m-4">
@@ -22,7 +22,7 @@ export function StoreItem({ item }: { item: CameraDetail | LenseDetail }) {
                     </div>
                 </Link>
         )
-    } else if (item.id.substring(0,1)==='l') {
+    } else if ("minfl" in item) {
         params.set("itemtype", "len")
         return (
             <Link href={`/item?${params}`} className="flex snap-start m-4">

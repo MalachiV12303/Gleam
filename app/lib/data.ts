@@ -49,10 +49,7 @@ export async function fetchCameras(search: string, type: string, canon: boolean,
       brands = brands.concat("pana")
 
     let data=null;
-    console.log("search is: " + search)
-
     if (search === '') {
-      console.log("search === undefined")
       data = await sql<CameraDetail>`
         SELECT
           id,
