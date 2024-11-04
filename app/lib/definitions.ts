@@ -1,4 +1,3 @@
-
 export type ItemType = {
   id: string;
   name: string;
@@ -9,7 +8,9 @@ export type ItemType = {
   description: string | null;
 };
 
+
 export type CameraDetail = {
+  id: string;
   name: string;
   type: string;
   brand: string;
@@ -20,6 +21,18 @@ export type CameraDetail = {
   sd: string[];
   lens: string[];
   description: string;
+};
+
+export type LenseDetail = {
+  id: string;
+  name: string;
+  type: string;
+  brand: string;
+  value: number;
+  minfl: number;
+  maxfl: number;
+  maxap: string;
+  mount: string[];
 };
 
 

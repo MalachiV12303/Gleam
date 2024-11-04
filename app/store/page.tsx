@@ -1,12 +1,10 @@
 import { Suspense } from 'react';
 import styles from '@/app/ui/animations.module.css';
-
 import ItemsPanel from '@/app/ui/store/items-panel';
 import FiltersPanel from '@/app/ui/store/filters-panel';
-import { fetchFilteredCameras, fetchStoreLenses } from '@/app/lib/data';
+import { fetchCameras, fetchLenses } from '@/app/lib/data';
 import { raleway } from "@/app/ui/fonts"
 import React from 'react';
-
 import { type SearchParams } from 'nuqs/server';
 import { searchParamsCache } from '@/app/lib/searchParams';
 import { ItemTypeSelector } from '../ui/store/filters/itemtype-filters';
@@ -17,14 +15,16 @@ type PageProps = {
 }
 
 export default async function Page({ searchParams }: PageProps) {
-    const { type, itemtype, canon, nikon, sony, pana } = searchParamsCache.parse(await searchParams)
+    const { search, type, itemtype, canon, nikon, sony, pana } = searchParamsCache.parse(await searchParams)
     let items = null;
+
     if (itemtype === "cam") {
-        items = await fetchFilteredCameras(type, canon, nikon, sony, pana);
+        items = await fetchCameras( search, type, canon, nikon, sony, pana );
     }
     else if (itemtype === 'len') {
-        items = await fetchStoreLenses(type, canon, nikon, sony, pana);
+        items = await fetchLenses( search, type, canon, nikon, sony, pana );
     }
+
 
     return (
         <>

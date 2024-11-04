@@ -1,43 +1,46 @@
 import { formatCurrency } from '@/app/lib/utils'
-import { ItemType } from '@/app/lib/definitions'
+import { CameraDetail, LenseDetail } from '@/app/lib/definitions'
 import Link from 'next/link'
 
-export function StoreItem({ item }: { item: ItemType }){
-    const formattedValue=formatCurrency(item.value ?? '0')
+export function StoreItem({ item }: { item: CameraDetail | LenseDetail }) {
+    const formattedValue = formatCurrency(item.value ?? '0')
     const params = new URLSearchParams()
     params.set("id", item.id)
 
-    if(item.id.substring(0,1)==='c'){
+    if (item.id.substring(0,1)==='c') {
         params.set("itemtype", "cam")
-        return(
-            <div className="snap-start m-4 flex">
-                <Link href={`/item?${params}`} className="flex-1">
-                    <p className="text-sm sm:text-base">{item.name}</p>
-                    <p className="text-xs opacity-75"> #: {item.id}</p>
+        return (
+                <Link href={`/item?${params}`} className="flex snap-start m-4">
+                    <div className="basis-3/4">
+                        <div className="text-sm sm:text-base">{item.name}</div>
+                        <div className="text-xs opacity-75">{item.type}</div>
+                        <div className="text-xs opacity-75">{item.brand}</div>
+                        <div className="text-xs opacity-75">{item.megapixels}</div>
+                    </div>
+                    <div className="basis-1/4 flex justify-end">
+                        <div className="text-xs sm:text-sm">{formattedValue}</div>
+                    </div>
                 </Link>
-                <div>
-                    <p className="text-xs sm:text-sm">{formattedValue}</p>
-                </div>
-            </div>
         )
-    }
-    else if(item.id.substring(0,1)==='l'){
+    } else if (item.id.substring(0,1)==='l') {
         params.set("itemtype", "len")
-        return(
-            <div className="snap-start m-4 flex">
-                <Link href={`/item?${params}`} className="flex-1">
-                    <p className="text-sm sm:text-base">{item.name}</p>
-                    <p className="text-xs opacity-75"> #: {item.id}</p>
+        return (
+            <Link href={`/item?${params}`} className="flex snap-start m-4">
+                    <div className="basis-3/4">
+                        <div className="text-sm sm:text-base">{item.name}</div>
+                        <div className="text-xs opacity-75">{item.type}</div>
+                        <div className="text-xs opacity-75">{item.brand}</div>
+                        <div className="text-xs opacity-75">{item.minfl}</div>
+                        <div className="text-xs opacity-75">{item.maxfl}</div>
+                    </div>
+                    <div className="basis-1/4 flex justify-end">
+                        <div className="text-xs sm:text-sm">{formattedValue}</div>
+                    </div>
                 </Link>
-                <div>
-                    <p className="text-xs sm:text-sm">{formattedValue}</p>
-                </div>
-            </div>
         )
     }
-    
-    else{
-        return(
+    else {
+        return (
             <>
                 <div>
                     unknown item type
@@ -45,6 +48,6 @@ export function StoreItem({ item }: { item: ItemType }){
             </>
         )
     }
-    
+
 
 }

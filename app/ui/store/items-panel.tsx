@@ -1,5 +1,6 @@
 import {
-  ItemType,
+  CameraDetail,
+  LenseDetail,
 
 } from '@/app/lib/definitions'
 import { StoreItem } from '@/app/ui/store/store-item'
@@ -7,7 +8,7 @@ import { StoreItem } from '@/app/ui/store/store-item'
 export default function ItemsPanel({
   items,
 }: {
-  items: ItemType[] | null
+  items: CameraDetail[] | LenseDetail[] | null
 }) {
   return (
     <div className="w-full max-h-[55vh] overflow-y-auto p-2 scrollbar sm:max-h-full">

@@ -1,35 +1,13 @@
 import { sql } from '@vercel/postgres';
 import {
   CameraDetail,
-    ItemType,
-  } from './definitions';
+  LenseDetail,
+} from './definitions';
 
-export async function fetchCameras() {
-    try {
-      const data = await sql<ItemType>`
-        SELECT
-          id,
-          name,
-          type,
-          brand,
-          megapixels,
-          value
-        FROM cameras
-        ORDER BY name ASC
-      `;
-  
-      const cameras = data.rows;
-      return cameras;
-      
-    } catch (err) {
-      console.error('Database Error:', err);
-      throw new Error('Failed to fetch all cameras.');
-    }
-  }
 
-export async function fetchCameraItem(id: string) {
-    try {
-      const data = await sql<CameraDetail>`
+export async function fetchCamera(id: string) {
+  try {
+    const data = await sql<CameraDetail>`
         SELECT
           name,
           type,
@@ -47,70 +25,119 @@ export async function fetchCameraItem(id: string) {
         ORDER BY name ASC
         LIMIT 1
       `;
-      const camera = data.rows;
-      return camera.at(0);
-    } catch (err) {
-      console.error('Database Error:', err);
-      throw new Error('Failed to fetch camera.');
-    }
+    const camera = data.rows;
+    return camera.at(0);
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch camera.');
   }
+}
 
 
 
-  export async function fetchFilteredCameras( type:string, canon: boolean, nikon: boolean, sony: boolean, pana: boolean ) {
-    try {
-        //await new Promise((resolve) => setTimeout(resolve, 3000));
-        let brands="";
-        if(canon)
-          brands=brands.concat("canon")
-        if(nikon)
-          brands=brands.concat("nikon")
-        if(sony)
-          brands=brands.concat("sony")
-        if(pana)
-          brands=brands.concat("pana")
+export async function fetchCameras(search: string, type: string, canon: boolean, nikon: boolean, sony: boolean, pana: boolean) {
+  try {
+    //await new Promise((resolve) => setTimeout(resolve, 3000));
+    let brands = "";
+    if (canon)
+      brands = brands.concat("canon")
+    if (nikon)
+      brands = brands.concat("nikon")
+    if (sony)
+      brands = brands.concat("sony")
+    if (pana)
+      brands = brands.concat("pana")
 
-        const data = await sql<ItemType>`
+    let data=null;
+    console.log("search is: " + search)
+
+    if (search === '') {
+      console.log("search === undefined")
+      data = await sql<CameraDetail>`
         SELECT
           id,
           name,
           type,
           brand,
           value,
-          details,
+          details -> 'megapixels' AS megapixels,
+          details -> 'res' AS res,
+          details ->> 'shutter' AS shutter,
+          details -> 'sd' AS sd,
+          details -> 'lens' AS lens,
           description
         FROM cameras
-        WHERE 
+        WHERE
           cameras.brand ILIKE ${`%${brands}%`} AND
           cameras.type ILIKE ${`%${type}%`}
         ORDER BY name ASC
       `;
-      if(data.rowCount===0){
-        return null;
-      }
-      else
-        return data.rows;
-    } catch (err) {
-      console.error('Database Error:', err);
-      throw new Error('Failed to fetch filtered cameras.');
+    } else {
+      data = await sql<CameraDetail>`
+        SELECT
+          id,
+          name,
+          type,
+          brand,
+          value,
+          details -> 'megapixels' AS megapixels,
+          details -> 'res' AS res,
+          details ->> 'shutter' AS shutter,
+          details -> 'sd' AS sd,
+          details -> 'lens' AS lens,
+          description
+        FROM cameras
+        WHERE 
+          cameras.name ILIKE ${`%${search}%`}
+        ORDER BY name ASC
+      `;
     }
+    if (data.rowCount === 0) {
+      return null;
+    }
+    else
+      return data.rows;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch filtered cameras.');
   }
+}
 
 
-  export async function fetchStoreLenses( type:string, canon: boolean, nikon: boolean, sony: boolean, pana: boolean ) {
-    try {
-        //await new Promise((resolve) => setTimeout(resolve, 3000));
-        let brands="";
-        if(canon)
-          brands=brands.concat("canon")
-        if(nikon)
-          brands=brands.concat("nikon")
-        if(sony)
-          brands=brands.concat("sony")
-        if(pana)
-          brands=brands.concat("pana")
+export async function fetchLenses(search: string, type: string, canon: boolean, nikon: boolean, sony: boolean, pana: boolean) {
+  try {
+    //await new Promise((resolve) => setTimeout(resolve, 3000));
+    let brands = "";
+    if (canon)
+      brands = brands.concat("canon")
+    if (nikon)
+      brands = brands.concat("nikon")
+    if (sony)
+      brands = brands.concat("sony")
+    if (pana)
+      brands = brands.concat("pana")
 
-        const data = await sql<ItemType>`
+    let data=null;
+    if (search === '') {
+      data = await sql<LenseDetail>`
+        SELECT
+          id,
+          name,
+          type,
+          brand,
+          value,
+          details -> 'minfl' AS minfl,
+          details -> 'maxfl' AS maxfl,
+          details -> 'maxap' AS maxap,
+          details ->> 'mount' AS mount
+        FROM lenses
+        WHERE 
+          lenses.brand ILIKE ${`%${brands}%`} AND
+          lenses.type ILIKE ${`%${type}%`}
+        ORDER BY name ASC
+      `;
+    }else{
+      data = await sql<LenseDetail>`
         SELECT
           id,
           name,
@@ -124,41 +151,17 @@ export async function fetchCameraItem(id: string) {
           lenses.type ILIKE ${`%${type}%`}
         ORDER BY name ASC
       `;
-      if(data.rowCount===0){
-        return null;
-      }
-      else
-        return data.rows;
-    } catch (err) {
-      console.error('Database Error:', err);
-      throw new Error('Failed to fetch filtered cameras.');
     }
-  }
+    
 
-
-
-  export async function fetchSearchedItems( search : string ) {
-    try {
-        const data = await sql<ItemType>`
-        SELECT
-          id,
-          name,
-          type,
-          brand,
-          value
-        FROM cameras
-        WHERE 
-          cameras.brand ILIKE ${`%${search}%`} OR
-          cameras.name ILIKE ${`%${search}%`}
-        ORDER BY name ASC
-      `;
-      if(data.rowCount === 0){
-        return null;
-      }
-      else
-        return data.rows;
-    } catch (err) {
-      console.error('Database Error:', err);
-      throw new Error('Failed to fetch searched items.');
+    if (data.rowCount === 0) {
+      return null;
     }
+    else
+      return data.rows;
+  } catch (err) {
+    console.error('Database Error:', err);
+    throw new Error('Failed to fetch filtered cameras.');
   }
+}
+
