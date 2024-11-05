@@ -1,6 +1,6 @@
 import './globals.css';
 import { bnova } from "@/app/ui/fonts"
-
+//
 export default function Home() {
   return ( 
       <div className="top-0 absolute w-full flex flex-col justify-center">
