@@ -11,7 +11,7 @@ export default function ItemsPanel({
   items: CameraDetail[] | LenseDetail[] | null
 }) {
   return (
-    <div className="w-full max-h-[55vh] overflow-y-auto p-2 scrollbar sm:max-h-full">
+    <div className="w-full max-h-[55vh] overflow-y-auto scrollbar sm:max-h-full">
         {
           items ?
             items.map((item) => (

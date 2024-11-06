@@ -3,7 +3,7 @@ import styles from '@/app/ui/animations.module.css';
 import ItemsPanel from '@/app/ui/store/items-panel';
 import FiltersPanel from '@/app/ui/store/filters-panel';
 import { fetchCameras, fetchLenses } from '@/app/lib/data';
-import { raleway } from "@/app/ui/fonts"
+import { inc } from "@/app/ui/fonts"
 import React from 'react';
 import { type SearchParams } from 'nuqs/server';
 import { searchParamsCache } from '@/app/lib/searchParams';
@@ -29,12 +29,12 @@ export default async function Page({ searchParams }: PageProps) {
     return (
         <>
             <div className="w-screen">
-                <div className={`${raleway.className} flex-col mx-auto w-full sm:w-9/12`}>
+                <div className={`${inc.className} flex-col mx-auto w-full sm:w-9/12`}>
                     <div className="p-4">
                         <SearchBar />
                     </div>
                     <div id="store" className="flex flex-col sm:flex-row max-h-[68dvh]">
-                        <div className="basis-1/4 h-full">
+                        <div className="basis-1/4">
                             <Suspense>
                                 <ItemTypeSelector />
                             </Suspense>
