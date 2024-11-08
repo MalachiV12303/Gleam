@@ -15,10 +15,6 @@ export const parseAsSliderValue = createParser({
     if (!isValid) {
       return null
     }
-    // if(inBetween[0]==='0' && inBetween[1]==='3000'){
-    //   return <SliderValue>([0, 3000]);
-    // }
-    //console.log("inbetween0:\n"+parseInt(inBetween[0]) +"\ninbetween1:\n"+  parseInt(inBetween[1]))
     return <SliderValue>([parseInt(inBetween[0]), parseInt(inBetween[1])]);
   },
   serialize(value) {
@@ -31,7 +27,7 @@ export const searchParams = {
   search: parseAsString.withDefault(''),
   type: parseAsString.withDefault(''),
   itemtype: parseAsString.withDefault('cam'),
-  price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])),
+  price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])), //defaults are not working properly
   canon: parseAsBoolean.withDefault(false),
   nikon: parseAsBoolean.withDefault(false),
   sony: parseAsBoolean.withDefault(false),
