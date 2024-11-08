@@ -10,15 +10,6 @@ const config: Config = {
     "./node_modules/@nextui-org/theme/dist/components/slider.js",
   ],
   theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
-      backgroundImage: {
-        'camera': "url('/camera-backdrop.jpg')",
-      },
-    },
     fontSize: {
       xs: '0.6rem',
       sm: '0.8rem',
@@ -30,8 +21,29 @@ const config: Config = {
       '4xl': '2.441rem',
       '5xl': '3.052rem',
     }
-    
+
   },
-  plugins: [nextui()],
+  plugins: [nextui({
+    themes: {
+      "darker": {
+        extend: "dark",
+        colors: {
+          background: "#0A0A0A",
+          foreground: "#EDEDED",
+          primary: "#EDEDED",
+          secondary: "#0377fc",
+        }
+      },
+      "lighter": {
+        extend: "light",
+        colors: {
+          background: "#eeeeee",
+          foreground: "#171717",
+          primary: "#171717",
+          secondary: "#0377fc",
+        }
+      }
+    }
+  })],
 };
 export default config;

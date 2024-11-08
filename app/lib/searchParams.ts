@@ -1,4 +1,4 @@
-import { SliderValue } from '@nextui-org/slider';
+import {  type SliderValue } from '@nextui-org/slider';
 import {
   createParser,
   createSearchParamsCache,
@@ -6,7 +6,7 @@ import {
   parseAsBoolean,
   parseAsString
 } from 'nuqs/server'
-// Note: import from 'nuqs/server' to avoid the "use client" directive
+// import from 'nuqs/server' to avoid the "use client" directive
 
 export const parseAsSliderValue = createParser({
   parse(queryValue) {
@@ -27,7 +27,7 @@ export const searchParams = {
   search: parseAsString.withDefault(''),
   type: parseAsString.withDefault(''),
   itemtype: parseAsString.withDefault('cam'),
-  price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])), //defaults are not working properly
+  price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])), // defaults are not working properly
   canon: parseAsBoolean.withDefault(false),
   nikon: parseAsBoolean.withDefault(false),
   sony: parseAsBoolean.withDefault(false),
@@ -42,7 +42,7 @@ export const searchParamsCache = createSearchParamsCache({
   search: parseAsString.withDefault(''),
   type: parseAsString.withDefault(''),
   itemtype: parseAsString.withDefault('cam'),
-  price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])),
+  price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])), // defaults are not working properly
   canon: parseAsBoolean.withDefault(false),
   nikon: parseAsBoolean.withDefault(false),
   sony: parseAsBoolean.withDefault(false),
@@ -50,7 +50,5 @@ export const searchParamsCache = createSearchParamsCache({
   sigma: parseAsBoolean.withDefault(false),
   tamr: parseAsBoolean.withDefault(false),
 })
-
-
 
 export const serialize = createSerializer(searchParams)

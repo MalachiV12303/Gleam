@@ -18,11 +18,11 @@ export function ItemTypeSelector(){
     
 
     return(
-        <div className="flex justify-between items-center divide-x border-foreground sm:border-x-[1px] border-b-[1px] h-6"> 
+        <div className="flex justify-between items-center border-foreground divide-x sm:border-x-[1px] border-b-[1px] h-6"> 
             {ITEMTYPES.map((type)=>(
                 <label
                     key={type}
-                    className={clsx('flex h-full basis-1/3 px-1 justify-center ', { 'bg-foreground text-background' : itemtype === type })}>
+                    className={clsx('flex h-full basis-1/3 px-1 justify-center', { 'bg-foreground text-background' : itemtype === type })}>
                     <button
                         onClick={() => {
                             setItemtype(type)

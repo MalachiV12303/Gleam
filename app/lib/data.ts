@@ -35,9 +35,14 @@ export async function fetchCamera(id: string) {
 
 
 
-export async function fetchCameras(search: string, type: string, canon: boolean, nikon: boolean, sony: boolean, pana: boolean) {
+export async function fetchCameras(search: string, price: string , type: string, canon: boolean, nikon: boolean, sony: boolean, pana: boolean) {
   try {
+    
     //await new Promise((resolve) => setTimeout(resolve, 3000));
+    const p=price.split(',')
+    const vals=p.map(parseFloat)
+    //console.log("p" + p + "\nvals" + vals)
+
     let brands = "";
     if (canon)
       brands = brands.concat("canon")
@@ -66,8 +71,10 @@ export async function fetchCameras(search: string, type: string, canon: boolean,
         FROM cameras
         WHERE
           cameras.brand ILIKE ${`%${brands}%`} AND
-          cameras.type ILIKE ${`%${type}%`}
-        ORDER BY name ASC
+          cameras.type ILIKE ${`%${type}%`} AND
+          cameras.value > ${vals[0]} AND
+          cameras.value < ${vals[1]}
+        ORDER BY name ASC 
       `;
     } else {
       data = await sql<CameraDetail>`
@@ -85,7 +92,9 @@ export async function fetchCameras(search: string, type: string, canon: boolean,
           description
         FROM cameras
         WHERE 
-          cameras.name ILIKE ${`%${search}%`}
+          cameras.name ILIKE ${`%${search}%`} AND
+          cameras.value > ${vals[0]} AND
+          cameras.value < ${vals[1]}
         ORDER BY name ASC
       `;
     }

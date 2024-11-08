@@ -6,7 +6,7 @@ import { fetchCameras, fetchLenses } from '@/app/lib/data';
 import { inc } from "@/app/ui/fonts"
 import React from 'react';
 import { type SearchParams } from 'nuqs/server';
-import { searchParamsCache } from '@/app/lib/searchParams';
+import { parseAsSliderValue, searchParamsCache } from '@/app/lib/searchParams';
 import { ItemTypeSelector } from '../ui/store/filters/itemtype-filters';
 import SearchBar from '../ui/store/searchbar';
 
@@ -15,11 +15,11 @@ type PageProps = {
 }
 
 export default async function Page({ searchParams }: PageProps) {
-    const { search, type, itemtype, canon, nikon, sony, pana } = searchParamsCache.parse(await searchParams)
+    const { search, price, type, itemtype, canon, nikon, sony, pana } = searchParamsCache.parse(await searchParams)
     let items = null;
 
     if (itemtype === "cam") {
-        items = await fetchCameras( search, type, canon, nikon, sony, pana );
+        items = await fetchCameras( search, parseAsSliderValue.serialize(price), type, canon, nikon, sony, pana );
     }
     else if (itemtype === 'len') {
         items = await fetchLenses( search, type, canon, nikon, sony, pana );

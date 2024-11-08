@@ -3,11 +3,10 @@ import './globals.css';
 import type { Metadata } from "next";
 import { raleway } from "./ui/fonts"
 import NavBar from "./ui/navbar"
-import { NuqsAdapter } from 'nuqs/adapters/next';
-import { NextUIProvider } from '@nextui-org/react';
+import { Providers } from './providers';
 
 export const metadata: Metadata = {
-  title: "Ecommerce Videography",
+  title: "sylus",
   description: "Mock Ecommerce Website create with Next",
 };
 
@@ -19,13 +18,12 @@ export default function RootLayout({
   return (
     //global font size, not sure if tailwind is the best way to apply this
     <html lang="en" className='text-[22px]'>
-      <body
-        className={`${raleway.className} antialiased`}
-      >
-        <NavBar />
-          <NextUIProvider><NuqsAdapter>{children}</NuqsAdapter></NextUIProvider>
-      </body>
-      
+        <body className={`${raleway.className} antialiased text-foreground bg-background`}>
+          <Providers>
+            <NavBar />
+            {children}
+          </Providers>
+        </body>
     </html>
   );
 }
