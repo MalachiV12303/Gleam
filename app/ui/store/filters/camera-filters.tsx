@@ -40,7 +40,7 @@ export function CameraFilters() {
                 setType("dslr")
               }
                 }}>
-              digital
+              digi
             </button>
           </label>
           <label
@@ -52,7 +52,7 @@ export function CameraFilters() {
                 setType("mir")
               }
                 }}>
-              mirrorless
+              mirlss
             </button>
           </label>
         </div>
