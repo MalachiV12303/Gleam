@@ -23,7 +23,8 @@ const config: Config = {
     }
 
   },
-  plugins: [nextui({
+  plugins: [
+    nextui({
     themes: {
       "darker": {
         extend: "dark",
@@ -43,7 +44,7 @@ const config: Config = {
           secondary: "#0377fc",
         }
       }
-    }
+    },
   })],
 };
 export default config;
