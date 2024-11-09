@@ -17,11 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     //global font size, not sure if tailwind is the best way to apply this
+    
     <html lang="en" className='text-[22px]'>
         <body className={`${raleway.className} antialiased text-foreground bg-background`}>
           <Providers>
             <NavBar />
-            {children}
+              {children}
           </Providers>
         </body>
     </html>
