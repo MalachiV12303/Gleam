@@ -15,7 +15,7 @@ export const parseAsSliderValue = createParser({
     if (!isValid) {
       return null
     }
-    return <SliderValue>([parseInt(inBetween[0]), parseInt(inBetween[1])]);
+    return <SliderValue>([parseFloat(inBetween[0]), parseFloat(inBetween[1])]);
   },
   serialize(value) {
     return value.toString()
