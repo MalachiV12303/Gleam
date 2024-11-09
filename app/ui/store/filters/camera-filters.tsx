@@ -28,7 +28,7 @@ export function CameraFilters() {
 
   return (
     <>
-      <div className="mx-4 flex gap-8">
+      <div className="flex gap-8">
         <div>
           <p className="hidden underline sm:block">type</p>
           <label
