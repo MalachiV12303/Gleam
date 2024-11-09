@@ -22,7 +22,7 @@ export function ItemTypeSelector(){
             {ITEMTYPES.map((type)=>(
                 <label
                     key={type}
-                    className={clsx('flex h-full basis-1/3 px-1 justify-center', { 'bg-foreground text-background' : itemtype === type })}>
+                    className={clsx('flex h-full basis-1/3 px-1 justify-center border-foreground', { 'bg-foreground text-background' : itemtype === type })}>
                     <button
                         onClick={() => {
                             setItemtype(type)
