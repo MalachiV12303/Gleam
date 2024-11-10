@@ -25,6 +25,7 @@ const config: Config = {
   },
   plugins: [
     nextui({
+    defaultTheme: "darker",
     themes: {
       "darker": {
         extend: "dark",
