@@ -20,7 +20,7 @@ export function ThemeSwitcher() {
         }}
         onValueChange={(e) => {
           setIsSelected(e)
-          isSelected ? setTheme("darker") : setTheme("lighter")
+          setTheme(isSelected ? 'darker' : 'lighter')
         }}
         size="md"
         startContent={<span>☾</span>}
