@@ -8,11 +8,11 @@ async function seedCameras() {
 
   await client.sql`
     CREATE TABLE IF NOT EXISTS cameras (
-      id CHAR(9) PRIMARY KEY,
+      id CHAR(8) PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
       type VARCHAR(20) NOT NULL,
       brand VARCHAR(20) NOT NULL,
-      value DECIMAL(19,4) NOT NULL,
+      value DECIMAL(19,2) NOT NULL,
       details JSON NOT NULL,
       description TEXT
     );
@@ -36,7 +36,7 @@ async function seedLenses() {
 
   await client.sql`
     CREATE TABLE IF NOT EXISTS lenses (
-      id CHAR(9) PRIMARY KEY,
+      id CHAR(8) PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
       type VARCHAR(20) NOT NULL,
       brand VARCHAR(20) NOT NULL,
