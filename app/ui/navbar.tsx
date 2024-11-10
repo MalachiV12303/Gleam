@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import styles from './navbar.module.css';
-import { ThemeSwitcher } from './themeswitcher';
+import Link from 'next/link'
+import styles from './navbar.module.css'
+import { ThemeSwitcher } from './themeswitcher'
 
 export default function NavBar() {
     return (
@@ -14,5 +14,5 @@ export default function NavBar() {
                 </Link>
             </nav>
         </header>
-    );
+    )
 }
