@@ -1,7 +1,7 @@
 import './globals.css';
 
 import type { Metadata } from "next";
-import { inc, raleway } from "./ui/fonts"
+import { inc } from "./ui/fonts"
 import NavBar from "./ui/navbar"
 import { Providers } from './providers';
 
