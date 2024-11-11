@@ -10,16 +10,19 @@ export default function ItemsPanel({
 }: {
   items: CameraDetail[] | LenseDetail[] | null
 }) {
+  let c = 0
   return (
-    <div className="w-full max-h-[55vh] overflow-y-auto scrollbar sm:max-h-full">
+    <div className="overflow-y-auto scrollbar darker:dscrollbar max-h-[45dvh] sm:max-h-full">
         {
           items ?
-            items.map((item) => (
-              <div key={item.name}>
+            items.map((item) => {
+              c++
+              return(
+              <div key={item.name} className="flex items-center">
+                <p className="block sm:hidden text-sm pl-3 opacity-75">{c}</p>
                 <StoreItem item={item} />
               </div>
-            )) : 
-
+            )}) : 
             <div className="m-8 mx-auto flex">
                 <p className="text-m mx-auto"> no items found...</p>
             </div>

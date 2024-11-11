@@ -2,11 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
 #store{
   border-top: 1px solid;
 }
-
 .wavy {
   animation-name: wavy;
   animation-duration: 1.3s;
@@ -41,19 +39,15 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
   }
-
   .scrollbar::-webkit-scrollbar {
     width: 1px;
   }
-
   .scrollbar::-webkit-scrollbar-track {
     background: transparent;
   }
-
   .scrollbar::-webkit-scrollbar-thumb {
-    background: white;
+    background: hsl(var(--nextui-foreground));
   }
-
   .scrollbar::-webkit-scrollbar-thumb:hover {
     background: #c0a0b9;
   }

@@ -10,7 +10,7 @@ export function StoreItem({ item }: { item: CameraDetail | LenseDetail }) {
     if ("megapixels" in item) {
         params.set("itemtype", "cam")
         return (
-            <Link href={`/item?${params}`} className="flex snap-start mx-5 my-5">
+            <Link href={`/item?${params}`} className="flex snap-start mx-3 my-3 sm:mx-5 sm:my-5 w-full">
                 <div className="basis-1/2">
                     <div className="text-sm sm:text-base">{item.name}</div>
                     <div className="text-sm opacity-75">{item.brand}</div>

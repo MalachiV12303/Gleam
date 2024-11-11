@@ -28,7 +28,7 @@ export function CameraFilters() {
 
   return (
     <>
-      <div className="flex gap-8">
+      <div className="flex flex-row sm:flex-col md:flex-row gap-8">
         <div>
           <p className="hidden underline sm:block">type</p>
           <label

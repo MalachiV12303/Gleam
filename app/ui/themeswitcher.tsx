@@ -8,14 +8,14 @@ export function ThemeSwitcher() {
   const { setTheme } = useTheme()
   const [isSelected, setIsSelected] = React.useState(false)
   return (
-    <div className="flex gap-4">
+    
       <Switch
         defaultSelected
         isSelected={isSelected}
         classNames={{
           wrapper: "bg-primary",
           thumb: "bg-background",
-          startContent:"ml-[1px]",
+          startContent:"text-background ml-[1px]",
           endContent: "text-background mr-[1px]",
         }}
         onValueChange={(e) => {
@@ -26,6 +26,5 @@ export function ThemeSwitcher() {
         startContent={<span>☾</span>}
         endContent={<span>☼</span>}
       />
-    </div>
   )
 }

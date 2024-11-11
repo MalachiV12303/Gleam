@@ -33,8 +33,8 @@ export default async function Page({ searchParams }: PageProps) {
                     <div className="p-4">
                         <SearchBar />
                     </div>
-                    <div id="store" className="flex flex-col sm:flex-row max-h-[68dvh]">
-                        <div className="basis-1/4 overflow-hidden">
+                    <div id="store" className="flex flex-col sm:flex-row max-h-[75dvh]">
+                        <div className="basis-1/4">
                             <Suspense>
                                 <ItemTypeSelector />
                             </Suspense>
