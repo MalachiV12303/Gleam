@@ -11,7 +11,13 @@ export default function NavBar() {
                 <Link
                     className={`${styles.button}`}
                     href="/store">
-                    <span>Store</span>
+                        <div className="flex gap-1">
+                            <span>s</span>
+                            <span>t</span>
+                            <span>o</span>
+                            <span>r</span>
+                            <span>e</span>
+                        </div>
                 </Link>
                 </div>
             </nav>

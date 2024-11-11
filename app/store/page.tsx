@@ -16,13 +16,15 @@ type PageProps = {
 
 export default async function Page({ searchParams }: PageProps) {
     const { search, price, type, itemtype, canon, nikon, sony, pana } = searchParamsCache.parse(await searchParams)
-    let items = null;
-
+    let items = null
+    let count = null
     if (itemtype === "cam") {
         items = await fetchCameras( search, parseAsSliderValue.serialize(price), type, canon, nikon, sony, pana );
+        count = items?.length;
     }
     else if (itemtype === 'len') {
         items = await fetchLenses( search, type, canon, nikon, sony, pana );
+        count = items?.length;
     }
 
 
@@ -38,11 +40,13 @@ export default async function Page({ searchParams }: PageProps) {
                             <Suspense>
                                 <ItemTypeSelector />
                             </Suspense>
+                            <div className="opacity-75 px-2 py-1">{count === null? "0 found..." : count + " items found"}</div>
                             <Suspense>
                                 <FiltersPanel type={itemtype} />
                             </Suspense>
                         </div>
                         <div className="basis-3/4">
+                        
                             <Suspense fallback={loadingAnim()}>
                                 <ItemsPanel items={items} />
                             </Suspense>

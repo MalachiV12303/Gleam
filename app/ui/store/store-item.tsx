@@ -10,13 +10,18 @@ export function StoreItem({ item }: { item: CameraDetail | LenseDetail }) {
     if ("megapixels" in item) {
         params.set("itemtype", "cam")
         return (
-            <Link href={`/item?${params}`} className="flex snap-start mx-3 my-3 sm:mx-5 sm:my-5 w-full">
-                <div className="basis-1/2">
-                    <div className="text-sm sm:text-base">{item.name}</div>
-                    <div className="text-sm opacity-75">{item.brand}</div>
-                </div>
-                <div className="basis-1/2 flex justify-end">
-                    <div className="text-xs sm:text-sm">{formattedValue}</div>
+            <Link href={`/item?${params}`} className="flex snap-start mx-3 my-4 sm:mx-5 sm:my-3 w-full justify-between">
+                <div>
+                    <div className="text-sm sm:text-base">{item.name} - {item.brand}</div>
+                    <div className="text-sm opacity-75 flex gap-4">
+                        <p>{item.megapixels} megapixels</p>
+                        <p>{item.res}p</p> 
+                    </div>
+                    <div className="text-sm opacity-75">
+                        <p className="lowercase">{item.type === 'DSLR' ? "digital" : "mirrorless"}</p></div>
+                    </div>
+                <div>
+                    <div className="text-sm">{formattedValue}</div>
                 </div>
             </Link>
         )

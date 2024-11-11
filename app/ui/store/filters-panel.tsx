@@ -25,7 +25,7 @@ export default function FiltersPanel({
  
 
   return (
-    <div className="text-sm flex-col px-8 sm:px-4">
+    <div className="text-sm flex-col px-8 sm:px-2">
       <PriceSlider/>
       {selectFilters(type)}
     </div>

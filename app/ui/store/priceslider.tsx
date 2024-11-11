@@ -18,14 +18,14 @@ export function PriceSlider() {
       }, 300); 
       
     return (
-        <div className="mt-2 sm:mt-4 flex flex-col">
+        <div className="flex flex-col">
             <div className="flex justify-between">
                 <p className="underline block">price</p>
             </div>
             <Slider
                 aria-label="price"
                 showTooltip={true}
-                tooltipProps={{ color: "primary", className: "text-background" }}
+                tooltipProps={{ color: "primary", className: "text-background rounded" }}
                 renderThumb={(props) => (
                     <div
                       {...props}

@@ -1,7 +1,7 @@
 import './globals.css';
 
 import type { Metadata } from "next";
-import { raleway } from "./ui/fonts"
+import { inc, raleway } from "./ui/fonts"
 import NavBar from "./ui/navbar"
 import { Providers } from './providers';
 
@@ -19,7 +19,7 @@ export default function RootLayout({
     //global font size, not sure if tailwind is the best way to apply this
     
     <html lang="en" className='text-[22px]'>
-        <body className={`${raleway.className} antialiased text-foreground bg-background`}>
+        <body className={`${inc.className} antialiased text-foreground bg-background`}>
           <Providers>
             <NavBar />
               {children}
