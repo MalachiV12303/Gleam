@@ -12,7 +12,7 @@ export default function ItemsPanel({
 }) {
   let c = 0
   return (
-    <div className="overflow-y-auto no-scrollbar sm:scrollbar darker:dscrollbar max-h-[45dvh] sm:max-h-full">
+    <div className="overflow-y-auto scrollbar max-h-[45dvh] sm:max-h-full">
       {
         items ?
           items.map((item) => {
