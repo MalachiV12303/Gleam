@@ -3,7 +3,7 @@ import {
   createParser,
   createSearchParamsCache,
   createSerializer,
-  parseAsBoolean,
+  parseAsArrayOf,
   parseAsString
 } from 'nuqs/server'
 // import from 'nuqs/server' to avoid the "use client" directive
@@ -25,30 +25,20 @@ export const parseAsSliderValue = createParser({
 export const searchParams = {
   id: parseAsString.withDefault(''),
   search: parseAsString.withDefault(''),
-  type: parseAsString.withDefault(''),
+  type: parseAsArrayOf(parseAsString).withDefault([]),
+  brands: parseAsArrayOf(parseAsString).withDefault([]),
   itemtype: parseAsString.withDefault('cam'),
   price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])), // defaults are not working properly
-  canon: parseAsBoolean.withDefault(false),
-  nikon: parseAsBoolean.withDefault(false),
-  sony: parseAsBoolean.withDefault(false),
-  pana: parseAsBoolean.withDefault(false),
-  sigma: parseAsBoolean.withDefault(false),
-  tamr: parseAsBoolean.withDefault(false),
 }
 
 export const searchParamsCache = createSearchParamsCache({
   // List your search param keys and associated parsers here:
   id: parseAsString.withDefault(''),
   search: parseAsString.withDefault(''),
-  type: parseAsString.withDefault(''),
+  type: parseAsArrayOf(parseAsString).withDefault([]),
+  brands: parseAsArrayOf(parseAsString).withDefault([]),
   itemtype: parseAsString.withDefault('cam'),
   price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])), // defaults are not working properly
-  canon: parseAsBoolean.withDefault(false),
-  nikon: parseAsBoolean.withDefault(false),
-  sony: parseAsBoolean.withDefault(false),
-  pana: parseAsBoolean.withDefault(false),
-  sigma: parseAsBoolean.withDefault(false),
-  tamr: parseAsBoolean.withDefault(false),
 })
 
 export const serialize = createSerializer(searchParams)
