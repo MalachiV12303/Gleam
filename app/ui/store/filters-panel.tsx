@@ -16,7 +16,7 @@ export default function FiltersPanel({
       case "cam":
         return <CameraFilters />
       case "len":
-        return <LenseFilters />
+        return //<LenseFilters />
       default:
         return <div className="flex w-full h-48 justify-center items-center"><p>aerial filters in progress...</p></div>
     }
@@ -25,7 +25,7 @@ export default function FiltersPanel({
  
 
   return (
-    <div className="text-sm flex-col px-8 sm:px-2">
+    <div className="text-sm flex-col px-8 sm:px-2 lowercase">
       <PriceSlider/>
       {selectFilters(type)}
     </div>
