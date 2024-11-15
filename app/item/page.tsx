@@ -30,7 +30,11 @@ export default async function Page({ searchParams }: PageProps) {
     return (
         <div className={`${raleway.className} flex-col mx-auto w-full sm:w-9/12 max-h-screen`}>
             <div className="p-4">
-                <BackButton />
+                <div className="flex">
+                    <BackButton />
+                    <p className="m-4 ml-24 text-center text-danger">item pages in progress</p>
+                </div>
+                
                 {displayItem()}
             </div>
         </div>

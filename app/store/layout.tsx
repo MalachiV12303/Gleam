@@ -7,7 +7,7 @@ export default function Layout({
 }) {
   return (
     <>
-      <div className="absolute w-screen flex">
+      <div className="absolute w-dvw flex">
         <main>{children}</main>
       </div>
     </>

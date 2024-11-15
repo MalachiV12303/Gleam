@@ -32,8 +32,7 @@ export default async function Page({ searchParams }: PageProps) {
 
     return (
         <>
-            <div className="w-screen">
-                <div className={`${inc.className} flex-col mx-auto w-full sm:w-11/12 md:w-10/12`}>
+                <div className={`${inc.className} flex-col mx-auto w-screen sm:w-11/12 md:w-10/12`}>
                     <div className="p-4">
                         <SearchBar />
                     </div>
@@ -54,7 +53,6 @@ export default async function Page({ searchParams }: PageProps) {
                         </div>
                     </div>
                 </div>
-            </div>
         </>
     );
 
