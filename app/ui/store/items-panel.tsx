@@ -1,18 +1,16 @@
-import {
-  CameraDetail,
-  LenseDetail,
+import { Camera, Lense } from '@/app/lib/db/schema';
+import { StoreItem } from '@/app/ui/store/store-items'
+import { ScrollShadow } from '@nextui-org/react';
 
-} from '@/app/lib/definitions'
-import { StoreItem } from '@/app/ui/store/store-item'
 
-export default function ItemsPanel({
+export async function ItemsPanel({
   items,
-}: {
-  items: CameraDetail[] | LenseDetail[] | null
-}) {
+}:{
+  items: Camera[]| Lense[];
+}){
   let c = 0
   return (
-    <div className="overflow-y-auto scrollbar max-h-[45dvh] sm:max-h-full">
+      <ScrollShadow className="scrollbar max-h-[45dvh] sm:max-h-full">
       {
         items ?
           items.map((item) => {
@@ -28,6 +26,6 @@ export default function ItemsPanel({
             <p className="text-m mx-auto"> no items found...</p>
           </div>
       }
-    </div>
+      </ScrollShadow>
   )
 }

@@ -67,7 +67,7 @@ const cameras = [
 
   const lenses = [
     {
-        id: 'l69123919',
+        id: '69123919',
         name: 'RF70-200mm F2.8L IS USM Telephoto Zoom Lens',
         type: 'Telephoto Zoom',
         brand: 'Canon',
@@ -75,7 +75,7 @@ const cameras = [
         details: JSON.parse('{"minfl": 70, "maxfl": 200, "maxap" : "f/2.8", "mount" : ["Canon EF"]}'),
     },
     {
-        id: 'l75860420',
+        id: '75860420',
         name: 'AF-S NIKKOR 50mm f/1.8G Standard Lens',
         type: 'Standard Prime',
         brand: 'Nikon',

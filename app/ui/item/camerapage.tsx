@@ -1,36 +1,35 @@
 'use client'
 
-import { CameraDetail } from "@/app/lib/definitions";
+import { Camera } from "@/app/lib/db/schema";
 import { notFound } from "next/navigation";
 
-export function CameraItem({ item }: { item: CameraDetail | undefined }) {
-    if (item === undefined) {
+export function CameraPage({ cam }: { cam: Camera }) {
+    if (cam === undefined) {
         return notFound();
     }
-    console.log(item.res)
 
     return (
         <>
             <div className="min-h-[78dvh] bg-opacity-5 flex p-8">
                 <div className="basis-1/2 flex flex-col justify-center gap-8">
                     <div>
-                        <h1 className="text-4xl">{item.name}</h1>
-                        <h2 className="text-2xl">{item.brand}</h2>
+                        <h1 className="text-4xl">{cam.name}</h1>
+                        <h2 className="text-2xl">{cam.brand}</h2>
                     </div>
                     <div className="flex flex-col">
-                        <p>Resolution: {item.res}</p>
-                        <p>Shutter: {item.shutter}</p>
-                        <p>SD Card Compatibility: {item.sd}</p>
-                        <p>Lens Compatibility: {item.lens}</p>
+                        <p>Resolution: {cam.details.res}</p>
+                        <p>Shutter: {cam.details.shutter}</p>
+                        <p>SD Card Compatibility: {cam.details.sd}</p>
+                        <p>Lens Compatibility: {cam.details.lens}</p>
                     </div>
                     <div>
                         <p>Description:</p>
-                        <p className="text-sm">{item.description}</p>
+                        <p className="text-sm">{cam.description}</p>
                     </div>
                 </div>
 
                 <div className="basis-1/2 flex flex-col items-end justify-center">
-                    <p>{item.value}</p>
+                    <p>{cam.value}</p>
                     <label>
                         <button>
                             {"+"}

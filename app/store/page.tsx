@@ -1,32 +1,34 @@
 import { Suspense } from 'react';
 import styles from '@/app/ui/animations.module.css';
-import ItemsPanel from '@/app/ui/store/items-panel';
 import FiltersPanel from '@/app/ui/store/filters-panel';
-import { fetchCameras, fetchLenses } from '@/app/lib/data';
+
 import { inc } from "@/app/ui/fonts"
 import React from 'react';
-import { type SearchParams } from 'nuqs/server';
-import { parseAsSliderValue, searchParamsCache } from '@/app/lib/searchParams';
+import { searchParamsCache } from '@/app/lib/searchParams';
 import { ItemTypeSelector } from '../ui/store/filters/itemtype-filters';
 import SearchBar from '../ui/store/searchbar';
+import { fetchCameras, fetchLenses } from '../lib/db/queries';
+import { ItemsPanel } from '../ui/store/items-panel';
+import { SearchParams } from 'nuqs/server';
 
-type PageProps = {
+ type PageProps = {
     searchParams: Promise<SearchParams>
-}
+  }
 
 export default async function Page({ searchParams }: PageProps) {
-    const { search, price, type, itemtype, canon, nikon, sony, pana } = searchParamsCache.parse(await searchParams)
-    let items = null
-    let count = null
-    if (itemtype === "cam") {
-        items = await fetchCameras( search, parseAsSliderValue.serialize(price), type, canon, nikon, sony, pana );
-        count = items?.length;
+    const { itemtype } = searchParamsCache.parse(await searchParams)
+    const [ items ] = await f();
+    const count = items?.length | 0 ;
+    function f(){
+        switch (itemtype){
+            case "cam":
+                return Promise.all([fetchCameras()])
+            case "len":
+                return Promise.all([fetchLenses()])
+            default:
+                return [];
+        }
     }
-    else if (itemtype === 'len') {
-        items = await fetchLenses( search, type, canon, nikon, sony, pana );
-        count = items?.length;
-    }
-
 
     return (
         <>
@@ -35,7 +37,7 @@ export default async function Page({ searchParams }: PageProps) {
                     <div className="p-4">
                         <SearchBar />
                     </div>
-                    <div id="store" className="flex flex-col sm:flex-row max-h-[75dvh]">
+                    <div id="store" className="flex flex-col sm:flex-row max-h-[50dvh] sm:max-h-[72dvh] ">
                         <div className="basis-1/4">
                             <Suspense>
                                 <ItemTypeSelector />
@@ -46,7 +48,6 @@ export default async function Page({ searchParams }: PageProps) {
                             </Suspense>
                         </div>
                         <div className="basis-3/4">
-                        
                             <Suspense fallback={loadingAnim()}>
                                 <ItemsPanel items={items} />
                             </Suspense>
@@ -56,6 +57,8 @@ export default async function Page({ searchParams }: PageProps) {
             </div>
         </>
     );
+
+
 
     function loadingAnim() {
         return (
@@ -71,13 +74,3 @@ export default async function Page({ searchParams }: PageProps) {
             </>);
     }
 }
-
-// async function TypeViewer() {
-//     const { type } = searchParamsCache.all()
-//     return (
-//         <div className="bg-blue-700">
-//             type: {type}
-//             cameratype: {}
-//         </div>
-//     );
-// }

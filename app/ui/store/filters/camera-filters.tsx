@@ -1,8 +1,7 @@
-import clsx from 'clsx'
 import React from 'react'
-import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs'
+import { useQueryState } from 'nuqs'
 import { searchParams } from '@/app/lib/searchParams'
-import { Accordion, AccordionItem, Checkbox, CheckboxGroup, Radio, RadioGroup } from '@nextui-org/react'
+import { Accordion, AccordionItem, Checkbox, CheckboxGroup } from '@nextui-org/react'
 
 export function CameraFilters() {
   const [type, setType] = useQueryState('type', searchParams.type.withOptions({ shallow: false }))
