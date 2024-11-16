@@ -11,16 +11,16 @@ import { fetchCameras, fetchLenses } from '../lib/db/queries';
 import { ItemsPanel } from '../ui/store/items-panel';
 import { SearchParams } from 'nuqs/server';
 
- type PageProps = {
+type PageProps = {
     searchParams: Promise<SearchParams>
-  }
+}
 
 export default async function Page({ searchParams }: PageProps) {
     const { itemtype } = searchParamsCache.parse(await searchParams)
-    const [ items ] = await f();
-    const count = items?.length | 0 ;
-    function f(){
-        switch (itemtype){
+    const [items] = await f();
+    const count = items?.length | 0;
+    function f() {
+        switch (itemtype) {
             case "cam":
                 return Promise.all([fetchCameras()])
             case "len":
@@ -32,7 +32,8 @@ export default async function Page({ searchParams }: PageProps) {
 
     return (
         <>
-                <div className={`${inc.className} flex-col mx-auto w-screen sm:w-11/12 md:w-10/12`}>
+            <div className="w-screen">
+                <div className={`${inc.className} flex-col mx-auto w-full sm:w-11/12 md:w-10/12`}>
                     <div className="p-4">
                         <SearchBar />
                     </div>
@@ -41,7 +42,7 @@ export default async function Page({ searchParams }: PageProps) {
                             <Suspense>
                                 <ItemTypeSelector />
                             </Suspense>
-                            <div className="opacity-75 px-2 py-1">{count === null? "0 found..." : count + " items found"}</div>
+                            <div className="opacity-75 px-2 py-1">{count === null ? "0 found..." : count + " items found"}</div>
                             <Suspense>
                                 <FiltersPanel type={itemtype} />
                             </Suspense>
@@ -53,6 +54,7 @@ export default async function Page({ searchParams }: PageProps) {
                         </div>
                     </div>
                 </div>
+            </div>
         </>
     );
 

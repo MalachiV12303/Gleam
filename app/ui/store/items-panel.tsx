@@ -10,7 +10,7 @@ export async function ItemsPanel({
 }){
   let c = 0
   return (
-      <ScrollShadow className="scrollbar max-w-screen max-h-[40dvh] sm:max-h-full">
+      <ScrollShadow className="scrollbar max-h-[40dvh] sm:max-h-full">
       {
         items ?
           items.map((item) => {
