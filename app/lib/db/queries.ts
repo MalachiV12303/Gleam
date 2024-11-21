@@ -27,7 +27,7 @@ const brandFilter = (itemtype: string, brands: string[]) => {
 }
 
 export async function fetchCameras() {
-  const { id, search, type, brands, itemtype, price} = searchParamsCache.all();
+  const { type, brands, itemtype, price} = searchParamsCache.all();
   const filters = [
      brandFilter(itemtype, brands),
      typeFilter(itemtype,type),
@@ -51,7 +51,7 @@ export async function fetchCameras() {
 }
 
 export async function fetchLenses() {
-  const { id, search, type, brands, itemtype, price} = searchParamsCache.all();
+  const { type, brands, itemtype, price} = searchParamsCache.all();
   const filters = [
      brandFilter(itemtype, brands),
      typeFilter(itemtype,type),
