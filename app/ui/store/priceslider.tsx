@@ -7,7 +7,6 @@ import { useDebouncedCallback } from "use-debounce";
 
 
 export function PriceSlider() {
-
     const [price, setPrice] = useQueryState("price", searchParams.price.withOptions({
         shallow: false
       }));

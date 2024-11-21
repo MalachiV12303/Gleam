@@ -28,7 +28,6 @@ export default function FiltersPanel({
     <div className="text-sm flex-col px-8 sm:px-2 lowercase">
       <PriceSlider/>
       {selectFilters(type)}
-      <p className="m-4 text-center text-danger">in progress filters to work with drizzle</p>
     </div>
   )
 }

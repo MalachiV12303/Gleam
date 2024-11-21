@@ -22,6 +22,7 @@ export default function SearchBar() {
                     placeholder="search..."
                     className="opacity-80 w-full border-transparent outline-none bg-transparent" />
             </label>
+            <p className="ml-auto text-danger">in progress</p>
         </div>
     )
 }

@@ -1,36 +1,39 @@
-import { eq } from 'drizzle-orm';
+import { and, between, eq, inArray } from 'drizzle-orm';
 import { db } from './drizzle';
 import { cameras, lenses } from './schema';
-//import { searchParamsCache } from '../searchParams';
+import { searchParamsCache } from '../searchParams';
+import { SliderValue } from '@nextui-org/slider';
 
-// const typeFilter = (types?: string[]) => {
-//   if (types) {
-//     return sql`cameras.type IN (${sql.join(
-//       types.map((type) => sql`${type}`),
-//       sql`, `
-//     )})`
-//   }
-//   return undefined;
-// }
-// const brandFilter = (brands?: string[]) => {
-//   if (brands) {
-//     return sql`cameras.type IN (${sql.join(
-//       brands.map((brand) => sql`${brand}`),
-//       sql`, `
-//     )})`
-//   }
-//   return undefined;
-// }
+const priceFilter = (itemtype: string, price: SliderValue) => {
+    const pr=price.toString().split(',');
+    if(pr[0]==='0' && pr[1] === '3000') //may not be triggered when its supposed to, causing filters to never be undefined
+      return undefined;
+    return itemtype === 'cam' ? between(cameras.value, parseFloat(pr[0]), parseFloat(pr[1])) :
+            itemtype === 'len' ? between(lenses.value, parseFloat(pr[0]), parseFloat(pr[1])): undefined
+}
+
+const typeFilter = (itemtype: string, types: string[]) => {
+  if (types.length === 0)
+    return undefined
+  return itemtype === 'cam' ? inArray(cameras.type, types) :
+          itemtype === 'len' ? inArray(lenses.type, types) : undefined
+}
+
+const brandFilter = (itemtype: string, brands: string[]) => {
+  if (brands.length === 0)
+        return undefined
+  return itemtype === 'cam' ? inArray(cameras.brand, brands) :
+          itemtype === 'len' ? inArray(lenses.brand, brands) : undefined
+}
 
 export async function fetchCameras() {
-  //const params = searchParamsCache.all()
-  // const filters = [
-  //    brandFilter(params.brands),
-  //    typeFilter(params.type),
-  //  ].filter(Boolean);
-
-  // const whereClause = filters.length > 0 ? and(...filters) : undefined;
-
+  const { id, search, type, brands, itemtype, price} = searchParamsCache.all();
+  const filters = [
+     brandFilter(itemtype, brands),
+     typeFilter(itemtype,type),
+     priceFilter(itemtype,price),
+   ].filter(Boolean);
+  const whereClause = filters.length > 0 ? and(...filters) : undefined;
   const fetchedCameras = await db
     .select({
       id: cameras.id,
@@ -42,21 +45,20 @@ export async function fetchCameras() {
       description: cameras.description,
     })
     .from(cameras)
-    //.where(inArray(cameras.type, ['dslr']))
+    .where(whereClause)
     .orderBy(cameras.id);
-
   return fetchedCameras;
 }
 
 export async function fetchLenses() {
-  //const params = searchParamsCache.all()
+  const { id, search, type, brands, itemtype, price} = searchParamsCache.all();
+  const filters = [
+     brandFilter(itemtype, brands),
+     typeFilter(itemtype,type),
+     priceFilter(itemtype,price),
+   ].filter(Boolean);
 
-  // const filters = [
-  //   brandFilter(params.brands),
-  //   typeFilter(params.type),
-  // ].filter(Boolean);
-  // const whereClause = filters.length > 0 ? and(...filters) : undefined;
-
+  const whereClause = filters.length > 0 ? and(...filters) : undefined;
   const fetchedLenses = await db
     .select({
       id: lenses.id,
@@ -67,7 +69,7 @@ export async function fetchLenses() {
       details: lenses.details,
     })
     .from(lenses)
-    //.where(whereClause)
+    .where(whereClause)
     .orderBy(lenses.id);
   return fetchedLenses;
 }

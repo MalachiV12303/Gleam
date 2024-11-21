@@ -19,8 +19,8 @@ export function CameraFilters() {
             value={type}
             onValueChange={setType}
           >
-            <Checkbox value="dslr">Digital</Checkbox>
-            <Checkbox value="mir">Mirrorless</Checkbox>
+            <Checkbox value="DSLR">Digital</Checkbox>
+            <Checkbox value="Mirrorless">Mirrorless</Checkbox>
         </CheckboxGroup>
 
       </AccordionItem>
@@ -34,10 +34,10 @@ export function CameraFilters() {
           value={brands}
           onValueChange={setBrands}
         >
-          <Checkbox value="canon">Canon</Checkbox>
-          <Checkbox value="nikon">Nikon</Checkbox>
-          <Checkbox value="sony">Sony</Checkbox>
-          <Checkbox value="pana">Panasonic</Checkbox>
+          <Checkbox value="Canon">Canon</Checkbox>
+          <Checkbox value="Nikon">Nikon</Checkbox>
+          <Checkbox value="Sony">Sony</Checkbox>
+          <Checkbox value="Panasonic">Panasonic</Checkbox>
         </CheckboxGroup>
 
       </AccordionItem>

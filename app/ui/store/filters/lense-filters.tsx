@@ -17,8 +17,8 @@ export function LenseFilters() {
                     value={type}
                     onValueChange={setType}
                   >
-                    <Checkbox value="tpz">Telephoto Zoom</Checkbox>
-                    <Checkbox value="stp">Standard Prime</Checkbox>
+                    <Checkbox value="Telephoto Zoom">Telephoto Zoom</Checkbox>
+                    <Checkbox value="Standard Prime">Standard Prime</Checkbox>
                 </CheckboxGroup>
               </AccordionItem>
               <AccordionItem key="brands" aria-label="brands" title="brands">
@@ -30,12 +30,12 @@ export function LenseFilters() {
                   value={brands}
                   onValueChange={setBrands}
                 >
-                  <Checkbox value="canon">Canon</Checkbox>
-                  <Checkbox value="nikon">Nikon</Checkbox>
-                  <Checkbox value="sony">Sony</Checkbox>
-                  <Checkbox value="pana">Panasonic</Checkbox>
-                  <Checkbox value="tamr">Tamron</Checkbox>
-                  <Checkbox value="sigm">Sigma</Checkbox>
+                  <Checkbox value="Canon">Canon</Checkbox>
+                  <Checkbox value="Nikon">Nikon</Checkbox>
+                  <Checkbox value="Sony">Sony</Checkbox>
+                  <Checkbox value="Pana">Panasonic</Checkbox>
+                  <Checkbox value="Tamron">Tamron</Checkbox>
+                  <Checkbox value="Sigma">Sigma</Checkbox>
                 </CheckboxGroup>
         
               </AccordionItem>

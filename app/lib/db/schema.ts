@@ -11,7 +11,7 @@ export const cameras = pgTable(
   name: text('name').notNull(),
   type: text('type').notNull(),
   brand: text('brand').notNull(),
-  value: decimal('value').notNull().$type<number>(),
+  value: decimal().notNull().$type<number>(),
   details: json('details').notNull().$type<{ megapixels: number, res: number, shutter: string, sd: string[], lens: string[] }>(),
   description: text('description').notNull(),
 });
