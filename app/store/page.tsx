@@ -44,7 +44,7 @@ export default async function Page({ searchParams }: PageProps) {
                             </Suspense>
                             <div className="opacity-75 px-2 py-1">{count === null ? "0 found..." : count + " items found"}</div>
                             <Suspense>
-                                <FiltersPanel type={itemtype} />
+                                <FiltersPanel itemtype={itemtype} />
                             </Suspense>
                         </div>
                         <div className="basis-3/4">
@@ -57,8 +57,6 @@ export default async function Page({ searchParams }: PageProps) {
             </div>
         </>
     );
-
-
 
     function loadingAnim() {
         return (

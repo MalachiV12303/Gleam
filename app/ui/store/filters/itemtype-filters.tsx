@@ -2,20 +2,22 @@
 
 import React from 'react'
 import clsx from 'clsx'
-import { searchParams } from '@/app/lib/searchParams'
+import { searchParams, useFilters } from '@/app/lib/searchParams'
 import { useQueryState } from 'nuqs'
 
 export function ItemTypeSelector(){
     const ITEMTYPES = ['len', 'cam', 'aer']
+    const [, setFilters]= useFilters()
     const [ itemtype, setItemtype ] = useQueryState('itemtype', 
         searchParams.itemtype.withOptions({
             shallow: false
     }))
-    const [, setSearch]= useQueryState('search', 
-        searchParams.search.withOptions({
-        shallow: false
-    }))
-    
+
+    // need to implement searching with drizzle
+    // const [, setSearch]= useQueryState('search', 
+    //     searchParams.search.withOptions({
+    //     shallow: false
+    // }))
 
     return(
         <div className="flex justify-between items-center border-foreground divide-x sm:border-x-[1px] border-b-[1px] h-6"> 
@@ -26,7 +28,8 @@ export function ItemTypeSelector(){
                     <button
                         onClick={() => {
                             setItemtype(type)
-                            setSearch(null)}}>
+                            setFilters(null)
+                        }}>
                         {type}
                     </button>
                 </label>

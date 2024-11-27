@@ -1,4 +1,5 @@
 import {  type SliderValue } from '@nextui-org/slider';
+import { useQueryStates } from 'nuqs';
 import {
   createParser,
   createSearchParamsCache,
@@ -40,5 +41,13 @@ export const searchParamsCache = createSearchParamsCache({
   itemtype: parseAsString.withDefault('cam'),
   price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])), // defaults are not working properly
 })
+
+export function useFilters() {
+  return useQueryStates({
+    type: parseAsArrayOf(parseAsString).withDefault([]),
+    brands: parseAsArrayOf(parseAsString).withDefault([]),
+    price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000]))
+  })
+}
 
 export const serialize = createSerializer(searchParams)
