@@ -1,15 +1,15 @@
-import { and, between, eq, inArray } from 'drizzle-orm';
+import { and, between, eq, gte, inArray, sql } from 'drizzle-orm';
 import { db } from './drizzle';
 import { cameras, lenses } from './schema';
-import { searchParamsCache } from '../searchParams';
+import { searchParamsCache, useFilters } from '../searchParams';
 import { SliderValue } from '@nextui-org/slider';
 
 const priceFilter = (itemtype: string, price: SliderValue) => {
     const pr=price.toString().split(',');
     if(pr[0]==='0' && pr[1] === '3000') //may not be triggered when its supposed to, causing filters to never be undefined
       return undefined;
-    return itemtype === 'cam' ? between(cameras.value, parseFloat(pr[0]), parseFloat(pr[1])) :
-            itemtype === 'len' ? between(lenses.value, parseFloat(pr[0]), parseFloat(pr[1])): undefined
+    return itemtype === 'cam' ? between(cameras.value, pr[0], pr[1]) :
+            itemtype === 'len' ? between(lenses.value, pr[0], pr[1]): undefined
 }
 
 const typeFilter = (itemtype: string, types: string[]) => {
@@ -26,12 +26,21 @@ const brandFilter = (itemtype: string, brands: string[]) => {
           itemtype === 'len' ? inArray(lenses.brand, brands) : undefined
 }
 
+const resFilter = (itemtype: string, res: string[]) => {
+  if (res.length === 0)
+        return undefined
+  //using .map because i was having issue using parseAsInt in searchParamsCache, values were null and number[] had no length
+  return itemtype === 'cam' ? inArray(cameras.res, res.map((val)=>parseInt(val))) : undefined
+}
+
 export async function fetchCameras() {
-  const { type, brands, itemtype, price} = searchParamsCache.all();
+  const { type, brand, price, itemtype, res } = searchParamsCache.all();
+  console.log("type is " + type +"\nbrand is " + brand + "\nprice is " + price +"\nres is " + res.toString() +"\n\n")
   const filters = [
-     brandFilter(itemtype, brands),
-     typeFilter(itemtype,type),
-     priceFilter(itemtype,price),
+     brandFilter(itemtype, brand),
+     typeFilter(itemtype, type),
+     priceFilter(itemtype, price),
+     resFilter(itemtype, res),
    ].filter(Boolean);
   const whereClause = filters.length > 0 ? and(...filters) : undefined;
   const fetchedCameras = await db
@@ -41,7 +50,10 @@ export async function fetchCameras() {
       type: cameras.type,
       brand: cameras.brand,
       value: cameras.value,
-      details: cameras.details,
+      res: cameras.res,
+      megapixels: cameras.megapixels,
+      shutter: cameras.shutter,
+      compats: cameras.compats,
       description: cameras.description,
     })
     .from(cameras)
@@ -51,9 +63,10 @@ export async function fetchCameras() {
 }
 
 export async function fetchLenses() {
-  const { type, brands, itemtype, price} = searchParamsCache.all();
+  const { type, brand, price, itemtype } = searchParamsCache.all();
+
   const filters = [
-     brandFilter(itemtype, brands),
+     brandFilter(itemtype, brand),
      typeFilter(itemtype,type),
      priceFilter(itemtype,price),
    ].filter(Boolean);
@@ -82,11 +95,10 @@ export async function fetchCameraById(id: string) {
       type: cameras.type,
       brand: cameras.brand,
       value: cameras.value,
-      details: cameras.details,
       description: cameras.description,
     })
     .from(cameras)
-    .where(eq(cameras.id, parseInt(id)))
+    //.where(eq(cameras.id, parseInt(id)))
     .limit(1);
 
   return result[0];
@@ -103,7 +115,7 @@ export async function fetchLenseById(id: string) {
       details: lenses.details,
     })
     .from(lenses)
-    .where(eq(lenses.id, parseInt(id)))
+    //.where(eq(lenses.id, parseInt(id)))
     .limit(1);
   return result[0];
 }

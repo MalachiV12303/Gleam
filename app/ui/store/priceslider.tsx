@@ -1,19 +1,17 @@
 'use client'
 
-import { searchParams } from "@/app/lib/searchParams";
+import { searchParams, useFilters } from "@/app/lib/searchParams";
 import { Slider } from "@nextui-org/slider"
 import { useQueryState } from "nuqs";
 import { useDebouncedCallback } from "use-debounce";
 
 
 export function PriceSlider() {
-    const [price, setPrice] = useQueryState("price", searchParams.price.withOptions({
-        shallow: false
-      }));
+    const [{price}, setFilters] = useFilters();
 
     const updatePrice = useDebouncedCallback((term) => {
         console.log("price updated to: " + term )
-        setPrice(term);
+        setFilters({price: term});
       }, 300); 
       
     return (

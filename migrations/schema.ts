@@ -1,9 +1,6 @@
-import { pgTable, decimal, json, serial, text, jsonb, char, varchar, numeric, integer } from 'drizzle-orm/pg-core'
+import { pgTable, char, varchar, numeric, json, jsonb, text, integer } from "drizzle-orm/pg-core"
+import { sql } from "drizzle-orm"
 
-export type SelectCamera = typeof cameras.$inferSelect;
-export type Camera = Pick<SelectCamera, 'id' | 'name' | 'type' | 'brand' | 'value'  | 'compats' | 'description' | 'megapixels' | 'res' | 'shutter' >;
-export type SelectLense = typeof lenses.$inferSelect;
-export type Lense = Pick<SelectLense, 'id' | 'name' | 'type' | 'brand' | 'value' | 'details' >;
 
 
 export const lenses = pgTable("lenses", {

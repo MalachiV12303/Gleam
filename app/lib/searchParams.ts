@@ -1,5 +1,5 @@
 import {  type SliderValue } from '@nextui-org/slider';
-import { useQueryStates } from 'nuqs';
+import { parseAsFloat, parseAsInteger, useQueryStates } from 'nuqs';
 import {
   createParser,
   createSearchParamsCache,
@@ -26,27 +26,32 @@ export const parseAsSliderValue = createParser({
 export const searchParams = {
   id: parseAsString.withDefault(''),
   search: parseAsString.withDefault(''),
-  type: parseAsArrayOf(parseAsString).withDefault([]),
-  brands: parseAsArrayOf(parseAsString).withDefault([]),
   itemtype: parseAsString.withDefault('cam'),
-  price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])), // defaults are not working properly
+  type: parseAsArrayOf(parseAsString).withDefault([]),
+  brand: parseAsArrayOf(parseAsString).withDefault([]),
+  price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])),
+  res: parseAsArrayOf(parseAsString).withDefault([])
 }
+
 
 export const searchParamsCache = createSearchParamsCache({
   // List your search param keys and associated parsers here:
   id: parseAsString.withDefault(''),
   search: parseAsString.withDefault(''),
-  type: parseAsArrayOf(parseAsString).withDefault([]),
-  brands: parseAsArrayOf(parseAsString).withDefault([]),
   itemtype: parseAsString.withDefault('cam'),
-  price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])), // defaults are not working properly
+  type: parseAsArrayOf(parseAsString).withDefault([]),
+  brand: parseAsArrayOf(parseAsString).withDefault([]),
+  price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])),
+  res: parseAsArrayOf(parseAsString).withDefault([])
 })
+
 
 export function useFilters() {
   return useQueryStates({
-    type: parseAsArrayOf(parseAsString).withDefault([]),
-    brands: parseAsArrayOf(parseAsString).withDefault([]),
-    price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000]))
+    type: searchParams.type.withOptions({shallow:false}),
+    brand: searchParams.brand.withOptions({shallow:false}),
+    price: searchParams.price.withOptions({shallow:false}),
+    res: searchParams.res.withOptions({shallow:false})
   })
 }
 
