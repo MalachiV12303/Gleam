@@ -1,12 +1,12 @@
 
 import React from 'react'
-import { useQueryState } from 'nuqs'
-import { searchParams, useFilters } from '@/app/lib/searchParams'
+import { useFilters } from '@/app/lib/searchParams'
 import { Accordion, AccordionItem, Checkbox, CheckboxGroup } from '@nextui-org/react'
 import { notFound } from 'next/navigation'
 import clsx from 'clsx'
 
 export function Filters({ it }: { it: string }) {
+    const [{ type, brand, res }] = useFilters()
     const filters = new Map<string, string[]>();
     switch (it) {
         case 'cam':
@@ -25,9 +25,6 @@ export function Filters({ it }: { it: string }) {
         default:
             return notFound();
     }
-
-    const [{ type, brand, res }, setFilters] = useFilters()
-
     return (
             <Accordion isCompact={true}>
                 <AccordionItem key="type" aria-label="type" title="type">

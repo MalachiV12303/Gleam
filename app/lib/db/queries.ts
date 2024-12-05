@@ -1,7 +1,7 @@
-import { and, between, eq, gte, inArray, sql } from 'drizzle-orm';
+import { eq, and, between, inArray } from 'drizzle-orm';
 import { db } from './drizzle';
 import { cameras, lenses } from './schema';
-import { searchParamsCache, useFilters } from '../searchParams';
+import { searchParamsCache } from '../searchParams';
 import { SliderValue } from '@nextui-org/slider';
 
 const priceFilter = (itemtype: string, price: SliderValue) => {
@@ -98,7 +98,7 @@ export async function fetchCameraById(id: string) {
       description: cameras.description,
     })
     .from(cameras)
-    //.where(eq(cameras.id, parseInt(id)))
+    .where(eq(cameras.id, id))
     .limit(1);
 
   return result[0];
@@ -115,7 +115,7 @@ export async function fetchLenseById(id: string) {
       details: lenses.details,
     })
     .from(lenses)
-    //.where(eq(lenses.id, parseInt(id)))
+    .where(eq(lenses.id, id))
     .limit(1);
   return result[0];
 }

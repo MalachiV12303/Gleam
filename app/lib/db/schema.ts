@@ -1,4 +1,4 @@
-import { pgTable, decimal, json, serial, text, jsonb, char, varchar, numeric, integer } from 'drizzle-orm/pg-core'
+import { pgTable, json, text, jsonb, char, varchar, numeric, integer } from 'drizzle-orm/pg-core'
 
 export type SelectCamera = typeof cameras.$inferSelect;
 export type Camera = Pick<SelectCamera, 'id' | 'name' | 'type' | 'brand' | 'value'  | 'compats' | 'description' | 'megapixels' | 'res' | 'shutter' >;

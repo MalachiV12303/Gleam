@@ -1,8 +1,7 @@
 'use client'
 
-import { searchParams, useFilters } from "@/app/lib/searchParams";
+import { useFilters } from "@/app/lib/searchParams";
 import { Slider } from "@nextui-org/slider"
-import { useQueryState } from "nuqs";
 import { useDebouncedCallback } from "use-debounce";
 
 

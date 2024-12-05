@@ -1,5 +1,5 @@
 import {  type SliderValue } from '@nextui-org/slider';
-import { parseAsFloat, parseAsInteger, useQueryStates } from 'nuqs';
+import { useQueryStates } from 'nuqs';
 import {
   createParser,
   createSearchParamsCache,
