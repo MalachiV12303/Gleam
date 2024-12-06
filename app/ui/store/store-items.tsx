@@ -1,7 +1,6 @@
 import { formatCurrency, isCamera, isLense } from '@/app/lib/utils'
 import Link from 'next/link'
 import { Camera, Lense } from '@/app/lib/db/schema'
-import { notFound } from 'next/navigation'
 
 export function StoreItem({ item }: { item: Camera | Lense }) {
     //type guards
@@ -16,7 +15,7 @@ export function StoreItem({ item }: { item: Camera | Lense }) {
     else if (isLense(item))
         return Lense(item)
     else{
-        return notFound();
+        return <div>unknown item type</div>;
     }
 
     //camera on store page

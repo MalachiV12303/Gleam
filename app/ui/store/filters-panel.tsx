@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { PriceSlider } from './priceslider'
 import { Filters } from './filters/filters'
 
 export default function FiltersPanel({
@@ -10,8 +9,7 @@ export default function FiltersPanel({
   itemtype: string,
 }) {
   return (
-    <div className="text-sm flex-col px-8 sm:px-2 lowercase">
-      <PriceSlider />
+    <div className="text-sm flex-col px-4 sm:px-0 lowercase">
       <Filters it={itemtype} />
     </div>
   )

@@ -33,16 +33,26 @@ const resFilter = (itemtype: string, res: string[]) => {
   return itemtype === 'cam' ? inArray(cameras.res, res.map((val)=>parseInt(val))) : undefined
 }
 
+const shutterFilter = (itemtype: string, shutters: string[]) => {
+  if (shutters.length === 0)
+        return undefined
+  return itemtype === 'cam' ? inArray(cameras.shutter, shutters) : undefined
+}
+
+
 export async function fetchCameras() {
-  const { type, brand, price, itemtype, res } = searchParamsCache.all();
-  console.log("type is " + type +"\nbrand is " + brand + "\nprice is " + price +"\nres is " + res.toString() +"\n\n")
+  //const [{ type, brand, price, res, shutter },]= useFilters()
+
+  const { type, brand, price, itemtype, res, shutter } = searchParamsCache.all();
   const filters = [
      brandFilter(itemtype, brand),
      typeFilter(itemtype, type),
      priceFilter(itemtype, price),
      resFilter(itemtype, res),
+     shutterFilter(itemtype, shutter)
    ].filter(Boolean);
   const whereClause = filters.length > 0 ? and(...filters) : undefined;
+
   const fetchedCameras = await db
     .select({
       id: cameras.id,
@@ -62,9 +72,10 @@ export async function fetchCameras() {
   return fetchedCameras;
 }
 
+
+
 export async function fetchLenses() {
   const { type, brand, price, itemtype } = searchParamsCache.all();
-
   const filters = [
      brandFilter(itemtype, brand),
      typeFilter(itemtype,type),
@@ -95,6 +106,10 @@ export async function fetchCameraById(id: string) {
       type: cameras.type,
       brand: cameras.brand,
       value: cameras.value,
+      res: cameras.res,
+      megapixels: cameras.megapixels,
+      shutter: cameras.shutter,
+      compats: cameras.compats,
       description: cameras.description,
     })
     .from(cameras)

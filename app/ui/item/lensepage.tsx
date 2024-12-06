@@ -10,10 +10,10 @@ export default function LensePage({ len }: { len: Lense }){
                         <h2 className="text-2xl">{len.brand}</h2>
                     </div>
                     <div className="flex flex-col">
-                        <p>Min: {len.details.minfl}</p>
-                        <p>Max: {len.details.maxfl}</p>
-                        <p>Max AP: {len.details.maxap}</p>
-                        <p>Compatible Mounts: {len.details.mount}</p>
+                        <p>Min: in progress</p>
+                        <p>Max: in progress</p>
+                        <p>Max AP: in progress</p>
+                        <p>Compatible Mounts: in progress</p>
                     </div>
                 </div>
 

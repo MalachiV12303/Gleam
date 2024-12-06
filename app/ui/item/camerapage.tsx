@@ -17,10 +17,9 @@ export function CameraPage({ cam }: { cam: Camera }) {
                         <h2 className="text-2xl">{cam.brand}</h2>
                     </div>
                     <div className="flex flex-col">
-                        <p>Resolution: {cam.details.res}</p>
-                        <p>Shutter: {cam.details.shutter}</p>
-                        <p>SD Card Compatibility: {cam.details.sd}</p>
-                        <p>Lens Compatibility: {cam.details.lens}</p>
+                        <p>Resolution: {cam.res}</p>
+                        <p>Shutter: {cam.shutter}</p>
+                        <p>SD Card and Lens Compatibility: {cam.compats}</p>
                     </div>
                     <div>
                         <p>Description:</p>

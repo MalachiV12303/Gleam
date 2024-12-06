@@ -27,10 +27,13 @@ export const searchParams = {
   id: parseAsString.withDefault(''),
   search: parseAsString.withDefault(''),
   itemtype: parseAsString.withDefault('cam'),
+  
   type: parseAsArrayOf(parseAsString).withDefault([]),
   brand: parseAsArrayOf(parseAsString).withDefault([]),
   price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])),
-  res: parseAsArrayOf(parseAsString).withDefault([])
+  res: parseAsArrayOf(parseAsString).withDefault([]),
+  shutter: parseAsArrayOf(parseAsString).withDefault([]),
+  mgp: parseAsArrayOf(parseAsString).withDefault([])
 }
 
 
@@ -39,10 +42,13 @@ export const searchParamsCache = createSearchParamsCache({
   id: parseAsString.withDefault(''),
   search: parseAsString.withDefault(''),
   itemtype: parseAsString.withDefault('cam'),
+
   type: parseAsArrayOf(parseAsString).withDefault([]),
   brand: parseAsArrayOf(parseAsString).withDefault([]),
   price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])),
-  res: parseAsArrayOf(parseAsString).withDefault([])
+  res: parseAsArrayOf(parseAsString).withDefault([]),
+  shutter: parseAsArrayOf(parseAsString).withDefault([]),
+  mgp: parseAsArrayOf(parseAsString).withDefault([])
 })
 
 
@@ -51,7 +57,9 @@ export function useFilters() {
     type: searchParams.type.withOptions({shallow:false}),
     brand: searchParams.brand.withOptions({shallow:false}),
     price: searchParams.price.withOptions({shallow:false}),
-    res: searchParams.res.withOptions({shallow:false})
+    res: searchParams.res.withOptions({shallow:false}),
+    shutter: searchParams.shutter.withOptions({shallow:false}),
+    mgp: searchParams.mgp.withOptions({shallow:false})
   })
 }
 

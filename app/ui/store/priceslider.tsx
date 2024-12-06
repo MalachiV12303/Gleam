@@ -15,9 +15,6 @@ export function PriceSlider() {
       
     return (
         <div className="flex flex-col">
-            <div className="flex justify-between">
-                <p className="underline block">price</p>
-            </div>
             <Slider
                 aria-label="price"
                 showTooltip={true}
