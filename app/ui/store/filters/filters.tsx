@@ -2,7 +2,7 @@ import React from 'react'
 import { useFilters } from '@/app/lib/searchParams'
 import { Accordion, AccordionItem, Checkbox, CheckboxGroup } from '@nextui-org/react'
 import { filtermap } from '@/app/lib/utils'
-import { PriceSlider } from '../priceslider'
+import { PriceSlider } from './priceslider'
 
 export function Filters({ it }: { it: string }) {
     return it === 'cam' ? <CameraFilters></CameraFilters> :

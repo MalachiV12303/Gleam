@@ -1,15 +1,15 @@
-import { Suspense } from 'react';
-import styles from '@/app/ui/animations.module.css';
-import FiltersPanel from '@/app/ui/store/filters-panel';
-
-import { inc } from "@/app/ui/fonts"
 import React from 'react';
+import SearchBar from '../ui/searchbar';
+import FiltersPanel from '../ui/store/filters/filters-panel';
+import { inc } from "@/app/ui/fonts"
 import { searchParamsCache } from '@/app/lib/searchParams';
-import { ItemTypeSelector } from '../ui/store/filters/itemtype-filters';
-import SearchBar from '../ui/store/searchbar';
+import { ItemTypeSelector } from '../ui/store/filters/itemtype-switch';
 import { fetchCameras, fetchLenses } from '../lib/db/queries';
-import { ItemsPanel } from '../ui/store/items-panel';
+import { ItemsPanel } from '../ui/store/catalogue/items-panel';
 import { SearchParams } from 'nuqs/server';
+import { Suspense } from 'react';
+import { LoadingAnim } from '../ui/animations';
+
 
 type PageProps = {
     searchParams: Promise<SearchParams>
@@ -48,7 +48,7 @@ export default async function Page({ searchParams }: PageProps) {
                             </Suspense>
                         </div>
                         <div className="basis-3/4">
-                            <Suspense fallback={loadingAnim()}>
+                            <Suspense fallback={<LoadingAnim />}>
                                 <ItemsPanel items={items} />
                             </Suspense>
                         </div>
@@ -58,17 +58,5 @@ export default async function Page({ searchParams }: PageProps) {
         </>
     );
 
-    function loadingAnim() {
-        return (
-            <>
-                <div className={`${styles.spinnerbox} mx-auto`}>
-                    <div className={`${styles.configureborder1} bg-foreground`}>
-                        <div className={`${styles.configurecore} bg-background`}></div>
-                    </div>
-                    <div className={`${styles.configureborder2} bg-foreground`}>
-                        <div className={`${styles.configurecore} bg-background`}></div>
-                    </div>
-                </div>
-            </>);
-    }
+    
 }

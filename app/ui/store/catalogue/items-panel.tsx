@@ -1,5 +1,5 @@
 import { Camera, Lense } from '@/app/lib/db/schema';
-import { StoreItem } from '@/app/ui/store/store-items'
+import { StoreItem } from '@/app/ui/store/catalogue/store-items'
 import { ScrollShadow } from '@nextui-org/react';
 
 

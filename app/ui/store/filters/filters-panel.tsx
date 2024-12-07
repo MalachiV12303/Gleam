@@ -1,7 +1,8 @@
 'use client'
 
 import React from 'react'
-import { Filters } from './filters/filters'
+import { Filters } from './filters'
+
 
 export default function FiltersPanel({
   itemtype,
