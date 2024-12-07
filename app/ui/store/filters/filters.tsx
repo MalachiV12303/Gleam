@@ -14,7 +14,7 @@ export function Filters({ it }: { it: string }) {
 function CameraFilters() {
     const [{ type, brand, res, shutter, mgp }] = useFilters()
     return (
-        <Accordion isCompact={true}>
+        <Accordion isCompact={true} selectionMode="multiple">
             <AccordionItem key="price" aria-label="price" title="price">
                 <PriceSlider />
             </AccordionItem>
@@ -25,12 +25,12 @@ function CameraFilters() {
                 <FilterSet filters={filtermap.get('camerabrands')} param={brand} p={'brand'} />
             </AccordionItem>
             <AccordionItem key="res" aria-label="res" title="res">
-                <FilterSet filters={filtermap.get('res')} param={res} p={'res'}/>
+                <FilterSet filters={filtermap.get('resolutions')} param={res} p={'res'}/>
             </AccordionItem>
             <AccordionItem key="shutter" aria-label="shutter" title="shutter">
-                <FilterSet filters={filtermap.get('shutter')} param={shutter} p={'shutter'}/>
+                <FilterSet filters={filtermap.get('shutterspeeds')} param={shutter} p={'shutter'}/>
             </AccordionItem>
-            <AccordionItem key="mgp" aria-label="mgp" title="mgp">
+            <AccordionItem key="megapixels" aria-label="mgp" title="mgp">
                 <FilterSet filters={filtermap.get('megapixels')} param={mgp} p={'mgp'}/>
             </AccordionItem>
         </Accordion>
@@ -38,14 +38,23 @@ function CameraFilters() {
 }
 
 function LenseFilters() {
-    const [{ type, brand }] = useFilters()
+    const [{ type, brand, minfl, maxfl }] = useFilters()
     return (
-        <Accordion isCompact={true}>
+        <Accordion isCompact={true} selectionMode="multiple">
+            <AccordionItem key="price" aria-label="price" title="price">
+                <PriceSlider />
+            </AccordionItem>
             <AccordionItem key="type" aria-label="type" title="type">
                 <FilterSet filters={filtermap.get('lensetypes')} param={type} p={'type'} />
             </AccordionItem>
             <AccordionItem key="brands" aria-label="brands" title="brands">
                 <FilterSet filters={filtermap.get('lensebrands')} param={brand} p={'brand'}/>
+            </AccordionItem>
+            <AccordionItem key="minfl" aria-label="minfl" title="minfl">
+                <FilterSet filters={filtermap.get('focallengths')} param={minfl} p={'minfl'}/>
+            </AccordionItem>
+            <AccordionItem key="maxfl" aria-label="maxfl" title="maxfl">
+                <FilterSet filters={filtermap.get('focallengths')} param={maxfl} p={'maxfl'}/>
             </AccordionItem>
         </Accordion>
     )

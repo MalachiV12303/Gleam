@@ -33,7 +33,9 @@ export const searchParams = {
   price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])),
   res: parseAsArrayOf(parseAsString).withDefault([]),
   shutter: parseAsArrayOf(parseAsString).withDefault([]),
-  mgp: parseAsArrayOf(parseAsString).withDefault([])
+  mgp: parseAsArrayOf(parseAsString).withDefault([]),
+  minfl: parseAsArrayOf(parseAsString).withDefault([]),
+  maxfl: parseAsArrayOf(parseAsString).withDefault([])
 }
 
 
@@ -48,7 +50,9 @@ export const searchParamsCache = createSearchParamsCache({
   price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])),
   res: parseAsArrayOf(parseAsString).withDefault([]),
   shutter: parseAsArrayOf(parseAsString).withDefault([]),
-  mgp: parseAsArrayOf(parseAsString).withDefault([])
+  mgp: parseAsArrayOf(parseAsString).withDefault([]),
+  minfl: parseAsArrayOf(parseAsString).withDefault([]),
+  maxfl: parseAsArrayOf(parseAsString).withDefault([])
 })
 
 
@@ -59,7 +63,10 @@ export function useFilters() {
     price: searchParams.price.withOptions({shallow:false}),
     res: searchParams.res.withOptions({shallow:false}),
     shutter: searchParams.shutter.withOptions({shallow:false}),
-    mgp: searchParams.mgp.withOptions({shallow:false})
+    mgp: searchParams.mgp.withOptions({shallow:false}),
+    minfl: searchParams.shutter.withOptions({shallow:false}),
+    maxfl: searchParams.mgp.withOptions({shallow:false}),
+
   })
 }
 

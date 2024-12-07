@@ -2,6 +2,8 @@
 
 import React from 'react'
 import { Filters } from './filters'
+import { FilterChips } from './filters-chips'
+import { ScrollShadow } from '@nextui-org/react'
 
 
 export default function FiltersPanel({
@@ -10,8 +12,12 @@ export default function FiltersPanel({
   itemtype: string,
 }) {
   return (
-    <div className="text-sm flex-col px-4 sm:px-0 lowercase">
-      <Filters it={itemtype} />
-    </div>
+    <ScrollShadow className="scrollbar max-h-[40dvh] sm:max-h-full">
+      <div className="text-sm flex-col px-4 sm:px-0 lowercase">
+        <FilterChips />
+        <Filters it={itemtype} />
+      </div>
+    </ScrollShadow>
+
   )
 }
