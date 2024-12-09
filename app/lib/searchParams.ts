@@ -35,7 +35,9 @@ export const searchParams = {
   shutter: parseAsArrayOf(parseAsString).withDefault([]),
   mgp: parseAsArrayOf(parseAsString).withDefault([]),
   minfl: parseAsArrayOf(parseAsString).withDefault([]),
-  maxfl: parseAsArrayOf(parseAsString).withDefault([])
+  maxfl: parseAsArrayOf(parseAsString).withDefault([]),
+  maxap: parseAsArrayOf(parseAsString).withDefault([]),
+
 }
 
 
@@ -52,7 +54,9 @@ export const searchParamsCache = createSearchParamsCache({
   shutter: parseAsArrayOf(parseAsString).withDefault([]),
   mgp: parseAsArrayOf(parseAsString).withDefault([]),
   minfl: parseAsArrayOf(parseAsString).withDefault([]),
-  maxfl: parseAsArrayOf(parseAsString).withDefault([])
+  maxfl: parseAsArrayOf(parseAsString).withDefault([]),
+  maxap: parseAsArrayOf(parseAsString).withDefault([]),
+
 })
 
 
@@ -66,8 +70,8 @@ export function useFilters() {
     mgp: searchParams.mgp.withOptions({shallow:false}),
     minfl: searchParams.shutter.withOptions({shallow:false}),
     maxfl: searchParams.mgp.withOptions({shallow:false}),
-
+    maxap: searchParams.maxap.withOptions({shallow:false}),
+    
   })
 }
-
 export const serialize = createSerializer(searchParams)

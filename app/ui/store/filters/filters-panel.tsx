@@ -12,12 +12,11 @@ export default function FiltersPanel({
   itemtype: string,
 }) {
   return (
-    <ScrollShadow className="scrollbar max-h-[40dvh] sm:max-h-full">
+    <ScrollShadow className="h-full scrollbar">
       <div className="text-sm flex-col px-4 sm:px-0 lowercase">
         <FilterChips />
         <Filters it={itemtype} />
       </div>
     </ScrollShadow>
-
   )
 }

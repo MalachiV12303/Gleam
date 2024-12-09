@@ -31,32 +31,31 @@ export default async function Page({ searchParams }: PageProps) {
     }
 
     return (
-        <>
-            <div className="w-screen">
+        
                 <div className={`${inc.className} flex-col mx-auto w-full sm:w-11/12 md:w-10/12`}>
-                    <div className="p-4">
+                    <div className="flex p-4">
                         <SearchBar />
                     </div>
-                    <div id="store" className="flex flex-col sm:flex-row max-h-[50dvh] sm:max-h-[72dvh] ">
+                    <div id="store" className="flex flex-col sm:flex-row max-h-[50dvh] sm:max-h-[70dvh]">
                         <div className="basis-1/4">
                             <Suspense>
                                 <ItemTypeSelector />
                             </Suspense>
-                            <div className="opacity-75 px-2 py-1">{count === null ? "0 found..." : count + " items found"}</div>
                             <Suspense>
                                 <FiltersPanel itemtype={itemtype} />
                             </Suspense>
                         </div>
                         <div className="basis-3/4">
+                        <div className="opacity-80 px-4 h-6">{count === null ? "0 found..." : count + " items found"}</div>
                             <Suspense fallback={<LoadingAnim />}>
                                 <ItemsPanel items={items} />
                             </Suspense>
                         </div>
                     </div>
                 </div>
-            </div>
-        </>
+        
     );
 
     
 }
+

@@ -7,8 +7,8 @@ export default function Layout({
 }) {
   return (
     <>
-      <div className="absolute w-screen flex">
-        <main>{children}</main>
+      <div className="absolute max-w-screen flex">
+        <main className="w-screen">{children}</main>
       </div>
     </>
   );

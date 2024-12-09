@@ -3,12 +3,13 @@ import { useFilters } from '@/app/lib/searchParams'
 import { Accordion, AccordionItem, Checkbox, CheckboxGroup } from '@nextui-org/react'
 import { filtermap } from '@/app/lib/utils'
 import { PriceSlider } from './priceslider'
+import { notFound } from 'next/navigation'
 
 export function Filters({ it }: { it: string }) {
-    return it === 'cam' ? <CameraFilters></CameraFilters> :
-        it === 'len' ? <LenseFilters></LenseFilters> :
-        it === 'aer' ? <div>in progress</div> :
-        <div>filters not found</div>
+    return it === 'cam' ? <CameraFilters/> :
+        it === 'len' ? <LenseFilters/> :
+        it === 'aer' ? <AerialFilters/> :
+        notFound();
 }
 
 function CameraFilters() {
@@ -47,7 +48,7 @@ function LenseFilters() {
             <AccordionItem key="type" aria-label="type" title="type">
                 <FilterSet filters={filtermap.get('lensetypes')} param={type} p={'type'} />
             </AccordionItem>
-            <AccordionItem key="brands" aria-label="brands" title="brands">
+            <AccordionItem key="brand" aria-label="brand" title="brand">
                 <FilterSet filters={filtermap.get('lensebrands')} param={brand} p={'brand'}/>
             </AccordionItem>
             <AccordionItem key="minfl" aria-label="minfl" title="minfl">
@@ -60,6 +61,22 @@ function LenseFilters() {
     )
 }
 
+function AerialFilters() {
+    const [{ type, brand }] = useFilters()
+    return (
+        <Accordion isCompact={true} selectionMode="multiple">
+            <AccordionItem key="price" aria-label="price" title="price">
+                <PriceSlider />
+            </AccordionItem>
+            <AccordionItem key="type" aria-label="type" title="type">
+                <FilterSet filters={filtermap.get('aerialtypes')} param={type} p={'type'} />
+            </AccordionItem>
+            <AccordionItem key="brand" aria-label="brand" title="brand">
+                <FilterSet filters={filtermap.get('aerialbrands')} param={brand} p={'brand'}/>
+            </AccordionItem>
+        </Accordion>
+    )
+}
 
 function FilterSet({ filters, param, p }: { filters: string[] | undefined, param: string[], p: string }) {
     const [, setFilters] = useFilters()
