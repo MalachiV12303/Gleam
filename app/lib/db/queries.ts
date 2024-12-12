@@ -39,17 +39,24 @@ const shutterFilter = (itemtype: string, shutters: string[]) => {
   return itemtype === 'cam' ? inArray(cameras.shutter, shutters) : undefined
 }
 
+const megapixelFilter = (itemtype: string, megapixels: string[]) => {
+  if (megapixels.length === 0)
+        return undefined
+  return itemtype === 'cam' ? inArray(cameras.megapixels, megapixels.map((val)=>parseFloat(val))) : undefined
+}
+
 
 export async function fetchCameras() {
   //const [{ type, brand, price, res, shutter },]= useFilters()
 
-  const { type, brand, price, itemtype, res, shutter } = searchParamsCache.all();
+  const { type, brand, price, itemtype, res, shutter, mgp } = searchParamsCache.all();
   const filters = [
      brandFilter(itemtype, brand),
      typeFilter(itemtype, type),
      priceFilter(itemtype, price),
      resFilter(itemtype, res),
-     shutterFilter(itemtype, shutter)
+     shutterFilter(itemtype, shutter),
+     megapixelFilter(itemtype, mgp)
    ].filter(Boolean);
   const whereClause = filters.length > 0 ? and(...filters) : undefined;
 

@@ -26,13 +26,13 @@ function CameraFilters() {
                 <FilterSet filters={filtermap.get('camerabrands')} param={brand} p={'brand'} />
             </AccordionItem>
             <AccordionItem key="res" aria-label="res" title="res">
-                <FilterSet filters={filtermap.get('resolutions')} param={res} p={'res'}/>
+                <FilterSet filters={filtermap.get('resolutions')} param={res} p={'res'} text={'p'}/>
             </AccordionItem>
             <AccordionItem key="shutter" aria-label="shutter" title="shutter">
                 <FilterSet filters={filtermap.get('shutterspeeds')} param={shutter} p={'shutter'}/>
             </AccordionItem>
-            <AccordionItem key="megapixels" aria-label="mgp" title="mgp">
-                <FilterSet filters={filtermap.get('megapixels')} param={mgp} p={'mgp'}/>
+            <AccordionItem key="megapixels" aria-label="eff. mgp" title="eff. mgp">
+                <FilterSet filters={filtermap.get('megapixels')} param={mgp} p={'mgp'} text={' megapixels'}/>
             </AccordionItem>
         </Accordion>
     )
@@ -55,7 +55,7 @@ function LenseFilters() {
                 <FilterSet filters={filtermap.get('focallengths')} param={minfl} p={'minfl'}/>
             </AccordionItem>
             <AccordionItem key="maxfl" aria-label="maxfl" title="maxfl">
-                <FilterSet filters={filtermap.get('focallengths')} param={maxfl} p={'maxfl'}/>
+                <FilterSet filters={filtermap.get('focallengths')} param={maxfl} p={'maxfl'} />
             </AccordionItem>
         </Accordion>
     )
@@ -78,7 +78,7 @@ function AerialFilters() {
     )
 }
 
-function FilterSet({ filters, param, p }: { filters: string[] | undefined, param: string[], p: string }) {
+function FilterSet({ filters, param, p, text }: { filters: string[] | undefined, param: string[], p: string, text?: string }) {
     const [, setFilters] = useFilters()
     return (
         <CheckboxGroup
@@ -90,7 +90,7 @@ function FilterSet({ filters, param, p }: { filters: string[] | undefined, param
             onValueChange={(e) => setFilters({ [p]: e })}
         >
             {filters?.map((fil) => (
-                <Checkbox key={fil} value={fil}>{fil}</Checkbox>
+                <Checkbox key={fil} value={fil}>{fil}{text}</Checkbox>
             ))}
         </CheckboxGroup>
     )
