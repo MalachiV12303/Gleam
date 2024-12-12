@@ -9,6 +9,7 @@ import { ItemsPanel } from '../ui/store/catalogue/items-panel';
 import { SearchParams } from 'nuqs/server';
 import { Suspense } from 'react';
 import { LoadingAnim } from '../ui/animations';
+import { FilterChips } from '../ui/store/filters/filters-chips';
 
 
 type PageProps = {
@@ -31,31 +32,36 @@ export default async function Page({ searchParams }: PageProps) {
     }
 
     return (
-        
-                <div className={`${inc.className} flex-col mx-auto w-full sm:w-11/12 md:w-10/12`}>
-                    <div className="flex p-4">
-                        <SearchBar />
-                    </div>
-                    <div id="store" className="flex flex-col sm:flex-row max-h-[50dvh] sm:max-h-[70dvh]">
-                        <div className="basis-1/4">
-                            <Suspense>
-                                <ItemTypeSelector />
-                            </Suspense>
-                            <Suspense>
-                                <FiltersPanel itemtype={itemtype} />
-                            </Suspense>
-                        </div>
-                        <div className="basis-3/4">
-                        <div className="opacity-80 px-4 h-6">{count === null ? "0 found..." : count + " items found"}</div>
-                            <Suspense fallback={<LoadingAnim />}>
-                                <ItemsPanel items={items} />
-                            </Suspense>
-                        </div>
-                    </div>
+
+        <div className={`${inc.className} flex-col mx-auto w-full sm:w-11/12 md:w-10/12`}>
+            <div className="flex p-4">
+                <SearchBar />
+            </div>
+            <div id="store" className="flex flex-col sm:flex-row max-h-[50dvh] sm:max-h-[70dvh]">
+
+                <div className="basis-1/4">
+                    <Suspense>
+                        <ItemTypeSelector />
+                    </Suspense>
+                    <Suspense>
+                        <FiltersPanel itemtype={itemtype} />
+                    </Suspense>
                 </div>
-        
+                
+                <div className="basis-3/4">
+
+                    <div className="opacity-80 px-4 h-6 flex gap-2 items-center">
+                        <p className='text-nowrap'>{count === null ? "0 found..." : count + " items found"}</p>
+                        <FilterChips />
+                    </div>
+
+                    <Suspense fallback={<LoadingAnim />}>
+                        <ItemsPanel items={items} />
+                    </Suspense>
+
+                </div>
+
+            </div>
+        </div>
     );
-
-    
 }
-
