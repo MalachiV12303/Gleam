@@ -19,7 +19,7 @@ export function CameraPage({ cam }: { cam: Camera }) {
                     <div className="flex flex-col">
                         <p>Resolution: {cam.res}</p>
                         <p>Shutter: {cam.shutter}</p>
-                        <p>SD Card and Lens Compatibility: {cam.compats}</p>
+                        {/* <p>SD Card and Lens Compatibility: {cam.compats}</p> */}
                     </div>
                     <div>
                         <p>Description:</p>
@@ -28,7 +28,7 @@ export function CameraPage({ cam }: { cam: Camera }) {
                 </div>
 
                 <div className="basis-1/2 flex flex-col items-end justify-center">
-                    <p>{cam.value}</p>
+                    <p>{cam.price}</p>
                     <label>
                         <button>
                             {"+"}

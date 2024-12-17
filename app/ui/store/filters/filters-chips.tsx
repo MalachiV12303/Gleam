@@ -16,7 +16,7 @@ export function FilterChips() {
         <ScrollShadow hideScrollBar orientation='horizontal' className="w-[900px] h-full overflow-x-auto flex gap-1 items-center">
             {test.map((fil, index) =>
             (fil.map((f) => (
-                <Chip classNames={{ base: 'h-5' }} size="sm" key={index} variant="flat" onClose={() => handleClose(i[index], f, index)}>
+                <Chip classNames={{ base: 'h-5' }} size="sm" key={index + f} variant="flat" onClose={() => handleClose(i[index], f, index)}>
                     {f}
                 </Chip>
             ))))}

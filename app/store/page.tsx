@@ -38,7 +38,6 @@ export default async function Page({ searchParams }: PageProps) {
                 <SearchBar />
             </div>
             <div id="store" className="flex flex-col sm:flex-row max-h-[50dvh] sm:max-h-[70dvh]">
-
                 <div className="basis-1/4">
                     <Suspense>
                         <ItemTypeSelector />
@@ -47,18 +46,14 @@ export default async function Page({ searchParams }: PageProps) {
                         <FiltersPanel itemtype={itemtype} />
                     </Suspense>
                 </div>
-                
                 <div className="basis-3/4">
-
                     <div className="opacity-80 px-4 h-6 flex gap-2 items-center">
                         <p className='text-nowrap'>{count === null ? "0 found..." : count + " items found"}</p>
                         <FilterChips />
                     </div>
-
                     <Suspense fallback={<LoadingAnim />}>
                         <ItemsPanel items={items} />
                     </Suspense>
-
                 </div>
 
             </div>

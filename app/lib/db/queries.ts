@@ -5,11 +5,12 @@ import { searchParamsCache } from '../searchParams';
 import { SliderValue } from '@nextui-org/slider';
 
 const priceFilter = (itemtype: string, price: SliderValue) => {
-    const pr=price.toString().split(',');
-    if(pr[0]==='0' && pr[1] === '3000') //may not be triggered when its supposed to, causing filters to never be undefined
+    const psv = price.toString().split(',');
+    const p = psv.map(parseInt)
+    if(p[0]===0 && p[1] === 3000) //may not be triggered when its supposed to, causing filters to never be undefined
       return undefined;
-    return itemtype === 'cam' ? between(cameras.value, pr[0], pr[1]) :
-            itemtype === 'len' ? between(lenses.value, pr[0], pr[1]): undefined
+    return itemtype === 'cam' ? between(cameras.price, p[0], p[1]) :
+            itemtype === 'len' ? between(lenses.price, p[0], p[1]): undefined
 }
 
 const typeFilter = (itemtype: string, types: string[]) => {
@@ -66,7 +67,7 @@ export async function fetchCameras() {
       name: cameras.name,
       type: cameras.type,
       brand: cameras.brand,
-      value: cameras.value,
+      price: cameras.price,
       res: cameras.res,
       megapixels: cameras.megapixels,
       shutter: cameras.shutter,
@@ -96,7 +97,7 @@ export async function fetchLenses() {
       name: lenses.name,
       type: lenses.type,
       brand: lenses.brand,
-      value: lenses.value,
+      price: lenses.price,
       details: lenses.details,
     })
     .from(lenses)
@@ -112,7 +113,7 @@ export async function fetchCameraById(id: string) {
       name: cameras.name,
       type: cameras.type,
       brand: cameras.brand,
-      value: cameras.value,
+      price: cameras.price,
       res: cameras.res,
       megapixels: cameras.megapixels,
       shutter: cameras.shutter,
@@ -133,7 +134,7 @@ export async function fetchLenseById(id: string) {
       name: lenses.name,
       type: lenses.type,
       brand: lenses.brand,
-      value: lenses.value,
+      price: lenses.price,
       details: lenses.details,
     })
     .from(lenses)

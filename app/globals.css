@@ -40,7 +40,7 @@
     scrollbar-width: none;  /* Firefox */
   }
   .scrollbar::-webkit-scrollbar {
-    width: 1px;
+    width: 2px;
   }
   .scrollbar::-webkit-scrollbar-track {
     background: transparent;

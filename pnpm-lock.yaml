@@ -56,6 +56,9 @@ importers:
       react-dom:
         specifier: ^18
         version: 18.3.1(react@18.3.1)
+      react-use-cart:
+        specifier: ^1.14.0
+        version: 1.14.0(react@18.3.1)
       react-use-navigate:
         specifier: ^0.1.1
         version: 0.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4081,6 +4084,12 @@ packages:
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
+
+  react-use-cart@1.14.0:
+    resolution: {integrity: sha512-Qd3booG4wFAB04zrVWyiV/nxB+pv/7l7zNJO7isquE1LKpNuGpOpCcmCVCut5YPDilEMemx33+/103anefcVWA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
 
   react-use-navigate@0.1.1:
     resolution: {integrity: sha512-FjSKKHmTy0DA0KBGsNlN97HVha3L3WCTRfXG2lucrgWjQGzqZZTKQ2FdCOZgE+rkBdBTAM6PLEV9MfUdm6MHlQ==}
@@ -9603,6 +9612,10 @@ snapshots:
       use-latest: 1.2.1(@types/react@18.3.11)(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
+
+  react-use-cart@1.14.0(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   react-use-navigate@0.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:

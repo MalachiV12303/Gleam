@@ -18,7 +18,7 @@ export default function LensePage({ len }: { len: Lense }){
                 </div>
 
                 <div className="basis-1/2 flex flex-col items-end justify-center">
-                    <p>{len.value}</p>
+                    <p>{len.price}</p>
                     <label>
                         <button>
                             {"+"}

@@ -1,9 +1,9 @@
-import { pgTable, json, text, jsonb, char, varchar, numeric, integer } from 'drizzle-orm/pg-core'
+import { pgTable, text, jsonb, char, varchar, numeric, integer } from 'drizzle-orm/pg-core'
 
 export type SelectCamera = typeof cameras.$inferSelect;
-export type Camera = Pick<SelectCamera, 'id' | 'name' | 'type' | 'brand' | 'value'  | 'compats' | 'description' | 'megapixels' | 'res' | 'shutter' >;
+export type Camera = Pick<SelectCamera, 'id' | 'name' | 'type' | 'brand' | 'price'  | 'compats' | 'description' | 'megapixels' | 'res' | 'shutter' >;
 export type SelectLense = typeof lenses.$inferSelect;
-export type Lense = Pick<SelectLense, 'id' | 'name' | 'type' | 'brand' | 'value' | 'details' >;
+export type Lense = Pick<SelectLense, 'id' | 'name' | 'type' | 'brand' | 'price' | 'details' >;
 
 
 export const lenses = pgTable("lenses", {
@@ -11,8 +11,8 @@ export const lenses = pgTable("lenses", {
 	name: varchar({ length: 255 }).notNull(),
 	type: varchar({ length: 20 }).notNull(),
 	brand: varchar({ length: 20 }).notNull(),
-	value: numeric({ precision: 19, scale:  4 }).notNull(),
-	details: json().notNull(),
+	price: numeric({ precision: 19, scale:  4 }).$type<number>().notNull(),
+	details: jsonb().notNull(),
 });
 
 export const cameras = pgTable("cameras", {
@@ -20,7 +20,7 @@ export const cameras = pgTable("cameras", {
 	name: varchar({ length: 255 }).notNull(),
 	type: varchar({ length: 20 }).notNull(),
 	brand: varchar({ length: 20 }).notNull(),
-	value: numeric({ precision: 19, scale:  2 }).notNull(),
+	price: numeric({ precision: 19, scale:  2 }).$type<number>().notNull(),
 	compats: jsonb().$type<string[]>(),
 	description: text(),
 	res: integer().default(0).notNull(),

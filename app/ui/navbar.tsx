@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import styles from './navbar.module.css'
 import { ThemeSwitcher } from './themeswitcher'
+import { Cart } from '../cart'
+import { Suspense } from 'react'
+import { Spinner } from '@nextui-org/react'
 
 export default function NavBar() {
     return (
@@ -19,6 +22,9 @@ export default function NavBar() {
                             <span>e</span>
                         </div>
                 </Link>
+                <Suspense fallback={<Spinner></Spinner>}>
+                    <Cart/>
+                </Suspense>
                 </div>
             </nav>
         </header>
