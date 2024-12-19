@@ -6,7 +6,7 @@ import { useCart } from 'react-use-cart'
 import { Button } from '@nextui-org/react'
 import Marquee from 'react-fast-marquee'
 
-export async function StoreItem({ item }: { item: Camera | Lense }) {
+export function StoreItem({ item }: { item: Camera | Lense }) {
     const formattedValue = formatCurrency(item.price ?? 0)
     const params = new URLSearchParams()
     params.set("id", item.id.toString())
