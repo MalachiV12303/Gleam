@@ -45,7 +45,7 @@ export function Cart() {
                     </Button>
                 </div>
                 {/* warning */}
-                <Marquee autoFill speed={25} className="text-danger"> functionality isnt complete just yet - </Marquee>
+                <Marquee autoFill speed={25} className="text-danger text-xs"> functionality isnt complete just yet - </Marquee>
 
             </PopoverContent>
         </Popover>

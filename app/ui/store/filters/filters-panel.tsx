@@ -9,8 +9,8 @@ export default function FiltersPanel({
   itemtype: string,
 }) {
   return (
-    <ScrollShadow className="h-full scrollbar">
-      <div className="flex-col px-4 sm:px-0 lowercase">
+    <ScrollShadow className="h-full scrollbar pt-1 px-2 ">
+      <div className="flex-col lowercase">
         <Filters it={itemtype} />
       </div>
     </ScrollShadow>
