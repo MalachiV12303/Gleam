@@ -1,3 +1,58 @@
+.wavy {
+  animation-name: wavy;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+@keyframes wavy {
+  0% {
+    top: 0px;
+  }
+  50% {
+    top: -15px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+
+/*button underline*/
+.hoverUnderline{
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  display: inline-block;
+  position: relative;
+}
+
+.hoverUnderline:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 1px;
+  left: 50%;
+  position: absolute;
+  background: black;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hoverUnderline:after{
+    background: white;
+  }
+}
+
+.hoverUnderline:hover:after { 
+  width: 100%; 
+  left: 0; 
+}
+
 /* KEYFRAMES */
 
 @keyframes configure-clockwise {
