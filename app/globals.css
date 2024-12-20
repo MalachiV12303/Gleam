@@ -5,34 +5,6 @@
 #store{
   border-top: 1px solid;
 }
-.wavy {
-  animation-name: wavy;
-  animation-duration: 1.3s;
-  animation-timing-function: ease;
-  animation-iteration-count: infinite;
-  position: relative;
-  top: 0;
-  left: 0;
-}
-
-.glassmorphic-card {
-  background-color: rgba(255, 255, 255, 0.1); 
-  backdrop-filter: blur(10px); 
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-}
-
-@keyframes wavy {
-  0% {
-    top: 0px;
-  }
-  50% {
-    top: -15px;
-  }
-  100% {
-    top: 0px;
-  }
-}
 
 @layer utilities {
   .text-balance {
@@ -48,7 +20,7 @@
     scrollbar-width: none;  /* Firefox */
   }
   .scrollbar::-webkit-scrollbar {
-    width: 2px;
+    width: 1px;
   }
   .scrollbar::-webkit-scrollbar-track {
     background: transparent;

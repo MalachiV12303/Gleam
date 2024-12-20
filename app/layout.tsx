@@ -1,13 +1,13 @@
-import './globals.css';
-
-import type { Metadata } from "next";
-import { inc } from "./ui/fonts"
-import NavBar from "./ui/navbar"
-import { Providers } from './providers';
+import './globals.css'
+import NavBar from './ui/navbar'
+import { inc } from './ui/fonts'
+import { Providers } from './providers'
+import { PageBorder } from './ui/bordereffects'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "sylus",
-  description: "Mock Ecommerce Website create with Next",
+  title: "captare.memorias",
+  description: "mock videography ecommerce platform",
 };
 
 export default function RootLayout({
@@ -17,13 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     //global font size, not sure if tailwind is the best way to apply this
-    <html suppressHydrationWarning lang="en" className='text-[22px] scroll-smooth '>
-        <body className={`${inc.className} antialiased text-foreground bg-background`}>
-          <Providers>
-            <NavBar />
-              {children}
-          </Providers>
-        </body>
+    <html suppressHydrationWarning lang="en" className='text-[16px] md:text-[22px] scroll-smooth'>
+      <body className={`${inc.className} relative antialiased text-foreground bg-background`}>
+        <Providers>
+          <NavBar />
+          <PageBorder />
+          {children}
+        </Providers>
+      </body>
     </html>
-  );
+  )
 }
