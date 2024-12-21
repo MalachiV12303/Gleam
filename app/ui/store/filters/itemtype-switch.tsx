@@ -13,7 +13,7 @@ export function ItemTypeSelector(){
             shallow: false
     }));
     return(
-        <div className="flex justify-between items-center border-foreground divide-x sm:border-x-[1px] border-b-[1px] h-6"> 
+        <div className="flex justify-between items-center border-foreground divide-x h-6"> 
             {ITEMTYPES.map((type)=>(
                 <label
                     key={type}
