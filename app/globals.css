@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-#store{
-  border-top: 1px solid;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
