@@ -1,25 +1,14 @@
-import { Camera, Lense } from '@/app/lib/db/schema';
+'use client'
+import { Camera, Lense } from '@/app/lib/db/schema'
+import { ScrollShadow } from '@nextui-org/react'
 import { StoreItem } from '@/app/ui/store/catalogue/store-items'
-import { ScrollShadow } from '@nextui-org/react';
 
-
-export async function ItemsPanel({
-  items,
-}:{
-  items: Camera[]| Lense[];
-}){
-  let c = 0
+export function ItemsPanel({ items } : { items: Camera[]| Lense[] }){
   return (
       <ScrollShadow className="scrollbar h-full">
-      {
-        items ?
-          items.map((item) => {
-            c++
+      {items ? items.map((item) => {
             return (
-              <div key={item.name} className="flex items-center">
-                <p className="block sm:hidden text-sm pl-3 opacity-75">{c}</p>
-                <StoreItem item={item} />
-              </div>
+                <StoreItem key={item.id} item={item}/>
             )
           }) :
           <div className="m-8 mx-auto flex">

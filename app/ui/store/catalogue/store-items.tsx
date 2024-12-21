@@ -1,16 +1,17 @@
-'use client'
-import { formatCurrency, isCamera, isLense } from '@/app/lib/utils'
 import Link from 'next/link'
-import { Camera, Lense } from '@/app/lib/db/schema'
+import Marquee from 'react-fast-marquee'
 import { useCart } from 'react-use-cart'
 import { Button } from '@nextui-org/react'
-import Marquee from 'react-fast-marquee'
+import { Camera, Lense } from '@/app/lib/db/schema'
+import { formatCurrency, isCamera, isLense } from '@/app/lib/utils'
+import { motion } from 'motion/react'
 
 export function StoreItem({ item }: { item: Camera | Lense }) {
+    const { addItem } = useCart()
     const formattedValue = formatCurrency(item.price ?? 0)
     const params = new URLSearchParams()
     params.set("id", item.id.toString())
-    const { addItem } = useCart()
+
     if (isCamera(item))
         return Camera(item)
     else if (isLense(item))
@@ -22,27 +23,37 @@ export function StoreItem({ item }: { item: Camera | Lense }) {
     function Camera(cam: Camera) {
         params.set("itemtype", "cam")
         return (
-            <div className="snap-start relative px-2 py-4 sm:px-4 sm:py-6 w-full border-b-1 border-b-foreground">
-                <Link href={`/item?${params}`} className="flex text-sm justify-between">
-                    <div className="flex-1">
-                        <p className="sm:text-lg">{cam.name}</p>
-                        <div className="w-72 flex gap-3 lowercase justify-between">
-                            <p>{cam.type === 'DSLR' ? "digital" : "mirrorless"}</p>
-                            <p>{cam.brand}</p>
-                            <p>{cam.megapixels} megapixels</p>
-                            <p>{cam.res}p</p>
+            <>
+                <div className="snap-start relative px-2 py-4 sm:px-6 sm:py-6 w-full flex text-sm justify-between">
+                        <Link href={`/item?${params}`} className="flex-1 flex flex-col gap-1 ">
+                            <p className="sm:text-lg  w-fit">{cam.name}</p>
+                            <div className="w-72 flex gap-3 lowercase justify-between">
+                                <p>{cam.type === 'DSLR' ? "digital" : "mirrorless"}</p>
+                                <p>{cam.brand}</p>
+                                <p>{cam.megapixels} megapixels</p>
+                                <p>{cam.res}p</p>
+                            </div>
+                            <div className='text-xs max-w-72 '>{cam.description}</div>
+                        </Link>
+                        <div className='flex-1 flex justify-between '>
+                            <div className="w-[250px] h-[250px] border-1 border-foreground flex justify-center items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                </svg>
+                            </div>
+                            <p className="sm:text-lg mt-8">{formattedValue}</p>
                         </div>
-                        <Marquee pauseOnHover autoFill speed={20} className="max-w-72">
-                            <p className="px-2">{cam.description}</p>
-                        </Marquee>
-                    </div>
-                    
-                    <p className="sm:text-lg">{formattedValue}</p>
-                </Link>
-                <Button className="absolute bottom-6 right-0 mr-2 sm:mr-4" radius="full" variant="light" size="sm" onPress={() => (addItem(cam))}>
-                    add
-                </Button>
-            </div>
+            
+                    <Button className="absolute bottom-24 right-0 mr-2 sm:mr-4" radius="lg" variant="light" size="sm" onPress={() => (addItem(cam))}>
+                        add
+                    </Button>
+                </div>
+                <motion.div
+                    viewport={{ amount: 0.8 }}
+                    transition={{ duration: 1.5, ease: "easeIn" }}
+                    initial={{ width: 0, opacity: 0}}
+                    whileInView={{ width: '95%', opacity: 100 }} className='h-[1px] bg-foreground mx-auto' />
+            </>
         )
     }
 

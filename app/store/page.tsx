@@ -43,7 +43,7 @@ export default async function Page({ searchParams }: PageProps) {
                 <div className="w-1/3">
                     <FiltersPanel itemtype={itemtype} />
                 </div>
-                <div className="w-2/3 bg-red-600/20">
+                <div className="w-2/3">
                     <ItemsPanel items={items} />
                 </div>
             </div>
