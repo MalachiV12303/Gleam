@@ -2,7 +2,7 @@ import './globals.css'
 import NavBar from './ui/navbar'
 import { inc } from './ui/fonts'
 import { Providers } from './providers'
-import { PageBorder } from './ui/bordereffects'
+import { PageBorder } from '@/app/ui/animations'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
