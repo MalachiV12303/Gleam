@@ -6,10 +6,8 @@ export default function Layout({
   children: React.ReactNode
 }) {
   return (
-    <>
-      <div className="absolute max-w-screen flex">
-        <main className="w-screen">{children}</main>
-      </div>
-    </>
+    <div id="storeLayoutDiv" className="relative flex">
+      <main id="storeLayoutMain" className="w-screen">{children}</main>
+    </div>
   );
 } 
