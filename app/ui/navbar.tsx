@@ -1,20 +1,20 @@
+import styles from '@/app/ui/animations.module.css'
 import Link from 'next/link'
-import styles from './navbar.module.css'
-import { ThemeSwitcher } from './themeswitcher'
-import { Cart } from '../cart'
 import { Suspense } from 'react'
+
+import { Cart } from '../cart'
+import { ThemeSwitcher } from './themeswitcher'
 import { Spinner } from '@nextui-org/react'
 
 export default function NavBar() {
     return (
         <header>
-            <nav className="flex justify-center sticky top-0 z-50">
-                <div className="w-full sm:w-11/12 md:w-10/12 min-h-12 sm:min-h-16 px-4 sm:px-8 flex items-center justify-between">
+            <nav className="flex justify-center sticky top-0 z-50 select-none">
+                <div className="min-h-14 sm:min-h-16 w-full sm:w-10/12 px-8 flex items-center justify-between">
                     <ThemeSwitcher />
-                    <Link
-                        className={`${styles.button}`}
-                        href="/store">
-                        <div className="flex gap-1">
+                    <Link href="/store" className={`${styles.hoverUnderline}`}>
+                        <div className="flex px-2 py-1 gap-3 items-center">
+                            <div className="w-2 h-2 rounded-sm bg-white sm:bg-purple-600 md:bg-blue-600 lg:bg-green-600 xl:bg-yellow-600 2xl:bg-red-600"></div>
                             <span>s</span>
                             <span>t</span>
                             <span>o</span>
