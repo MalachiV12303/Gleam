@@ -33,17 +33,17 @@ export default async function Page({ searchParams }: PageProps) {
         <div id='storeContainer' className={`${inc.className} mx-auto w-10/12`}>
             <div id='searchContainer' className='p-4'><SearchBar /></div>
             <div id='topLayer' className='flex'>
-                <div id='typeSelector' className='w-1/3'><ItemTypeSelector /></div>
-                <div id='countAndChips' className='w-2/3 flex'>
+                <div id='typeSelector' className='w-1/4 2xl:w-1/3'><ItemTypeSelector /></div>
+                <div id='countAndChips' className='w-3/4 2xl:w-2/3 flex'>
                     <p className='text-nowrap px-4'>{count === null ? '0 found...' : count + ' items found'}</p>
                     <FilterChips />
                 </div>
             </div>
-            <div id="filtersAndItems" className="flex flex-col sm:flex-row max-w-full max-h-[50dvh] sm:min-h-[68dvh] border-t-1 border-foreground">
-                <div className="w-1/3">
+            <div id="filtersAndItems" className="flex flex-col md:flex-row max-w-full max-h-[50dvh] sm:min-h-[68dvh] border-t-1 border-foreground">
+                <div className="w-1/4 2xl:w-1/3">
                     <FiltersPanel itemtype={itemtype} />
                 </div>
-                <div className="w-2/3">
+                <div className="w-3/4 2xl:w-2/3">
                     <ItemsPanel items={items} />
                 </div>
             </div>

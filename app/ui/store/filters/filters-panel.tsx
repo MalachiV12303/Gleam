@@ -10,7 +10,7 @@ export default function FiltersPanel({
 }) {
   return (
     <ScrollShadow className="h-full scrollbar pt-1 px-2 ">
-      <div className="flex-col lowercase">
+      <div className="flex-col lowercase text-sm lg:text-base">
         <Filters it={itemtype} />
       </div>
     </ScrollShadow>
