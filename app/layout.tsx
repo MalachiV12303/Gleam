@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     //global font size, not sure if tailwind is the best way to apply this
-    <html suppressHydrationWarning lang="en" className='text-[16px] md:text-[22px] scroll-smooth'>
+    <html suppressHydrationWarning lang="en" className='text-[18px] md:text-[22px] scroll-smooth'>
       <body className={`${inc.className} relative antialiased text-foreground bg-background`}>
         <Providers>
           <NavBar />

@@ -2,19 +2,37 @@
 import { Camera, Lense } from '@/app/lib/db/schema'
 import { ScrollShadow } from '@nextui-org/react'
 import { StoreItem } from '@/app/ui/store/catalogue/store-items'
+import { motion, useScroll, useSpring } from 'motion/react'
+import { useRef } from 'react'
 
-export function ItemsPanel({ items } : { items: Camera[]| Lense[] }){
+export function ItemsPanel({ items }: { items: Camera[] | Lense[] }) {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({
+    container: ref,
+  })
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
-      <ScrollShadow className="scrollbar h-full">
-      {items ? items.map((item) => {
-            return (
-                <StoreItem key={item.id} item={item}/>
-            )
-          }) :
+    <>
+      <ScrollShadow ref={ref} className="no-scrollbar h-[80dvh] sm:h-full relative">
+        {items ? items.map((item) => {
+          return (
+            <StoreItem key={item.id} item={item} />
+          )
+        }) :
           <div className="m-8 mx-auto flex">
             <p className="text-m mx-auto"> no items found...</p>
           </div>
-      }
+        }
       </ScrollShadow>
+      <motion.div
+        className="absolute top-0 right-0 w-[1px] h-full bg-foreground origin-top"
+        style={{ scaleY }} />
+    </>
   )
 }

@@ -35,7 +35,7 @@ export function StoreItem({ item }: { item: Camera | Lense }) {
                             <p>{cam.brand}</p>
                         </div>
 
-                        <div className='text-xs hidden lg:inline-block max-h-24 overflow-y-scroll scrollbar'>{cam.description}</div>
+                        <div className='text-xs mt-3 hidden lg:inline-block  max-h-24 overflow-y-scroll scrollbar'>{cam.description}</div>
                     </Link>
 
                     <div className='flex justify-end flex-1 items-center '>
