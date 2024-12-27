@@ -28,6 +28,6 @@ export function isCamera(obj: any): obj is Camera {
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isLense(obj: any): obj is Lense {
-  return obj && typeof obj === "object" && "minfl" in obj.details
+  return obj && typeof obj === "object" && "minfl" in obj
 };
 

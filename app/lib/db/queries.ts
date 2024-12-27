@@ -43,7 +43,7 @@ const shutterFilter = (itemtype: string, shutters: string[]) => {
 const megapixelFilter = (itemtype: string, megapixels: string[]) => {
   if (megapixels.length === 0)
         return undefined
-  return itemtype === 'cam' ? inArray(cameras.megapixels, megapixels.map((val)=>parseFloat(val))) : undefined
+  return itemtype === 'cam' ? inArray(cameras.megapixels, megapixels) : undefined
 }
 
 
@@ -99,6 +99,9 @@ export async function fetchLenses() {
       brand: lenses.brand,
       price: lenses.price,
       details: lenses.details,
+      maxap: lenses.maxap,
+      minfl: lenses.minfl,
+      maxfl: lenses.maxfl,
     })
     .from(lenses)
     .where(whereClause)
@@ -119,6 +122,7 @@ export async function fetchCameraById(id: string) {
       shutter: cameras.shutter,
       compats: cameras.compats,
       description: cameras.description,
+      
     })
     .from(cameras)
     .where(eq(cameras.id, id))
@@ -136,6 +140,9 @@ export async function fetchLenseById(id: string) {
       brand: lenses.brand,
       price: lenses.price,
       details: lenses.details,
+      maxap: lenses.maxap,
+      minfl: lenses.minfl,
+      maxfl: lenses.maxfl,
     })
     .from(lenses)
     .where(eq(lenses.id, id))
