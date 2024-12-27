@@ -84,13 +84,17 @@ function FilterSet({ filters, param, p, text }: { filters: string[] | undefined,
         <CheckboxGroup
             aria-label={p}
             size="sm"
-            classNames={{ wrapper: "text-background" }}
+            classNames={{ wrapper: "text-background",}}
             color="primary"
             value={param}
             onValueChange={(e) => setFilters({ [p]: e })}
         >
             {filters?.map((fil) => (
-                <Checkbox radius="full" key={fil} value={fil}>{fil}{text}</Checkbox>
+                <Checkbox 
+                classNames={{
+                    wrapper: 'before:border-foreground before:border-1 after:bg-transparent',
+                }}
+                className="min-w-full text-foreground" key={fil} value={fil}>{fil}{text}</Checkbox>
             ))}
         </CheckboxGroup>
     )

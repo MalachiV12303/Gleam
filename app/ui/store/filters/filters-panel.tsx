@@ -48,7 +48,7 @@ export default function FiltersPanel({
         },
       }}
         placement="bottom-end" classNames={{
-        content: "w-[80dvw] bg-transparent backdrop-blur-md border-1 mt-1",
+        content: "w-[80dvw] bg-transparent backdrop-blur-md border-1 mt-1 mr-1",
         trigger: "h-6 border-1",
       }}>
         <PopoverTrigger >
