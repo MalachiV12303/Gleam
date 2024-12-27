@@ -31,7 +31,7 @@ export function StoreItem({ item }: { item: Camera | Lense }) {
                         <p className="text-xl text-center sm:text-start ">{cam.name}</p>
                         <div className="flex flex-row gap-2 xl:gap-3 lowercase text-nowrap">
                             <p>{cam.type === 'DSLR' ? "digital" : "mirrorless"}</p>
-                            <p>{cam.megapixels} mgpx</p>
+                            <p>{cam.megapixels}mgp</p>
                             <p>{cam.res}p</p>
                             <p>{cam.brand}</p>
                         </div>

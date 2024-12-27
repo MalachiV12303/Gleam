@@ -30,7 +30,7 @@ export default async function Page({ searchParams }: PageProps) {
         }
     }
     return (
-        <div id='storeContainer' className={`${inc.className} mx-auto w-10/12 h-[88dvh] overflow-hidden`}>
+        <div id='storeContainer' className={`${inc.className} mx-auto w-10/12 h-[88dvh]`}>
             <div id='searchContainer' className='p-4'><SearchBar /></div>
             <div id='topLayer' className='flex flex-col sm:flex-row'>
                 <div id='typeSelector' className='w-full sm:w-1/4'><ItemTypeSelector /></div>

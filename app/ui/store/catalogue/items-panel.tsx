@@ -19,7 +19,7 @@ export function ItemsPanel({ items }: { items: Camera[] | Lense[] }) {
 
   return (
     <>
-      <ScrollShadow ref={ref} className="no-scrollbar h-[80dvh] sm:h-full relative">
+      <ScrollShadow ref={ref} className="no-scrollbar h-[70dvh] sm:h-full relative">
         {items ? items.map((item) => {
           return (
             <StoreItem key={item.id} item={item} />
