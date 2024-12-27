@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Marquee from 'react-fast-marquee'
 import { useCart } from 'react-use-cart'
 import { Button } from '@nextui-org/react'
 import { Camera, Lense } from '@/app/lib/db/schema'
