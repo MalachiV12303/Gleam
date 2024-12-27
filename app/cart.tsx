@@ -12,7 +12,7 @@ export function Cart() {
         <Popover showArrow={true} placement="bottom-end" classNames={{
             base: ["before:glassmorphic-card"],
             content: "text-foreground items-start w-96 px-4 py-4 rounded-lg",
-            trigger: "h-7 bg-primary rounded-full min-w-20",
+            trigger: "h-7 bg-primary rounded-full min-w-12 sm:min-w-20",
         }}>
             <PopoverTrigger >
                 <Button>

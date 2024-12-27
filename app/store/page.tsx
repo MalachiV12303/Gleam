@@ -16,32 +16,35 @@ type PageProps = {
 // async - performs database queries
 export default async function Page({ searchParams }: PageProps) {
     const { itemtype } = searchParamsCache.parse(await searchParams)
-    const [ items ] = await fetchItems(itemtype)
+    const [items] = await fetchItems(itemtype)
     const count = items?.length | 0
 
     function fetchItems(type: string) {
         switch (type) {
-          case "cam":
-            return Promise.all([fetchCameras()])
-          case "len":
-            return Promise.all([fetchLenses()])
-          default:
-            return []
+            case "cam":
+                return Promise.all([fetchCameras()])
+            case "len":
+                return Promise.all([fetchLenses()])
+            default:
+                return []
         }
     }
     return (
-        <div id='storeContainer' className={`${inc.className} mx-auto w-10/12 h-[90dvh]`}>
+        <div id='storeContainer' className={`${inc.className} mx-auto w-10/12 h-[88dvh] overflow-hidden`}>
             <div id='searchContainer' className='p-4'><SearchBar /></div>
-            <div id='topLayer' className='flex'>
-                <div id='typeSelector' className='w-1/4'><ItemTypeSelector /></div>
-                <div id='countAndChips' className='w-3/4 flex'>
+            <div id='topLayer' className='flex flex-col sm:flex-row'>
+                <div id='typeSelector' className='w-full sm:w-1/4'><ItemTypeSelector /></div>
+                <div id='countRow' className='w-full sm:w-3/4 flex justify-between items-center py-1 sm:py-0'>
                     <p className='text-nowrap px-4'>{count === null ? '0 found...' : count + ' items found'}</p>
-                    <FilterChips />
+                    <div className='hidden sm:inline-block'><FilterChips /></div>
+                    <div className='flex sm:hidden items-center'>
+                        <FiltersPanel itemtype={itemtype} type={'mobile'} />
+                    </div>
                 </div>
             </div>
-            <div id="filtersAndItems" className="flex flex-col sm:flex-row max-w-full max-h-[75dvh] border-t-1 border-foreground">
+            <div id="filtersAndItems" className="flex flex-col sm:flex-row max-w-full max-h-[70dvh] border-t-1 border-foreground">
                 <div className="hidden sm:inline-block w-1/4">
-                    <FiltersPanel itemtype={itemtype} />
+                    <FiltersPanel itemtype={itemtype} type={'desktop'} />
                 </div>
                 <div className="w-full sm:w-3/4 relative">
                     <ItemsPanel items={items} />

@@ -9,8 +9,8 @@ import { Spinner } from '@nextui-org/react'
 export default function NavBar() {
     return (
         <header>
-            <nav className="flex justify-center sticky top-0 z-50 select-none">
-                <div className="min-h-14 sm:min-h-16 w-full sm:w-10/12 px-8 flex items-center justify-between">
+            <nav className="flex justify-center sticky top-0 z-50 select-none overflow-hidden">
+                <div className="min-h-14 sm:min-h-16 w-full sm:w-10/12 px-6 sm:px-8 flex items-center justify-between">
                     <ThemeSwitcher />
                     <Link href="/store" className={`${styles.hoverUnderline}`}>
                         <div className="flex px-2 py-1 gap-3 items-center">
