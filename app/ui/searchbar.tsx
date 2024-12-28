@@ -16,7 +16,7 @@ export default function SearchBar() {
     }, 500); 
     
     return (
-        <div className="flex w-full">
+        <div className="w-full flex">
             <label>
                 <input id="searchbar" defaultValue={search} onChange={e => updateSearch(e.target.value)}
                     placeholder="search..."

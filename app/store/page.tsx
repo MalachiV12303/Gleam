@@ -30,9 +30,11 @@ export default async function Page({ searchParams }: PageProps) {
         }
     }
     return (
-        <div id='storeContainer' className={`${inc.className} mx-auto w-10/12 h-[88dvh]`}>
-            <div id='searchContainer' className='p-4'><SearchBar /></div>
-            <div id='topLayer' className='flex flex-col sm:flex-row'>
+        <div id='storeContainer' className={`${inc.className} h-full w-10/12 flex flex-col mx-auto`}>
+
+            <div id='searchbarContainer' className='p-2 lg:p-4'><SearchBar /></div>
+
+            <div id='topLayer' className='flex flex-col sm:flex-row '>
                 <div id='typeSelector' className='w-full sm:w-1/4'><ItemTypeSelector /></div>
                 <div id='countRow' className='w-full sm:w-3/4 flex justify-between items-center py-1 sm:py-0'>
                     <p className='text-nowrap px-4'>{count === null ? '0 found...' : count + ' items found'}</p>
@@ -42,14 +44,14 @@ export default async function Page({ searchParams }: PageProps) {
                     </div>
                 </div>
             </div>
-            <div id="filtersAndItems" className="flex flex-col sm:flex-row max-w-full max-h-[70dvh] border-t-1 border-foreground">
-                <div className="hidden sm:inline-block w-1/4">
+
+            <div id="filtersAndItems" className="overflow-auto flex flex-col relative sm:flex-row max-w-full border-t-1 border-foreground">
+                <div className="relative hidden sm:inline-block w-1/4 px-2 pt-1">
                     <FiltersPanel itemtype={itemtype} type={'desktop'} />
                 </div>
-                <div className="w-full sm:w-3/4 relative">
-                    <ItemsPanel items={items} />
+                <ItemsPanel items={items} />
                 </div>
             </div>
-        </div>
+        
     )
 }

@@ -15,7 +15,7 @@ export function Filters({ it }: { it: string }) {
 function CameraFilters() {
     const [{ type, brand, res, shutter, mgp }] = useFilters()
     return (
-        <Accordion itemClasses={{title: 'lowercase'}} isCompact={true} selectionMode="multiple">
+        <Accordion itemClasses={{indicator: 'text-foreground'}} isCompact={true} selectionMode="multiple">
             <AccordionItem key="price" aria-label="price" title={'price'}>
                 <PriceSlider />
             </AccordionItem>

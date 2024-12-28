@@ -1,7 +1,8 @@
 'use client'
-import React from 'react'
+import React, { useRef } from 'react'
 import { Filters } from './filters'
 import { Button, Popover, PopoverContent, PopoverTrigger, ScrollShadow } from '@nextui-org/react'
+import { motion, useScroll, useSpring } from 'motion/react'
 
 export default function FiltersPanel({
   itemtype,
@@ -10,47 +11,60 @@ export default function FiltersPanel({
   itemtype: string,
   type: string
 }) {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({
+    container: ref,
+  })
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return type === 'desktop'
-    ? (
-      <ScrollShadow className="sm:h-full max-h-[70dvh] scrollbar pt-1 px-2 w-full overflow-x-hidden">
-        <div className="flex-col lowercase">
-          <Filters it={itemtype} />
-        </div>
+    ? (<>
+      <ScrollShadow ref={ref} className="lowercase h-full no-scrollbar overflow-x-hidden">
+        <Filters it={itemtype} />
       </ScrollShadow>
+      <motion.div
+        className="absolute top-0 right-0 w-[1px] h-full bg-foreground origin-top"
+        style={{ scaleY }} />
+    </>
     ) : (
-      <Popover 
-      motionProps={{
-        variants: {
-          enter: {
-            y: 0,
-            opacity: 1,
-            transition: {
-              opacity: {
-                duration: 0.15,
+      <Popover
+        motionProps={{
+          variants: {
+            enter: {
+              y: 0,
+              opacity: 1,
+              transition: {
+                opacity: {
+                  duration: 0.15,
+                },
+                y: {
+                  duration: 0.4,
+                },
               },
-              y:{
-                duration: 0.4,
+            },
+            exit: {
+              y: "5%",
+              opacity: 0,
+              transition: {
+                opacity: {
+                  duration: 0.1,
+                },
+                y: {
+                  duration: 0.4,
+                },
               },
             },
           },
-          exit: {
-            y: "5%",
-            opacity: 0,
-            transition: {
-              opacity: {
-                duration: 0.1,
-              },
-              y:{
-                duration: 0.4 ,
-              },
-            },
-          },
-        },
-      }}
+        }}
         placement="bottom-end" classNames={{
-        content: "w-[80dvw] bg-transparent backdrop-blur-md border-1 mt-1 mr-1",
-        trigger: "h-6 border-1",
-      }}>
+          content: "w-[80dvw] bg-transparent backdrop-blur-md border-1 mt-1 mr-1",
+          trigger: "h-6 border-1",
+        }}>
         <PopoverTrigger >
           <Button variant='light'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="size-5">
@@ -58,11 +72,9 @@ export default function FiltersPanel({
             </svg>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="bg-transparent bg-blur-sm">
-          <ScrollShadow className="sm:h-full max-h-[70dvh] scrollbar pt-1 px-2 w-full">
-            <div className="flex-col lowercase">
-              <Filters it={itemtype} />
-            </div>
+        <PopoverContent className="bg-transparent bg-blur-sm relative max-h-[60dvh]">
+          <ScrollShadow ref={ref} className="w-full lowercase h-full scrollbar overflow-x-hidden">
+            <Filters it={itemtype} />
           </ScrollShadow>
         </PopoverContent>
       </Popover>
