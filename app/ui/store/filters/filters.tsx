@@ -39,9 +39,9 @@ function CameraFilters() {
 }
 
 function LenseFilters() {
-    const [{ type, brand, minfl, maxfl }] = useFilters()
+    const [{ type, brand, minfl, maxfl, maxap }] = useFilters()
     return (
-        <Accordion isCompact={true} selectionMode="multiple">
+        <Accordion itemClasses={{indicator: 'text-foreground'}} isCompact={true} selectionMode="multiple">
             <AccordionItem key="price" aria-label="price" title="price">
                 <PriceSlider />
             </AccordionItem>
@@ -51,11 +51,14 @@ function LenseFilters() {
             <AccordionItem key="brand" aria-label="brand" title={'brand ' + (brand.length != 0 ? brand.length : '')}>
                 <FilterSet filters={filtermap.get('lensebrands')} param={brand} p={'brand'}/>
             </AccordionItem>
+            <AccordionItem key="maxap" aria-label="maxap" title={'maxap ' + (maxap.length != 0 ? maxap.length : '')}>
+                <FilterSet containerClassname={'grid grid-cols-2 text-sm'} filters={filtermap.get('apertures')} param={maxap} p={'maxap'}/>
+            </AccordionItem>
             <AccordionItem key="minfl" aria-label="minfl" title={'minfl ' + (minfl.length != 0 ? minfl.length : '')}>
-                <FilterSet filters={filtermap.get('focallengths')} param={minfl} p={'minfl'}/>
+                <FilterSet text={'mm'} textClassname={'text-xs'} filters={filtermap.get('focallengths')} param={minfl} p={'minfl'}   />
             </AccordionItem>
             <AccordionItem key="maxfl" aria-label="maxfl" title={'maxfl ' + (maxfl.length != 0 ? maxfl.length : '')}>
-                <FilterSet filters={filtermap.get('focallengths')} param={maxfl} p={'maxfl'} />
+                <FilterSet text={'mm'} textClassname={'text-xs'} filters={filtermap.get('focallengths')} param={maxfl} p={'maxfl'} />
             </AccordionItem>
         </Accordion>
     )
@@ -64,7 +67,7 @@ function LenseFilters() {
 function AerialFilters() {
     const [{ type, brand }] = useFilters()
     return (
-        <Accordion isCompact={true} selectionMode="multiple">
+        <Accordion itemClasses={{indicator: 'text-foreground'}} isCompact={true} selectionMode="multiple">
             <AccordionItem key="price" aria-label="price" title="price">
                 <PriceSlider />
             </AccordionItem>
@@ -78,13 +81,13 @@ function AerialFilters() {
     )
 }
 
-function FilterSet({ filters, param, p, text }: { filters: string[] | undefined, param: string[], p: string, text?: string }) {
+function FilterSet({ filters, param, p, text, textClassname, containerClassname }: { filters: string[] | undefined, param: string[], p: string, text?: string, textClassname?: string, containerClassname?: string }) {
     const [, setFilters] = useFilters()
     return (
         <CheckboxGroup
             aria-label={p}
             size="sm"
-            classNames={{ wrapper: "text-background",}}
+            classNames={{ wrapper: `${containerClassname} text-background`,}}
             color="primary"
             value={param}
             onValueChange={(e) => setFilters({ [p]: e })}
@@ -94,7 +97,7 @@ function FilterSet({ filters, param, p, text }: { filters: string[] | undefined,
                 classNames={{
                     wrapper: 'before:border-foreground before:border-1 after:bg-transparent',
                 }}
-                className="min-w-full text-foreground" key={fil} value={fil}>{fil}{text}</Checkbox>
+                className='min-w-full text-foreground' key={fil} value={fil}>{fil}<span className={`${textClassname}`}>{text}</span></Checkbox>
             ))}
         </CheckboxGroup>
     )

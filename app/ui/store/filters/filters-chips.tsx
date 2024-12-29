@@ -1,27 +1,37 @@
 'use client'
-import { useFilters } from "@/app/lib/searchParams";
-import { Chip, ScrollShadow } from "@nextui-org/react";
+import { useRef } from 'react'
+import { useQueryState } from 'nuqs'
+import { searchParams, useFilters } from '@/app/lib/searchParams'
+import { motion } from 'motion/react'
+import { Chip } from '@nextui-org/react'
 
-export function FilterChips() {
-    const [{ type, brand, res, shutter, mgp, minfl, maxfl }, setFilters] = useFilters();
-
-    const test = [type, brand, res, shutter, mgp, minfl, maxfl]
-    const i = ['type', 'brand', 'res', 'shutter', 'mgp', 'minfl', 'maxfl']
-
+export function FilterChips({sz}:{sz? : 'sm'| 'md'| 'lg' }) {
+    const [{ type, brand, res, shutter, mgp, maxap, minfl, maxfl }, setFilters] = useFilters();
+    const [search, setSearch] = useQueryState('search', searchParams.search.withOptions({ shallow: false }))
+    const constraintsRef = useRef(null)
+    const test = [type, brand, res, shutter, mgp, maxap, minfl, maxfl]
+    const i = ['type', 'brand', 'res', 'shutter', 'mgp', 'maxap','minfl', 'maxfl']
 
     const handleClose = (fil: string, remove: string, index: number,) => {
-        setFilters({ [fil]: test[index].filter(item => item !== remove) });
-    };
+        setFilters({ [fil]: test[index].filter(item => item !== remove) })
+    }
+    
     return (
-        <ScrollShadow hideScrollBar orientation='horizontal' className="w-[900px] h-full overflow-x-auto flex gap-1 items-center">
-            {test.map((fil, index) =>
-            (fil.map((f) => (
-                <Chip classNames={{ base: 'h-5' }} size="sm" key={index + f} variant="flat" onClose={() => handleClose(i[index], f, index)}>
-                    {f}
-                </Chip>
-            ))))}
-        </ScrollShadow>
+        <div ref={constraintsRef} className='flex max-w-full lowercase'>
+            <motion.div drag={'x'} dragConstraints={constraintsRef} className='flex min-w-fit min-h-min gap-1'>
+                {search ?
+                    <Chip classNames={{ base: 'h-5' }} size="sm" key={search} variant="flat"
+                        onClose={() => { setSearch(null) }}>
+                        search: {search}
+                    </Chip> : null}
+                {test.map((fil, index) =>
+                (fil.map((f) => (
+                    <Chip classNames={{ base: 'h-5' }} size={sz? sz: 'sm'} key={index + f} variant="flat" onClose={() => handleClose(i[index], f, index)}>
+                        {i[index]}: 
+                        {' '+f}
+                    </Chip>
+                ))))}
+            </motion.div>
+        </div>
     )
 }
-
-{/* <ScrollShadow hideScrollBar orientation="horizontal" className="w-[400px] no-scrollbar overflow-x-auto flex flex-row"></ScrollShadow> */}

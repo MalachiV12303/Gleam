@@ -3,6 +3,7 @@ import React, { useRef } from 'react'
 import { Filters } from './filters'
 import { Button, Popover, PopoverContent, PopoverTrigger, ScrollShadow } from '@nextui-org/react'
 import { motion, useScroll, useSpring } from 'motion/react'
+import { FilterChips } from './filters-chips'
 
 export default function FiltersPanel({
   itemtype,
@@ -15,7 +16,6 @@ export default function FiltersPanel({
   const { scrollYProgress } = useScroll({
     container: ref,
   })
-
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -76,6 +76,9 @@ export default function FiltersPanel({
           <ScrollShadow ref={ref} className="w-full lowercase h-full scrollbar overflow-x-hidden">
             <Filters it={itemtype} />
           </ScrollShadow>
+          <div className='py-2 w-full overflow-auto no-scrollbar'>
+            <FilterChips />
+          </div>
         </PopoverContent>
       </Popover>
     )

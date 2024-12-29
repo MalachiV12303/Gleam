@@ -62,6 +62,7 @@ export const searchParamsCache = createSearchParamsCache({
 
 export function useFilters() {
   return useQueryStates({
+    search: searchParams.search.withOptions({shallow: false}),
     type: searchParams.type.withOptions({shallow:false}),
     brand: searchParams.brand.withOptions({shallow:false}),
     price: searchParams.price.withOptions({shallow:false}),

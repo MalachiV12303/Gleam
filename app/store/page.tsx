@@ -31,14 +31,14 @@ export default async function Page({ searchParams }: PageProps) {
     }
     return (
         <div id='storeContainer' className={`${inc.className} h-full w-10/12 flex flex-col mx-auto`}>
-
-            <div id='searchbarContainer' className='p-2 lg:p-4'><SearchBar /></div>
-
+            <SearchBar className={'p-2 lg:p-4'}/>
             <div id='topLayer' className='flex flex-col sm:flex-row '>
                 <div id='typeSelector' className='w-full sm:w-1/4'><ItemTypeSelector /></div>
                 <div id='countRow' className='w-full sm:w-3/4 flex justify-between items-center py-1 sm:py-0'>
                     <p className='text-nowrap px-4'>{count === null ? '0 found...' : count + ' items found'}</p>
-                    <div className='hidden sm:inline-block'><FilterChips /></div>
+
+                    <div className='hidden sm:flex w-full overflow-auto no-scrollbar' ><FilterChips /></div>
+                    
                     <div className='flex sm:hidden items-center'>
                         <FiltersPanel itemtype={itemtype} type={'mobile'} />
                     </div>
@@ -50,8 +50,8 @@ export default async function Page({ searchParams }: PageProps) {
                     <FiltersPanel itemtype={itemtype} type={'desktop'} />
                 </div>
                 <ItemsPanel items={items} />
-                </div>
             </div>
+        </div>
         
     )
 }

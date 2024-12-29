@@ -1,5 +1,5 @@
-import { eq, and, between, inArray } from 'drizzle-orm';
 import { db } from './drizzle';
+import { eq, and, between, inArray, ilike, or } from 'drizzle-orm';
 import { cameras, lenses } from './schema';
 import { searchParamsCache } from '../searchParams';
 import { SliderValue } from '@nextui-org/slider';
@@ -27,6 +27,12 @@ const brandFilter = (itemtype: string, brands: string[]) => {
           itemtype === 'len' ? inArray(lenses.brand, brands) : undefined
 }
 
+const searchFilter = (itemtype: string, search: string) => {
+  if (search.length === 0)
+        return undefined
+  return itemtype === 'cam' ? or(ilike(cameras.name, `%${search}%`), ilike(cameras.type, `%${search}%`), ilike(cameras.brand, `%${search}%`)) : undefined
+}
+
 const resFilter = (itemtype: string, res: string[]) => {
   if (res.length === 0)
         return undefined
@@ -46,21 +52,57 @@ const megapixelFilter = (itemtype: string, megapixels: string[]) => {
   return itemtype === 'cam' ? inArray(cameras.megapixels, megapixels) : undefined
 }
 
+const maxapFilter = (itemtype: string, maxap: string[]) => {
+  if (maxap.length === 0)
+        return undefined
+  //using .map because i was having issue using parseAsInt in searchParamsCache, values were null and number[] had no length
+  return itemtype === 'len' ? inArray(lenses.maxap, maxap) : undefined
+}
+
+const minflFilter = (itemtype: string, minfl: string[]) => {
+  const arr = [];
+  const min=[];
+  const max=[];
+  for(let i = 0; i < minfl.length; i++ ){
+    arr.push(minfl[i].toString().split('-'));
+  }
+  for(let x = 0; x < arr.length ; x++){
+    min.push(parseFloat(arr[x][0]))
+    max.push(parseFloat(arr[x][1]))
+  }
+  if (minfl.length === 0)
+        return undefined
+  return itemtype === 'len' ? between(lenses.minfl, Math.min(...min) , Math.max(...min)) : undefined
+}
+
+const maxflFilter = (itemtype: string, maxfl: string[]) => {
+  const arr = [];
+  const min=[];
+  const max=[];
+  for(let i = 0; i < maxfl.length; i++ ){
+    arr.push(maxfl[i].toString().split('-'));
+  }
+  for(let x = 0; x < arr.length ; x++){
+    min.push(parseFloat(arr[x][0]))
+    max.push(parseFloat(arr[x][1]))
+  }
+  if (maxfl.length === 0)
+        return undefined
+  return itemtype === 'len' ? between(lenses.maxfl, Math.min(...min) , Math.max(...min)) : undefined
+}
 
 export async function fetchCameras() {
-  //const [{ type, brand, price, res, shutter },]= useFilters()
-
-  const { type, brand, price, itemtype, res, shutter, mgp } = searchParamsCache.all();
+  const { search, type, brand, price, itemtype, res, shutter, mgp } = searchParamsCache.all();
   const filters = [
      brandFilter(itemtype, brand),
      typeFilter(itemtype, type),
      priceFilter(itemtype, price),
      resFilter(itemtype, res),
      shutterFilter(itemtype, shutter),
-     megapixelFilter(itemtype, mgp)
+     megapixelFilter(itemtype, mgp),
+     searchFilter(itemtype, search)
    ].filter(Boolean);
   const whereClause = filters.length > 0 ? and(...filters) : undefined;
-
   const fetchedCameras = await db
     .select({
       id: cameras.id,
@@ -81,13 +123,15 @@ export async function fetchCameras() {
 }
 
 
-
 export async function fetchLenses() {
-  const { type, brand, price, itemtype } = searchParamsCache.all();
+  const { type, brand, price, itemtype, maxap, minfl, maxfl } = searchParamsCache.all();
   const filters = [
      brandFilter(itemtype, brand),
-     typeFilter(itemtype,type),
-     priceFilter(itemtype,price),
+     typeFilter(itemtype, type),
+     priceFilter(itemtype, price) ,
+     maxapFilter(itemtype, maxap),
+     minflFilter(itemtype, minfl),
+     maxflFilter(itemtype, maxfl),
    ].filter(Boolean);
 
   const whereClause = filters.length > 0 ? and(...filters) : undefined;
