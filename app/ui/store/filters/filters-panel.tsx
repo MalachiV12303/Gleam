@@ -76,8 +76,8 @@ export default function FiltersPanel({
           <ScrollShadow ref={ref} className="w-full lowercase h-full scrollbar overflow-x-hidden">
             <Filters it={itemtype} />
           </ScrollShadow>
-          <div className='py-2 w-full overflow-auto no-scrollbar'>
-            <FilterChips />
+          <div className='py-4 w-full overflow-auto no-scrollbar'>
+            <FilterChips sz={'lg'}/>
           </div>
         </PopoverContent>
       </Popover>

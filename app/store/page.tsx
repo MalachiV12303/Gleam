@@ -37,7 +37,7 @@ export default async function Page({ searchParams }: PageProps) {
                 <div id='countRow' className='w-full sm:w-3/4 flex justify-between items-center py-1 sm:py-0'>
                     <p className='text-nowrap px-4'>{count === null ? '0 found...' : count + ' items found'}</p>
 
-                    <div className='hidden sm:flex w-full overflow-auto no-scrollbar' ><FilterChips /></div>
+                    <div className='hidden sm:flex w-full overflow-auto no-scrollbar' ><FilterChips sz={'sm'}/></div>
                     
                     <div className='flex sm:hidden items-center'>
                         <FiltersPanel itemtype={itemtype} type={'mobile'} />
