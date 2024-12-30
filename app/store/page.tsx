@@ -30,7 +30,8 @@ export default async function Page({ searchParams }: PageProps) {
         }
     }
     return (
-        <div id='storeContainer' className={`${inc.className} h-full w-10/12 flex flex-col mx-auto`}>
+        <>
+            <div id='storeContainer' className={`${inc.className} h-full w-10/12 flex flex-col mx-auto pb-5 md:pb-8 pt-10 md:pt-16`}>
             <SearchBar className={'p-2 lg:p-4'}/>
             <div id='topLayer' className='flex flex-col sm:flex-row '>
                 <div id='typeSelector' className='w-full sm:w-1/4'><ItemTypeSelector /></div>
@@ -51,7 +52,7 @@ export default async function Page({ searchParams }: PageProps) {
                 </div>
                 <ItemsPanel items={items} />
             </div>
-        </div>
-        
+            </div>
+        </>
     )
 }

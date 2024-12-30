@@ -29,12 +29,12 @@ export function PageBorder() {
         return i;
     }
     return (<>
-        <div className="absolute origin-top-left rotate-90 top-0 left-5 sm:left-10 w-[100dvh] bg-background ">
+        <div className="fixed origin-top-left rotate-90 left-5 sm:left-10 w-[100dvh] bg-transparent">
             <Marquee pauseOnHover speed={1} className="flex h-2 items-center text-foreground overflow-hidden">
                 {gen()}
             </Marquee>
         </div>
-        <div className="absolute origin-top-right -rotate-90 right-5 sm:right-10 w-[100dvh] top-0 bg-background">
+        <div className="fixed origin-top-right -rotate-90 right-5 sm:right-10 w-[100dvh] bg-transparent">
             <Marquee pauseOnHover speed={1} className="flex h-2 items-center text-foreground overflow-hidden">
                 {gen()}
             </Marquee>
