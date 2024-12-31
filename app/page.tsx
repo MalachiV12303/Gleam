@@ -13,11 +13,8 @@ export default function Home() {
               <p className="mt-8 text-foreground/90">: Malachi Valle</p>
             </div>
           </div>
-
           <div className="snap-start min-h-[100dvh]"></div>
-
           <motion.div className="snap-center min-h-[40dvh] text-sm sm:text-base mx-auto italic flex flex-col items-center justify-center text-foreground"
-            
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ type: 'spring' , delay: 0.5, duration: 0.75 }}

@@ -24,7 +24,7 @@ export const cameras = pgTable("cameras", {
 	type: varchar({ length: 20 }).notNull(),
 	brand: varchar({ length: 20 }).notNull(),
 	price: numeric({ precision: 19, scale:  2 }).$type<number>().notNull(),
-	compats: jsonb().$type<string[]>(),
+	compats: jsonb().$type<{ sd: string[], lens: string[]}>(),
 	description: text(),
 	res: integer().default(0).notNull(),
 	megapixels: numeric({ precision: 3, scale:  1 }).default('0').notNull(),

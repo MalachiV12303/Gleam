@@ -72,7 +72,14 @@ export function useFilters() {
     minfl: searchParams.shutter.withOptions({shallow:false}),
     maxfl: searchParams.mgp.withOptions({shallow:false}),
     maxap: searchParams.maxap.withOptions({shallow:false}),
-    
   })
 }
+
+export function useItemInfo() {
+  return useQueryStates({
+    id: searchParams.id.withOptions({shallow: false}),
+    itemtype: searchParams.itemtype.withOptions({shallow: false}),
+  })
+}
+
 export const serialize = createSerializer(searchParams)
