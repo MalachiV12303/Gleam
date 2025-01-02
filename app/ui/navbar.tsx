@@ -10,7 +10,7 @@ export default function NavBar() {
     return (
         <header>
             <nav className="flex justify-center w-full fixed top-0 z-50 select-none overflow-hidden">
-                <div className="min-h-10 md:min-h-16 w-full sm:w-10/12 px-8 flex items-center justify-evenly">
+                <div className="min-h-12 md:min-h-16 w-10/12 flex items-center justify-between">
                     <ThemeSwitcher />
                     <Link href="/store" className={`${styles.hoverUnderline}`}>
                         <div className="flex px-2 py-1 gap-1 sm:gap-3 items-center">

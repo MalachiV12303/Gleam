@@ -112,8 +112,8 @@ export async function fetchCameras() {
       price: cameras.price,
       res: cameras.res,
       megapixels: cameras.megapixels,
-      shutter: cameras.shutter,
       compats: cameras.compats,
+      shutter: cameras.shutter,
       description: cameras.description,
     })
     .from(cameras)
@@ -163,8 +163,8 @@ export async function fetchCameraById(id: string) {
       price: cameras.price,
       res: cameras.res,
       megapixels: cameras.megapixels,
-      shutter: cameras.shutter,
       compats: cameras.compats,
+      shutter: cameras.shutter,
       description: cameras.description,
       
     })

@@ -3,10 +3,8 @@ import React from 'react';
 import { notFound } from "next/navigation";
 import { searchParamsCache } from "../lib/searchParams";
 import { SearchParams } from "nuqs/server";
-import BackButton from "../ui/item/backbutton";
 import { fetchCameras, fetchLenses } from "../lib/db/queries";
 import LensePage from "@/app/ui/item/lensepage";
-import FiltersPanel from "../ui/store/filters/filters-panel";
 import { Camera, Lense } from "../lib/db/schema";
 import { isCamera, isLense } from "../lib/utils";
 
@@ -16,7 +14,7 @@ type PageProps = {
 export default async function Page({ searchParams }: PageProps) {
     const itemtype = searchParamsCache.parse(await searchParams).itemtype;
     const id = searchParamsCache.parse(await searchParams).id;
-
+    let count = 1;
     const [ items ] = await fetchItems(itemtype)
     const matchingIdItem = items.find((i) => i.id===id)
     const displayedItems = items.filter((item)=>item.id!==id)
@@ -32,19 +30,20 @@ export default async function Page({ searchParams }: PageProps) {
         }
     }
     
-    async function displayItem(item: Camera | Lense) {
+    async function displayItem(item: Camera | Lense, index: number) {
         if (isCamera(item))
-            return <CameraPage cam={item} />
+            return <CameraPage cam={item} index={index}/>
         else if (isLense(item))
             return <LensePage len={item} />
         else
             return notFound();
     }
 
-    return (<>
-        {matchingIdItem? displayItem(matchingIdItem):null}
-        {displayedItems.map((item) => (displayItem(item)))}
-    </>
+    return (
+        <>
+            {matchingIdItem? displayItem(matchingIdItem, 1):null}
+            {displayedItems.map((item) => (displayItem(item, count += 1)))}
+        </>
     )
 }
 

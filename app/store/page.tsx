@@ -1,7 +1,6 @@
 import React from 'react'
 import SearchBar from '../ui/searchbar'
 import FiltersPanel from '../ui/store/filters/filters-panel'
-import { inc } from '@/app/ui/fonts'
 import { searchParamsCache } from '@/app/lib/searchParams'
 import { ItemTypeSelector } from '../ui/store/filters/itemtype-switch'
 import { fetchCameras, fetchLenses } from '../lib/db/queries'
@@ -29,9 +28,10 @@ export default async function Page({ searchParams }: PageProps) {
                 return []
         }
     }
+    
     return (
         <>
-            <div id='storeContainer' className={`${inc.className} h-full w-10/12 flex flex-col mx-auto pb-5 md:pb-8 pt-10 md:pt-16`}>
+            <div id='storeContainer' className='h-full w-10/12 flex flex-col mx-auto pb-5 md:pb-8 pt-12 md:pt-16'>
             <SearchBar className={'p-2 lg:p-4'}/>
             <div id='topLayer' className='flex flex-col sm:flex-row '>
                 <div id='typeSelector' className='w-full sm:w-1/4'><ItemTypeSelector /></div>
@@ -41,7 +41,7 @@ export default async function Page({ searchParams }: PageProps) {
                     <div className='hidden sm:flex w-full overflow-auto no-scrollbar' ><FilterChips sz={'sm'}/></div>
                     
                     <div className='flex sm:hidden items-center'>
-                        <FiltersPanel itemtype={itemtype} type={'mobile'} />
+                        <FiltersPanel contentClassname={'w-[80dvw]'} itemtype={itemtype} type={'mobile'} />
                     </div>
                 </div>
             </div>

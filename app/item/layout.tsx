@@ -1,6 +1,6 @@
-import { motion } from "motion/react";
-import { raleway } from "@/app/ui/fonts"
+
 import FiltersPanel from "../ui/store/filters/filters-panel";
+import BackButton from "../ui/item/backbutton";
 
 export default function Layout({
   children,
@@ -8,13 +8,14 @@ export default function Layout({
   children: React.ReactNode
 }) {
   return (
-    <div className={`${raleway.className} flex min-h-[100dvh]`}>
-      <main className="w-10/12 mx-auto relative">
-      <div className='fixed bottom-0'>
-        <FiltersPanel itemtype='cam' type={'mobile'}/>
-      </div>
-      {children}
+    <div className='flex min-h-[100dvh]'>
+      <main className="w-10/12 mx-auto">
+        <div className='z-10 w-10/12 mt-12 md:mt-16 flex justify-end fixed'>
+          <FiltersPanel contentClassname={'w-[40dvw]'} itemtype='cam' type={'mobile'}/>
+        </div>
+        {children}
       </main>
+      <BackButton/>
     </div>
   )
 } 

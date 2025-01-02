@@ -7,10 +7,12 @@ import { FilterChips } from './filters-chips'
 
 export default function FiltersPanel({
   itemtype,
-  type
+  type,
+  contentClassname,
 }: {
   itemtype: string,
-  type: string
+  type: string,
+  contentClassname?: string,
 }) {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -33,6 +35,7 @@ export default function FiltersPanel({
     </>
     ) : (
       <Popover
+        shouldBlockScroll
         motionProps={{
           variants: {
             enter: {
@@ -61,8 +64,10 @@ export default function FiltersPanel({
             },
           },
         }}
-        placement="bottom-end" classNames={{
-          content: "w-[80dvw] bg-transparent backdrop-blur-md border-1 border-foreground mt-1 mr-1",
+
+        placement="bottom-end" 
+        classNames={{
+          content: "bg-transparent backdrop-blur-md border-1 border-foreground mt-1 mr-1",
           trigger: "h-6 border-1 border-foreground",
         }}>
         <PopoverTrigger >
@@ -72,7 +77,7 @@ export default function FiltersPanel({
             </svg>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="bg-transparent bg-blur-sm relative max-h-[60dvh]">
+        <PopoverContent className={`${contentClassname} relative max-h-[60dvh]`}>
           <ScrollShadow ref={ref} className="w-full lowercase h-full scrollbar overflow-x-hidden">
             <Filters it={itemtype} />
           </ScrollShadow>
