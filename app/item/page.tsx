@@ -7,6 +7,7 @@ import { fetchCameras, fetchLenses } from "../lib/db/queries";
 import LensePage from "@/app/ui/item/lensepage";
 import { Camera, Lense } from "../lib/db/schema";
 import { isCamera, isLense } from "../lib/utils";
+import { ScrollProgress } from "../ui/item/scrollprogress";
 
 type PageProps = {
     searchParams: Promise<SearchParams>
@@ -14,7 +15,7 @@ type PageProps = {
 export default async function Page({ searchParams }: PageProps) {
     const itemtype = searchParamsCache.parse(await searchParams).itemtype;
     const id = searchParamsCache.parse(await searchParams).id;
-    let count = 1;
+    let count = 0;
     const [ items ] = await fetchItems(itemtype)
     const matchingIdItem = items.find((i) => i.id===id)
     const displayedItems = items.filter((item)=>item.id!==id)
@@ -41,8 +42,9 @@ export default async function Page({ searchParams }: PageProps) {
 
     return (
         <>
-            {matchingIdItem? displayItem(matchingIdItem, 1):null}
+            {matchingIdItem? displayItem(matchingIdItem, count += 1) : undefined}
             {displayedItems.map((item) => (displayItem(item, count += 1)))}
+            <ScrollProgress/>
         </>
     )
 }

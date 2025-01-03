@@ -53,11 +53,11 @@ export function CameraPage({ cam, index }: { cam: Camera, index: number }) {
                     </Accordion>
                 </div>
             </div>
-            <div className="flex flex-col gap-2 items-end justify-center w-[15%]">
+            <div className="flex flex-col gap-2 items-end justify-center w-[15%] pr-2">
                 <p className='text-3xl'>{cam.price}</p>
                 <div className='py-1 px-3 text-sm text-nowrap bg-foreground text-background'>add to cart</div>
             </div>
-            <motion.div className={'absolute bottom-0 right-0 mb-20 text-4xl'} style={{ y }}>{`#00${index}`}</motion.div>
+            <motion.div className={'absolute bottom-0 right-0 mb-20 text-3xl'} style={{ y }}>{`#00${index}`}</motion.div>
         </section>
     )
 }
