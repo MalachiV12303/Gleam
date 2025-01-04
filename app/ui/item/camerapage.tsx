@@ -57,7 +57,7 @@ export function CameraPage({ cam, index }: { cam: Camera, index: number }) {
                 <p className='text-3xl'>{cam.price}</p>
                 <div className='py-1 px-3 text-sm text-nowrap bg-foreground text-background'>add to cart</div>
             </div>
-            <motion.div className={'absolute bottom-0 right-0 mb-20 text-3xl'} style={{ y }}>{`#00${index}`}</motion.div>
+            {/* <motion.div className={'bg-red-800 w-[175px] h-[175px] absolute bottom-0 right-0 mb-11 text-2xl flex flex-col items-center justify-center'} style={{ y }}>{`00${index}`}<span className='text-sm'>of 30</span></motion.div> */}
         </section>
     )
 }

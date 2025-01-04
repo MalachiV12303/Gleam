@@ -22,7 +22,6 @@ export function StoreItem({ item }: { item: Camera | Lense }) {
     //camera on store page
     function Camera(cam: Camera) {
         params.set("itemtype", "cam")
-        console.log(cam.megapixels)
         return (
             <>
                 <div className='text-sm px-4 py-4 flex flex-col lg:flex-row gap-4 items-center justify-between overflow-hidden'>
@@ -34,7 +33,7 @@ export function StoreItem({ item }: { item: Camera | Lense }) {
                             <p>{cam.res}p</p>
                             <p>{cam.brand}</p>
                         </div>
-                        <div className='pr-1 text-xs xl:text-sm mt-2 max-w-[90%] hidden sm:flex max-h-24 scrollbar overflow-y-scroll'>{cam.description}</div>
+                        <div className='pr-1 text-xs mt-2 max-w-[95%] hidden sm:flex max-h-24 scrollbar overflow-y-scroll'>{cam.description}</div>
                     </Link>
                     <div className='flex gap-2 items-center sm:justify-between'>
                         <div id='imagePlaceholder' className='w-[150px] h-[150px] sm:w-[175px] sm:h-[175px] md:w-[225px] md:h-[225px] 2xl:w-[300px] 2xl:h-[300px] border-1 border-foreground flex justify-center items-center'>

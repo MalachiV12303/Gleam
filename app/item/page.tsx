@@ -44,7 +44,7 @@ export default async function Page({ searchParams }: PageProps) {
         <>
             {matchingIdItem? displayItem(matchingIdItem, count += 1) : undefined}
             {displayedItems.map((item) => (displayItem(item, count += 1)))}
-            <ScrollProgress/>
+            <ScrollProgress total={items.length}/>
         </>
     )
 }
