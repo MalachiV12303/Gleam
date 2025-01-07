@@ -1,10 +1,4 @@
-import { Raleway, PT_Sans, Bona_Nova, Inconsolata } from 'next/font/google';
-
-export const raleway = Raleway({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  //style: ['normal', 'italic'] //not sure is this will be necessary
-});
+import { PT_Sans, Bona_Nova, Inconsolata, Jersey_15 } from 'next/font/google';
 
 export const ptsans = PT_Sans({
   weight: ['400', '700'],
@@ -18,5 +12,10 @@ export const bnova = Bona_Nova({
 
 export const inc = Inconsolata({
   weight: ['300'],
+  subsets: ['latin'],
+});
+
+export const jersey = Jersey_15({
+  weight: ['400'],
   subsets: ['latin'],
 });

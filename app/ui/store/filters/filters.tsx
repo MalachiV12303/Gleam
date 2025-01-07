@@ -49,16 +49,16 @@ function LenseFilters() {
                 <FilterSet filters={filtermap.get('lensetypes')} param={type} p={'type'} />
             </AccordionItem>
             <AccordionItem key="brand" aria-label="brand" title={'brand ' + (brand.length != 0 ? brand.length : '')}>
-                <FilterSet filters={filtermap.get('lensebrands')} param={brand} p={'brand'}/>
+                <FilterSet containerClassname={'grid grid-cols-2 overflow-hidden'} filters={filtermap.get('lensebrands')} param={brand} p={'brand'}/>
             </AccordionItem>
             <AccordionItem key="maxap" aria-label="maxap" title={'maxap ' + (maxap.length != 0 ? maxap.length : '')}>
-                <FilterSet containerClassname={'grid grid-cols-2 text-sm'} filters={filtermap.get('apertures')} param={maxap} p={'maxap'}/>
+                <FilterSet containerClassname={'grid grid-cols-2 overflow-hidden'} filters={filtermap.get('apertures')} param={maxap} p={'maxap'}/>
             </AccordionItem>
             <AccordionItem key="minfl" aria-label="minfl" title={'minfl ' + (minfl.length != 0 ? minfl.length : '')}>
-                <FilterSet text={'mm'} textClassname={'text-xs'} filters={filtermap.get('focallengths')} param={minfl} p={'minfl'}   />
+                <FilterSet containerClassname={'grid grid-cols-2 overflow-hidden'} text={'mm'} textClassname={'text-xs'} filters={filtermap.get('focallengths')} param={minfl} p={'minfl'}   />
             </AccordionItem>
             <AccordionItem key="maxfl" aria-label="maxfl" title={'maxfl ' + (maxfl.length != 0 ? maxfl.length : '')}>
-                <FilterSet text={'mm'} textClassname={'text-xs'} filters={filtermap.get('focallengths')} param={maxfl} p={'maxfl'} />
+                <FilterSet containerClassname={'grid grid-cols-2 overflow-hidden'} text={'mm'} textClassname={'text-xs'} filters={filtermap.get('focallengths')} param={maxfl} p={'maxfl'} />
             </AccordionItem>
         </Accordion>
     )
@@ -87,7 +87,7 @@ function FilterSet({ filters, param, p, text, textClassname, containerClassname 
         <CheckboxGroup
             aria-label={p}
             size="sm"
-            classNames={{ wrapper: `${containerClassname} text-background`,}}
+            classNames={{ wrapper: `${containerClassname} text-background text-sm`,}}
             color="primary"
             value={param}
             onValueChange={(e) => setFilters({ [p]: e })}

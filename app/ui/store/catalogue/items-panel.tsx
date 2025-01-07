@@ -19,7 +19,7 @@ export function ItemsPanel({ items }: { items: Camera[] | Lense[] }) {
 
   return (
     <>
-      <ScrollShadow ref={ref} className="pb-1 w-full sm:w-3/4 no-scrollbar relative">
+      <ScrollShadow ref={ref} className="pb-2 w-full sm:w-3/4 no-scrollbar relative">
         {items ? items.map((item) => {
           return (
             <StoreItem key={item.id} item={item} />
@@ -31,7 +31,7 @@ export function ItemsPanel({ items }: { items: Camera[] | Lense[] }) {
         }
       </ScrollShadow>
       <motion.div
-        className="absolute top-0 right-0 w-[1px] h-full bg-foreground origin-top"
+        className="absolute top-0 right-0 w-[1px] h-full bg-foreground origin-top "
         style={{ scaleY }} />
     </>
   )

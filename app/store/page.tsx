@@ -46,7 +46,7 @@ export default async function Page({ searchParams }: PageProps) {
                 </div>
             </div>
 
-            <div id="filtersAndItems" className="overflow-auto flex flex-col relative sm:flex-row max-w-full border-t-1 border-foreground">
+            <div id="filtersAndItems" className="overflow-auto no-scrollbar flex flex-col relative sm:flex-row max-w-full border-t-1 border-foreground">
                 <div className="relative hidden sm:inline-block w-1/4 px-2 pt-1">
                     <FiltersPanel itemtype={itemtype} type={'desktop'} />
                 </div>
