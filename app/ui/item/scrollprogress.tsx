@@ -5,7 +5,7 @@ import { Suspense } from "react";
 export function ScrollProgress(){
     const { scrollYProgress } = useScroll()
     return (
-        <div className='fixed flex justify-end w-min bottom-11 right-4 lg:right-16'>
+        <div className='fixed flex justify-end w-min bottom-11 right-4 sm:right-8 md:right-12 lg:right-16'>
             <Suspense>
                 <div className='absolute right-0 w-[175px] h-[175px] flex items-center justify-center'></div>
             </Suspense>

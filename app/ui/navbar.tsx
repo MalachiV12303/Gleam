@@ -1,11 +1,7 @@
 import styles from '@/app/ui/animations.module.css'
 import Link from 'next/link'
-import { Suspense } from 'react'
-
 import { Cart } from '../cart'
 import { ThemeSwitcher } from './themeswitcher'
-import { Spinner } from '@nextui-org/react'
-
 export default function NavBar() {
     return (
         <header>
@@ -22,9 +18,7 @@ export default function NavBar() {
                             <span>e</span>
                         </div>
                     </Link>
-                    <Suspense fallback={<Spinner className="min-w-20"></Spinner>}>
-                        <Cart />
-                    </Suspense>
+                    <Cart />
                 </div>
             </nav>
         </header>
