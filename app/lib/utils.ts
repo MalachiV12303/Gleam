@@ -1,10 +1,18 @@
-import { Camera, Lense } from "./db/schema";
+import { Item } from 'react-use-cart';
+import { Camera, Lense } from './db/schema';
 
 export const formatCurrency = (amount: number) => {
   return (amount * 1).toLocaleString('en-US', {
     currency: 'USD',
   });
 };
+
+export const getItemCat = (item: Item) => {
+  return isCamera(item) ? 'cam' :
+  isLense(item) ? 'len' :
+      'aer';
+};
+
 
 export const filtermap = new Map([
   ['cameratypes', ['DSLR', 'Mirrorless']],
@@ -26,10 +34,10 @@ export const filtermap = new Map([
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isCamera(obj: any): obj is Camera {
-  return obj && typeof obj === "object" && "megapixels" in obj
+  return obj && typeof obj === 'object' && 'megapixels' in obj
 };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isLense(obj: any): obj is Lense {
-  return obj && typeof obj === "object" && "minfl" in obj
+  return obj && typeof obj === 'object' && 'minfl' in obj
 };
 

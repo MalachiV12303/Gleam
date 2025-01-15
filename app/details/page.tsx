@@ -1,13 +1,13 @@
-import { CameraPage } from "@/app/ui/item/camerapage";
+import { CameraPage } from '@/app/ui/details/camerapage';
 import React from 'react';
-import { notFound } from "next/navigation";
-import { searchParamsCache } from "../lib/searchParams";
-import { SearchParams } from "nuqs/server";
-import { fetchCameras, fetchLenses } from "../lib/db/queries";
-import LensePage from "@/app/ui/item/lensepage";
-import { Camera, Lense } from "../lib/db/schema";
-import { isCamera, isLense } from "../lib/utils";
-import { ScrollProgress } from "../ui/item/scrollprogress";
+import { notFound } from 'next/navigation';
+import { searchParamsCache } from '../lib/searchParams';
+import { SearchParams } from 'nuqs/server';
+import { fetchCameras, fetchLenses } from '../lib/db/queries';
+import { LensePage } from '@/app/ui/details/lensepage';
+import { Camera, Lense } from '../lib/db/schema';
+import { isCamera, isLense } from '../lib/utils';
+import { ScrollProgress } from '../ui/details/scrollprogress';
 
 type PageProps = {
     searchParams: Promise<SearchParams>
@@ -22,9 +22,9 @@ export default async function Page({ searchParams }: PageProps) {
 
     function fetchItems(type: string) {
         switch (type) {
-            case "cam":
+            case 'cam':
                 return Promise.all([fetchCameras()])
-            case "len":
+            case 'len':
                 return Promise.all([fetchLenses()])
             default:
                 return []
@@ -35,7 +35,7 @@ export default async function Page({ searchParams }: PageProps) {
         if (isCamera(item))
             return <CameraPage cam={item} index={index}/>
         else if (isLense(item))
-            return <LensePage len={item} />
+            return <LensePage len={item} index={index}/>
         else
             return notFound();
     }
