@@ -7,6 +7,7 @@ import { LensePage } from '@/app/ui/details/lensepage';
 import { Camera, Lense } from '../lib/db/schema';
 import { isCamera, isLense } from '../lib/utils';
 import { ScrollProgress } from '../ui/details/scrollprogress';
+import { list } from '@vercel/blob';
 
 type PageProps = {
     searchParams: Promise<SearchParams>
@@ -18,9 +19,22 @@ export default async function Page({ searchParams }: PageProps) {
     const category = searchParamsCache.parse(await searchParams).category;
     const [ items ] = await fetchItems(category)
 
+    async function allImages() {
+        const blobs = await list();
+        return blobs;
+    }
+    const images = await allImages();
+
+    function findImage(searchTerm: string){
+        const matchingImageBlobs = images.blobs.filter(blob => 
+          blob.pathname.includes(searchTerm)
+        )
+        // Return the first matching image blob (if any)
+        return matchingImageBlobs.length > 0 ? matchingImageBlobs[0] : null
+    }
+
     const matchingIdItem = items.find((i) => i.id===id)
     const displayedItems = items.filter((item)=>item.id!==id)
-
     function fetchItems(type: string) {
         switch (type) {
             case 'cam':
@@ -34,9 +48,9 @@ export default async function Page({ searchParams }: PageProps) {
     
     async function displayItem(item: Camera | Lense, index: number) {
         if (isCamera(item))
-            return <CameraPage cam={item} index={index}/>
+            return <CameraPage cam={item} index={index} image={findImage(item.id)}/>
         else if (isLense(item))
-            return <LensePage len={item} index={index}/>
+            return <LensePage len={item} index={index} image={findImage(item.id)}/>
         else
             return <div>unknown item error</div>;
     }

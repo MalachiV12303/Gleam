@@ -5,8 +5,10 @@ import { Lense } from '@/app/lib/db/schema';
 import { Button } from '@nextui-org/react';
 import { motion, MotionValue, useScroll, useTransform } from 'motion/react';
 import { notFound } from 'next/navigation';
+import { ListBlobResultBlob } from '@vercel/blob';
+import Image from 'next/image'
 
-export function LensePage({ len, index }: { len: Lense, index: number }) {
+export function LensePage({ len, index, image }: { len: Lense, index: number, image: ListBlobResultBlob | null }) {
     const ref = useRef(null)
     const { scrollYProgress } = useScroll({ target: ref })
     const { addItem } = useCart()
@@ -27,19 +29,31 @@ export function LensePage({ len, index }: { len: Lense, index: number }) {
                         <span className='text-2xl lg:ml-4'>{len.brand}</span>
                         <div className='lg:mt-12 lg:ml-4 flex gap-2 max-w-[60%]'>
                             <div>{len.minfl}mm - {len.maxfl}mm</div>
-                            
+
                         </div>
                         <div className='ml-4 flex gap-2 max-w-[80%]'>
-                        <div>{len.maxap}</div>
+                            <div>{len.maxap}</div>
                         </div>
                     </div>
                     <span className='text-base opacity-80 lg:w-full'>#{index}</span>
                 </div>
                 <div className='mr-0 md:mr-8'>
                     <div className='hidden lg:flex lg:w-[300px] xl:w-[500px] border-1 border-foreground aspect-square items-center justify-center'>
-                        <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1} stroke='currentColor' className='size-6'>
-                            <path strokeLinecap='round' strokeLinejoin='round' d='m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z' />
-                        </svg>
+                        {image ?
+                            <Image
+                                key={len.id}
+                                src={image.url}
+                                alt='image'
+                                width={400}
+                                height={400}
+                                style={{ width: 'auto', height: '80%' }}
+                            /> :
+                            <div className='flex h-full items-center justify-center'>
+                                <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1} stroke='currentColor' className='size-6'>
+                                    <path strokeLinecap='round' strokeLinejoin='round' d='m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z' />
+                                </svg>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
