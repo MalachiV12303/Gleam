@@ -13,6 +13,7 @@
     "@nextui-org/react": "^2.6.8",
     "@nextui-org/slider": "^2.4.5",
     "@types/bcrypt": "^5.0.2",
+    "@vercel/blob": "^0.27.1",
     "@vercel/postgres": "^0.10.0",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",

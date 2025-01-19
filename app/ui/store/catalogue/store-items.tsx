@@ -4,6 +4,7 @@ import { Button } from '@nextui-org/react';
 import { Camera, Lense } from '@/app/lib/db/schema';
 import { formatCurrency, isCamera, isLense } from '@/app/lib/utils';
 import { motion } from 'motion/react';
+import { list } from '@vercel/blob';
 
 export function StoreItem({ item }: { item: Camera | Lense }) {
     const { addItem } = useCart()
