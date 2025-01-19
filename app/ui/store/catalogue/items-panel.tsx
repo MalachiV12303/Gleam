@@ -4,25 +4,34 @@ import { ScrollShadow } from '@nextui-org/react'
 import { StoreItem } from '@/app/ui/store/catalogue/store-items'
 import { motion, useScroll, useSpring } from 'motion/react'
 import { useRef } from 'react'
+import { ListBlobResultBlob } from '@vercel/blob'
 
-export function ItemsPanel({ items }: { items: Camera[] | Lense[]}) {
+export function ItemsPanel({ items, images }: { items: Camera[] | Lense[], images: ListBlobResultBlob[]}) {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({
     container: ref,
   })
-
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   });
 
+
+  function findImage(searchTerm: string){
+    const matchingImageBlobs = images.filter(blob => 
+      blob.pathname.includes(searchTerm)
+    )
+    // Return the first matching image blob (if any)
+    return matchingImageBlobs.length > 0 ? matchingImageBlobs[0] : null
+  }
+
   return (
     <>
       <ScrollShadow ref={ref} className="pb-2 w-full sm:w-3/4 no-scrollbar relative">
         {items ? items.map((item) => {
           return (
-            <StoreItem key={item.id} item={item} />
+            <StoreItem key={item.id} item={item} image={findImage(item.id)} />
           )
         }) :
           <div className="m-8 mx-auto flex">
