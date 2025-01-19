@@ -4,9 +4,8 @@ import { ScrollShadow } from '@nextui-org/react'
 import { StoreItem } from '@/app/ui/store/catalogue/store-items'
 import { motion, useScroll, useSpring } from 'motion/react'
 import { useRef } from 'react'
-import { ListBlobResult } from '@vercel/blob'
 
-export function ItemsPanel({ items, images }: { items: Camera[] | Lense[], images: ListBlobResult }) {
+export function ItemsPanel({ items }: { items: Camera[] | Lense[]}) {
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({
     container: ref,
