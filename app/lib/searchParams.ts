@@ -26,8 +26,8 @@ export const parseAsSliderValue = createParser({
 export const searchParams = {
   id: parseAsString.withDefault(''),
   search: parseAsString.withDefault(''),
-  itemtype: parseAsString.withDefault('cam'),
-  
+  category: parseAsString.withDefault('cam'),
+
   type: parseAsArrayOf(parseAsString).withDefault([]),
   brand: parseAsArrayOf(parseAsString).withDefault([]),
   price: parseAsSliderValue.withDefault(<SliderValue>([0, 3000])),
@@ -37,7 +37,6 @@ export const searchParams = {
   minfl: parseAsArrayOf(parseAsString).withDefault([]),
   maxfl: parseAsArrayOf(parseAsString).withDefault([]),
   maxap: parseAsArrayOf(parseAsString).withDefault([]),
-
 }
 
 
@@ -45,7 +44,7 @@ export const searchParamsCache = createSearchParamsCache({
   // List your search param keys and associated parsers here:
   id: parseAsString.withDefault(''),
   search: parseAsString.withDefault(''),
-  itemtype: parseAsString.withDefault('cam'),
+  category: parseAsString.withDefault('cam'),
 
   type: parseAsArrayOf(parseAsString).withDefault([]),
   brand: parseAsArrayOf(parseAsString).withDefault([]),
@@ -78,7 +77,7 @@ export function useFilters() {
 export function useItemInfo() {
   return useQueryStates({
     id: searchParams.id.withOptions({shallow: false}),
-    itemtype: searchParams.itemtype.withOptions({shallow: false}),
+    type: searchParams.type.withOptions({shallow: false}),
   })
 }
 

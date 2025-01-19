@@ -39,7 +39,7 @@ const config: Config = {
       "lighter": {
         extend: "light",
         colors: {
-          background: "#eeeeee",
+          background: "#e0e0e0",
           foreground: "#171717",
           primary: "#171717",
           secondary: "#0377fc",

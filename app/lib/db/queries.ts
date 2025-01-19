@@ -92,15 +92,15 @@ const maxflFilter = (itemtype: string, maxfl: string[]) => {
 }
 
 export async function fetchCameras() {
-  const { search, type, brand, price, itemtype, res, shutter, mgp } = searchParamsCache.all();
+  const { search, type, brand, price, category, res, shutter, mgp } = searchParamsCache.all();
   const filters = [
-     brandFilter(itemtype, brand),
-     typeFilter(itemtype, type),
-     priceFilter(itemtype, price),
-     resFilter(itemtype, res),
-     shutterFilter(itemtype, shutter),
-     megapixelFilter(itemtype, mgp),
-     searchFilter(itemtype, search)
+     brandFilter(category, brand),
+     typeFilter(category, type),
+     priceFilter(category, price),
+     resFilter(category, res),
+     shutterFilter(category, shutter),
+     megapixelFilter(category, mgp),
+     searchFilter(category, search)
    ].filter(Boolean);
   const whereClause = filters.length > 0 ? and(...filters) : undefined;
   const fetchedCameras = await db
@@ -124,14 +124,14 @@ export async function fetchCameras() {
 
 
 export async function fetchLenses() {
-  const { type, brand, price, itemtype, maxap, minfl, maxfl } = searchParamsCache.all();
+  const { type, brand, price, category, maxap, minfl, maxfl } = searchParamsCache.all();
   const filters = [
-     brandFilter(itemtype, brand),
-     typeFilter(itemtype, type),
-     priceFilter(itemtype, price) ,
-     maxapFilter(itemtype, maxap),
-     minflFilter(itemtype, minfl),
-     maxflFilter(itemtype, maxfl),
+     brandFilter(category, brand),
+     typeFilter(category, type),
+     priceFilter(category, price) ,
+     maxapFilter(category, maxap),
+     minflFilter(category, minfl),
+     maxflFilter(category, maxfl),
    ].filter(Boolean);
 
   const whereClause = filters.length > 0 ? and(...filters) : undefined;

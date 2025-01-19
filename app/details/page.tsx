@@ -1,6 +1,5 @@
 import { CameraPage } from '@/app/ui/details/camerapage';
 import React from 'react';
-import { notFound } from 'next/navigation';
 import { searchParamsCache } from '../lib/searchParams';
 import { SearchParams } from 'nuqs/server';
 import { fetchCameras, fetchLenses } from '../lib/db/queries';
@@ -12,11 +11,13 @@ import { ScrollProgress } from '../ui/details/scrollprogress';
 type PageProps = {
     searchParams: Promise<SearchParams>
 }
+
 export default async function Page({ searchParams }: PageProps) {
-    const itemtype = searchParamsCache.parse(await searchParams).itemtype;
-    const id = searchParamsCache.parse(await searchParams).id;
     let count = 0;
-    const [ items ] = await fetchItems(itemtype)
+    const id = searchParamsCache.parse(await searchParams).id;
+    const category = searchParamsCache.parse(await searchParams).category;
+    const [ items ] = await fetchItems(category)
+
     const matchingIdItem = items.find((i) => i.id===id)
     const displayedItems = items.filter((item)=>item.id!==id)
 
@@ -37,7 +38,7 @@ export default async function Page({ searchParams }: PageProps) {
         else if (isLense(item))
             return <LensePage len={item} index={index}/>
         else
-            return notFound();
+            return <div>unknown item error</div>;
     }
 
     return (

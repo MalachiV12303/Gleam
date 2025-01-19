@@ -21,8 +21,7 @@ export function StoreItem({ item }: { item: Camera | Lense }) {
 
     //camera on store page
     function Camera(cam: Camera) {
-        params.set('itemtype', 'cam')
-        return (
+            return (
             <>
                 <div className='text-sm px-4 py-4 flex flex-col lg:flex-row gap-4 items-center justify-between overflow-hidden'>
                     <Link className='flex flex-col' href={`/details?${params}`} >
@@ -62,11 +61,11 @@ export function StoreItem({ item }: { item: Camera | Lense }) {
 
     //lense on store page
     function Lense(len: Lense) {
-        params.set('itemtype', 'len')
+        params.set('category', 'len')
         return (
             <>
                 <div className='text-sm px-4 py-4 flex flex-col lg:flex-row gap-4 items-center justify-between overflow-hidden'>
-                    <Link className='flex flex-col' href={`/item?${params}`} >
+                    <Link className='flex flex-col' href={`/details?${params}`} >
                         <p className='text-xl text-center sm:text-start '>{len.name}</p>
                         <div className='flex flex-col sm:flex-row gap-2 xl:gap-3 lowercase text-nowrap items-center sm:items-start'>
                             <div className='flex gap-2 xl:gap-3'>

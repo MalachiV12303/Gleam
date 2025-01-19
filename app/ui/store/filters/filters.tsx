@@ -3,13 +3,12 @@ import { useFilters } from '@/app/lib/searchParams'
 import { Accordion, AccordionItem, Checkbox, CheckboxGroup } from '@nextui-org/react'
 import { filtermap } from '@/app/lib/utils'
 import { PriceSlider } from './priceslider'
-import { notFound } from 'next/navigation'
 
 export function Filters({ it }: { it: string }) {
     return it === 'cam' ? <CameraFilters/> :
         it === 'len' ? <LenseFilters/> :
         it === 'aer' ? <AerialFilters/> :
-        notFound();
+        <div>no filters found</div>;
 }
 
 function CameraFilters() {
