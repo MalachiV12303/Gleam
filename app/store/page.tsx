@@ -65,7 +65,7 @@ export default async function Page({ searchParams }: PageProps) {
                 <div className="relative hidden sm:inline-block w-1/4 px-2 pt-1">
                     <FiltersPanel itemtype={category} type={'desktop'} />
                 </div>
-                <ItemsPanel items={items} images={images}/>
+                <ItemsPanel items={items}/>
             </div>
             
             </div>
