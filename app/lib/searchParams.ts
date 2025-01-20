@@ -37,6 +37,7 @@ export const searchParams = {
   minfl: parseAsArrayOf(parseAsString).withDefault([]),
   maxfl: parseAsArrayOf(parseAsString).withDefault([]),
   maxap: parseAsArrayOf(parseAsString).withDefault([]),
+  mount: parseAsArrayOf(parseAsString).withDefault([]),
 }
 
 
@@ -55,6 +56,8 @@ export const searchParamsCache = createSearchParamsCache({
   minfl: parseAsArrayOf(parseAsString).withDefault([]),
   maxfl: parseAsArrayOf(parseAsString).withDefault([]),
   maxap: parseAsArrayOf(parseAsString).withDefault([]),
+  mount: parseAsArrayOf(parseAsString).withDefault([]),
+
 
 })
 
@@ -71,6 +74,8 @@ export function useFilters() {
     minfl: searchParams.shutter.withOptions({shallow:false}),
     maxfl: searchParams.mgp.withOptions({shallow:false}),
     maxap: searchParams.maxap.withOptions({shallow:false}),
+    mount: searchParams.maxap.withOptions({shallow:false}),
+
   })
 }
 

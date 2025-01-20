@@ -5,7 +5,7 @@ export default function Layout({
 }) {
   return (
     <div id="storeLayoutDiv" className="relative flex">
-      <main id="storeLayoutMain" className="w-screen max-h-[100dvh] overflow-auto">{children}</main>
+      <main id="storeLayoutMain" className="w-screen overflow-x-hidden max-h-[100dvh] overflow-auto">{children}</main>
     </div>
   );
 } 

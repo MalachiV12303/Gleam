@@ -1,5 +1,5 @@
 import { db } from './drizzle';
-import { eq, and, between, inArray, ilike, or } from 'drizzle-orm';
+import { eq, and, between, inArray, ilike, or, arrayOverlaps } from 'drizzle-orm';
 import { cameras, lenses } from './schema';
 import { searchParamsCache } from '../searchParams';
 import { SliderValue } from '@nextui-org/slider';
@@ -57,6 +57,12 @@ const maxapFilter = (itemtype: string, maxap: string[]) => {
         return undefined
   //using .map because i was having issue using parseAsInt in searchParamsCache, values were null and number[] had no length
   return itemtype === 'len' ? inArray(lenses.maxap, maxap) : undefined
+}
+
+const mountFilter = (itemtype: string, mounts: string[]) => {
+  if (mounts.length === 0)
+    return undefined
+  return itemtype === 'len' ? arrayOverlaps(lenses.mount, mounts) : undefined
 }
 
 const minflFilter = (itemtype: string, minfl: string[]) => {
@@ -124,7 +130,7 @@ export async function fetchCameras() {
 
 
 export async function fetchLenses() {
-  const { type, brand, price, category, maxap, minfl, maxfl } = searchParamsCache.all();
+  const { type, brand, price, category, maxap, minfl, maxfl, mount } = searchParamsCache.all();
   const filters = [
      brandFilter(category, brand),
      typeFilter(category, type),
@@ -132,6 +138,7 @@ export async function fetchLenses() {
      maxapFilter(category, maxap),
      minflFilter(category, minfl),
      maxflFilter(category, maxfl),
+     mountFilter(category, mount),
    ].filter(Boolean);
 
   const whereClause = filters.length > 0 ? and(...filters) : undefined;
@@ -142,7 +149,7 @@ export async function fetchLenses() {
       type: lenses.type,
       brand: lenses.brand,
       price: lenses.price,
-      details: lenses.details,
+      mount: lenses.mount,
       maxap: lenses.maxap,
       minfl: lenses.minfl,
       maxfl: lenses.maxfl,
@@ -183,7 +190,7 @@ export async function fetchLenseById(id: string) {
       type: lenses.type,
       brand: lenses.brand,
       price: lenses.price,
-      details: lenses.details,
+      mount: lenses.mount,
       maxap: lenses.maxap,
       minfl: lenses.minfl,
       maxfl: lenses.maxfl,

@@ -3,7 +3,7 @@ import { pgTable, text, jsonb, char, varchar, numeric, integer } from 'drizzle-o
 export type SelectCamera = typeof cameras.$inferSelect;
 export type Camera = Pick<SelectCamera, 'id' | 'name' | 'type' | 'brand' | 'price'  | 'compats' | 'description' | 'megapixels' | 'res' | 'shutter' >;
 export type SelectLense = typeof lenses.$inferSelect;
-export type Lense = Pick<SelectLense, 'id' | 'name' | 'type' | 'brand' | 'price' | 'details' | 'maxap' | 'minfl' | 'maxfl'>;
+export type Lense = Pick<SelectLense, 'id' | 'name' | 'type' | 'brand' | 'price' | 'mount' | 'maxap' | 'minfl' | 'maxfl'>;
 
 
 export const lenses = pgTable("lenses", {
@@ -12,7 +12,7 @@ export const lenses = pgTable("lenses", {
 	type: varchar({ length: 20 }).notNull(),
 	brand: varchar({ length: 20 }).notNull(),
 	price: numeric({ precision: 19, scale:  2 }).$type<number>().notNull(),
-	details: jsonb().notNull(),
+	mount: text().array(),
 	maxap: text(),
 	minfl: integer(),
 	maxfl: integer(),

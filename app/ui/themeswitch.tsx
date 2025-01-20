@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect } from 'react';
-import { Switch } from '@nextui-org/react';
+import { Spinner, Switch } from '@nextui-org/react';
 import { useTheme } from 'next-themes';
 
 export function ThemeSwitch() {
@@ -11,7 +11,7 @@ export function ThemeSwitch() {
     setMounted(true)
   }, [])
   if (!mounted) {
-    return null
+    return <Spinner />
   }
   return (
     <Switch

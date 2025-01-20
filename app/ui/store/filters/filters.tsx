@@ -38,7 +38,7 @@ function CameraFilters() {
 }
 
 function LenseFilters() {
-    const [{ type, brand, minfl, maxfl, maxap }] = useFilters()
+    const [{ type, brand, minfl, maxfl, maxap, mount }] = useFilters()
     return (
         <Accordion itemClasses={{indicator: 'text-foreground'}} isCompact={true} selectionMode="multiple">
             <AccordionItem key="price" aria-label="price" title="price">
@@ -58,6 +58,9 @@ function LenseFilters() {
             </AccordionItem>
             <AccordionItem key="maxfl" aria-label="maxfl" title={'maxfl ' + (maxfl.length != 0 ? maxfl.length : '')}>
                 <FilterSet containerClassname={'grid grid-cols-2 overflow-hidden'} text={'mm'} textClassname={'text-xs'} filters={filtermap.get('focallengths')} param={maxfl} p={'maxfl'} />
+            </AccordionItem>
+            <AccordionItem key="mount" aria-label="mount" title={'mount ' + (mount.length != 0 ? mount.length : '')}>
+                <FilterSet containerClassname={'grid grid-cols-2 overflow-hidden'} filters={filtermap.get('mount')} param={mount} p={'mount'} />
             </AccordionItem>
         </Accordion>
     )
