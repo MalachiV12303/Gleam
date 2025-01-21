@@ -42,8 +42,8 @@ export function CameraPage({ cam, index, image }: { cam: Camera, index: number, 
                             <p className='text-sm'>{cam.description}</p>
                         </AccordionItem>
                         <AccordionItem key='compatible with' aria-label='compatible with' title='compatible with'>
-                            <div className='flex flex-wrap gap-2'>storage: {cam.compats?.sd.map((sdtype, index) => (<div key={index}>{sdtype}</div>))}</div>
-                            <div className='flex gap-2'>lense type: {cam.compats?.lens.map((lentype, index) => (<div key={index}>{lentype}</div>))}</div>
+                            <div className='flex flex-wrap gap-2'>storage: {cam.storage?.map((sdtype, index) => (<div key={index}>{sdtype}</div>))}</div>
+                            <div className='flex gap-2'>lense type: {cam.mount?.map((lentype, index) => (<div key={index}>{lentype}</div>))}</div>
                         </AccordionItem>
                     </Accordion>
                     <span className='text-base opacity-80 lg:w-full'>#{index}</span>

@@ -118,7 +118,8 @@ export async function fetchCameras() {
       price: cameras.price,
       res: cameras.res,
       megapixels: cameras.megapixels,
-      compats: cameras.compats,
+      storage: cameras.storage,
+      mount: cameras.mount,
       shutter: cameras.shutter,
       description: cameras.description,
     })
@@ -170,7 +171,8 @@ export async function fetchCameraById(id: string) {
       price: cameras.price,
       res: cameras.res,
       megapixels: cameras.megapixels,
-      compats: cameras.compats,
+      storage: cameras.storage,
+      mount: cameras.mount,
       shutter: cameras.shutter,
       description: cameras.description,
       
