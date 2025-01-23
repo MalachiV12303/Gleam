@@ -18,7 +18,7 @@ export function ThemeSwitch() {
       isSelected={isSelected}
       classNames={{
         base: "",
-        label: "",
+        label: "max-w-24",
         wrapper: "bg-transparent border-1 border-foreground group-data-[selected=true]:bg-transparent",
         thumb: "bg-transparent border-1 border-foreground",
         startContent: "text-foreground",

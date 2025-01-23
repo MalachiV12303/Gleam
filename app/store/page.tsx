@@ -18,6 +18,7 @@ export default async function Page({ searchParams }: PageProps) {
     const { category } = searchParamsCache.parse(await searchParams)
     const [ items ] = await fetchItems(category)
     const count = items?.length | 0
+    
     async function allImages() {
         const blobs = await list();
         return blobs;
@@ -37,15 +38,13 @@ export default async function Page({ searchParams }: PageProps) {
     
     return (
         <>
-            <div id='storeContainer' className='h-full w-10/12 flex flex-col mx-auto pb-5 md:pb-8 pt-12 md:pt-16'>
+            <div id='storeContainer' className='h-full w-10/12 flex flex-col mx-auto pt-16 pb-4'>
             <SearchBar className={'p-2 lg:p-4'}/>
             <div id='topLayer' className='flex flex-col sm:flex-row '>
                 <div className='w-full sm:w-1/4'><CategorySwitch /></div>
                 <div id='countRow' className='w-full sm:w-3/4 flex justify-between items-center py-1 sm:py-0'>
                     <p className='text-nowrap px-4'>{count === null ? '0 found...' : count + ' items found'}</p>
-
                     <div className='hidden sm:flex w-full overflow-auto no-scrollbar' ><FilterChips sz={'sm'}/></div>
-                    
                     <div className='flex sm:hidden items-center'>
                         <FiltersPanel contentClassname={'w-[80dvw]'} itemtype={category} type={'mobile'} />
                     </div>

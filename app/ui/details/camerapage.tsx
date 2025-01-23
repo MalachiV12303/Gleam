@@ -46,10 +46,9 @@ export function CameraPage({ cam, index, image }: { cam: Camera, index: number, 
                             <div className='flex gap-2'>lense type: {cam.mount?.map((lentype, index) => (<div key={index}>{lentype}</div>))}</div>
                         </AccordionItem>
                     </Accordion>
-                    <span className='text-base opacity-80 lg:w-full'>#{index}</span>
                 </div>
                 <div className='mr-0 md:mr-8'>
-                    <div className='hidden lg:flex lg:w-[300px] xl:w-[500px] border-1 border-foreground aspect-square items-center justify-center'>
+                    <div className='hidden lg:flex lg:w-[300px] xl:w-[450px] border-1 border-foreground aspect-square items-center justify-center'>
                         {image ?
                             <Image
                                 key={cam.id}

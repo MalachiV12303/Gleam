@@ -38,7 +38,7 @@ export function LensePage({ len, index, image }: { len: Lense, index: number, im
                     <span className='text-base opacity-80 lg:w-full'>#{index}</span>
                 </div>
                 <div className='mr-0 md:mr-8'>
-                    <div className='hidden lg:flex lg:w-[300px] xl:w-[500px] border-1 border-foreground aspect-square items-center justify-center'>
+                    <div className='hidden lg:flex lg:w-[300px] xl:w-[450px] border-1 border-foreground aspect-square items-center justify-center'>
                         {image ?
                             <Image
                                 key={len.id}
