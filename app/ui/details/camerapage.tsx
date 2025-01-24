@@ -48,7 +48,7 @@ export function CameraPage({ cam, index, image }: { cam: Camera, index: number, 
                     </Accordion>
                 </div>
                 <div className='mr-0 md:mr-8'>
-                    <div className='hidden lg:flex lg:w-[300px] xl:w-[450px] border-1 border-foreground aspect-square items-center justify-center'>
+                    <div className='hidden lg:flex lg:w-[300px] xl:w-[400px] border-1 border-foreground aspect-square items-center justify-center'>
                         {image ?
                             <Image
                                 key={cam.id}
