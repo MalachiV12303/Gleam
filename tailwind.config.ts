@@ -30,18 +30,19 @@ const config: Config = {
       "darker": {
         extend: "dark",
         colors: {
-          background: "#0A0A0A",
+          // background: "#0A0A0A",
+          background: "#1f1f1f",
           foreground: "#EDEDED",
           primary: "#EDEDED",
-          secondary: "#0377fc",
+          secondary: "#141414",
         }
       },
       "lighter": {
         extend: "light",
         colors: {
-          background: "#e0e0e0",
-          foreground: "#171717",
-          primary: "#171717",
+          background: "#FAF9F6",
+          foreground: "#1f1f1f",
+          primary: "#1f1f1f",
           secondary: "#0377fc",
         }
       }

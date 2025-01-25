@@ -1,9 +1,14 @@
 'use client'
-import { motion, useScroll } from 'motion/react';
+import { motion, useScroll, useSpring } from 'motion/react';
 import { Suspense } from 'react';
 
 export function ScrollProgress(){
     const { scrollYProgress } = useScroll()
+    const val = useSpring(scrollYProgress, {
+        stiffness: 100,
+        damping: 30,
+        restDelta: 0.001
+      })
     return (
         <div className='fixed flex justify-end w-min bottom-11 right-4 sm:right-8 md:right-12 lg:right-16'>
             <Suspense>
@@ -16,7 +21,7 @@ export function ScrollProgress(){
                     r='35'
                     pathLength='1'
                     className='stroke-foreground stroke-[1px]'
-                    style={{ pathLength: scrollYProgress }}
+                    style={{ pathLength: val }}
             />
             </svg>
         </div>

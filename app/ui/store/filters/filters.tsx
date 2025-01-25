@@ -14,7 +14,7 @@ export function Filters({ it }: { it: string }) {
 function CameraFilters() {
     const [{ type, brand, res, shutter, mgp }] = useFilters()
     return (
-        <Accordion itemClasses={{indicator: 'text-foreground'}} isCompact={true} selectionMode="multiple">
+        <Accordion defaultExpandedKeys={['price', "type", "brand", "res", "shutter", "megapixels"]} itemClasses={{indicator: 'text-foreground'}} isCompact={true} selectionMode="multiple">
             <AccordionItem key="price" aria-label="price" title={'price'}>
                 <PriceSlider />
             </AccordionItem>
@@ -40,7 +40,7 @@ function CameraFilters() {
 function LenseFilters() {
     const [{ type, brand, minfl, maxfl, maxap, mount }] = useFilters()
     return (
-        <Accordion itemClasses={{indicator: 'text-foreground'}} isCompact={true} selectionMode="multiple">
+        <Accordion defaultExpandedKeys={['price', "type", "brand", "maxap", "minfl", "maxfl", "mount"]} itemClasses={{indicator: 'text-foreground'}} isCompact={true} selectionMode="multiple">
             <AccordionItem key="price" aria-label="price" title="price">
                 <PriceSlider />
             </AccordionItem>
@@ -89,7 +89,7 @@ function FilterSet({ filters, param, p, text, textClassname, containerClassname 
         <CheckboxGroup
             aria-label={p}
             size="sm"
-            classNames={{ wrapper: `${containerClassname} text-background text-sm`,}}
+            classNames={{ wrapper: `${containerClassname} text-background text-base`,}}
             color="primary"
             value={param}
             onValueChange={(e) => setFilters({ [p]: e })}

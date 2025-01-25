@@ -10,9 +10,9 @@ export function Cart() {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (
-        <Popover isOpen={isOpen} onOpenChange={(open) => setIsOpen(open)} shouldBlockScroll={true} placement='bottom-end' backdrop='opaque' classNames={{
+        <Popover isOpen={isOpen} onOpenChange={(open) => setIsOpen(open)} shouldBlockScroll={true} classNames={{
             trigger: ['border-1 border-foreground bg-background text-foreground', 'min-w-0 px-2 rounded-full h-7'],
-            content: ['border-1 border-foreground rounded-lg bg-background text-foreground text-lg lg:text-sm px-0 py-0', 'flex flex-row', 'max-h-[70dvh] h-[60dvh] w-[70dvw] sm:w-[55dvw] lg:w-[45dvw] xl:w-[35dvw]'],
+            content: ['border-1 border-foreground rounded-lg bg-background text-foreground text-lg lg:text-sm px-0 py-0', 'flex flex-row', 'max-h-[70dvh] h-[60dvh] w-[85dvw] sm:w-[55dvw] lg:w-[45dvw]'],
         }}>
             <PopoverTrigger>
                 <Button>

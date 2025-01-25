@@ -71,6 +71,9 @@ importers:
       use-debounce:
         specifier: ^10.0.4
         version: 10.0.4(react@18.3.1)
+      use-local-storage:
+        specifier: ^3.0.0
+        version: 3.0.0(react@18.3.1)
       vercel:
         specifier: ^37.14.0
         version: 37.14.0
@@ -4544,6 +4547,11 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  use-local-storage@3.0.0:
+    resolution: {integrity: sha512-wlPNnBCG3ULIJMr5A+dvWqLiPWCfsN1Kwijq+sAhT5yV4ex0u6XmZuNwP+RerIOfzBuz1pwSZuzhZMiluGQHfQ==}
+    peerDependencies:
+      react: '>=16.8.1'
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -10001,6 +10009,10 @@ snapshots:
       use-isomorphic-layout-effect: 1.2.0(@types/react@18.3.17)(react@18.3.1)
     optionalDependencies:
       '@types/react': 18.3.17
+
+  use-local-storage@3.0.0(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   util-deprecate@1.0.2: {}
 

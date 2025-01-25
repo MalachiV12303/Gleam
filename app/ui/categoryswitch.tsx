@@ -12,7 +12,7 @@ export function CategorySwitch(){
             shallow: false
     }))
     return(
-        <div className=" flex sm:flex-row flex-col justify-between items-center border-foreground divide-y sm:divide-y-0 sm:divide-x h-full sm:h-6 w-6 sm:w-full"> 
+        <div className="flex sm:flex-row flex-col justify-between items-center border-foreground divide-y sm:divide-y-0 sm:divide-x h-full sm:h-6 w-6 sm:w-full"> 
             {CATEGORIES.map((cat)=>(
                 <label
                     key={cat}

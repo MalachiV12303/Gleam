@@ -1,21 +1,19 @@
 'use client'
 import { Camera, Lense } from '@/app/lib/db/schema'
-import { ScrollShadow } from '@nextui-org/react'
 import { StoreItem } from '@/app/ui/store/catalogue/store-items'
-import { motion, useScroll, useSpring } from 'motion/react'
-import { useRef } from 'react'
+
 import { ListBlobResultBlob } from '@vercel/blob'
 
 export function ItemsPanel({ items, images }: { items: Camera[] | Lense[], images: ListBlobResultBlob[]}) {
-  const ref = useRef(null)
-  const { scrollYProgress } = useScroll({
-    container: ref,
-  })
-  const scaleY = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
+  // const ref = useRef(null)
+  // const { scrollYProgress } = useScroll({
+  //   container: ref,
+  // })
+  // const scaleY = useSpring(scrollYProgress, {
+  //   stiffness: 100,
+  //   damping: 30,
+  //   restDelta: 0.001
+  // });
 
 
   function findImage(searchTerm: string){
@@ -28,7 +26,7 @@ export function ItemsPanel({ items, images }: { items: Camera[] | Lense[], image
 
   return (
     <>
-      <ScrollShadow ref={ref} className="pb-2 w-full sm:w-3/4 no-scrollbar relative">
+      <div className="py-8 max-h-full w-full sm:w-3/4 no-scrollbar relative grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 h-min gap-y-16 bg-transparent place-items-center">
         {items ? items.map((item) => {
           return (
             <StoreItem key={item.id} item={item} image={findImage(item.id)} />
@@ -38,10 +36,10 @@ export function ItemsPanel({ items, images }: { items: Camera[] | Lense[], image
             <p className="text-m mx-auto"> no items found...</p>
           </div>
         }
-      </ScrollShadow>
-      <motion.div
+      </div>
+      {/* <motion.div
         className="absolute top-0 right-0 w-[1px] h-full bg-foreground origin-top "
-        style={{ scaleY }} />
+        style={{ scaleY }} /> */}
     </>
   )
 }

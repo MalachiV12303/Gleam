@@ -30,6 +30,7 @@
     "react-use-cart": "^1.14.0",
     "react-use-navigate": "^0.1.1",
     "use-debounce": "^10.0.4",
+    "use-local-storage": "^3.0.0",
     "vercel": "^37.14.0"
   },
   "devDependencies": {

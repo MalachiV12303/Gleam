@@ -26,7 +26,7 @@ export function CameraPage({ cam, index, image }: { cam: Camera, index: number, 
             <div ref={ref} className='max-h-[70dvh] flex items-center w-full'>
                 <div className='flex flex-col gap-2 w-full items-center '>
                     <div className='flex flex-col text-nowrap w-full items-center md:items-start'>
-                        <motion.div className='text-4xl' style={{ y }}>{cam.name}</motion.div>
+                        <motion.div className='text-4xl flex items-center gap-2' style={{ y }}><span className='text-lg opacity-80'>#{index}</span>{cam.name}</motion.div>
                         <span className='text-2xl lg:ml-4'>{cam.brand}</span>
                         <div className='lg:mt-12 lg:ml-4 flex gap-2 max-w-[60%]'>
                             <div>res:</div>
@@ -37,7 +37,7 @@ export function CameraPage({ cam, index, image }: { cam: Camera, index: number, 
                             <div className='max-w-full max-h-16 scrollbar pr-1 overflow-y-scroll text-wrap'>{cam.shutter}</div>
                         </div>
                     </div>
-                    <Accordion className='mt-2 w-11/12' itemClasses={{ content: 'pl-2', indicator: 'text-foreground' }} isCompact>
+                    <Accordion className='mt-2 w-10/12' itemClasses={{ content: 'pl-2', indicator: 'text-foreground' }} isCompact>
                         <AccordionItem key='description' aria-label='description' title='description'>
                             <p className='text-sm'>{cam.description}</p>
                         </AccordionItem>
@@ -47,6 +47,7 @@ export function CameraPage({ cam, index, image }: { cam: Camera, index: number, 
                         </AccordionItem>
                     </Accordion>
                 </div>
+
                 <div className='mr-0 md:mr-8'>
                     <div className='hidden lg:flex lg:w-[300px] xl:w-[400px] border-1 border-foreground aspect-square items-center justify-center'>
                         {image ?

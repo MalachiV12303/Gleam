@@ -26,9 +26,9 @@ export default function FiltersPanel({
 
   return type === 'desktop'
     ? (<>
-      <ScrollShadow ref={ref} className="lowercase h-full no-scrollbar overflow-x-hidden">
+      <div ref={ref} className="lowercase py-2 no-scrollbar overflow-x-hidden">
         <Filters it={itemtype} />
-      </ScrollShadow>
+      </div>
       <motion.div
         className="absolute top-0 right-0 w-[1px] h-full bg-foreground origin-top"
         style={{ scaleY }} />
@@ -67,7 +67,7 @@ export default function FiltersPanel({
 
         placement="bottom-end" 
         classNames={{
-          content: "bg-transparent backdrop-blur-md border-1 border-foreground mt-1 mr-1",
+          content: "bg-background border-1 border-foreground mt-1 mr-1",
           trigger: "h-6 border-1 border-foreground",
         }}>
         <PopoverTrigger >
@@ -77,8 +77,8 @@ export default function FiltersPanel({
             </svg>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className={`${contentClassname} relative max-h-[60dvh]`}>
-          <ScrollShadow ref={ref} className="w-full lowercase h-full scrollbar overflow-x-hidden">
+        <PopoverContent className={`${contentClassname} relative max-h-[75dvh]`}>
+          <ScrollShadow ref={ref} className="text-xl w-full lowercase h-full scrollbar overflow-x-hidden">
             <Filters it={itemtype} />
           </ScrollShadow>
           <div className='w-full overflow-y-hidden overflow-auto no-scrollbar'>
