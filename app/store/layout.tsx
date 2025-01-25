@@ -10,7 +10,7 @@ export default function Layout({
 }) {
   return (
     <div id="storeLayoutDiv" className="relative flex">
-      <div className='z-20 sm:gap-8 text-4xl fixed top-4 px-8 flex flex-col sm:flex-row sm:items-center w-full'>
+      <div id='test' className='z-20 sm:gap-8 text-4xl fixed top-4 px-8 flex flex-col sm:flex-row sm:items-center w-full'>
         <IndexLink/>
         <Suspense fallback={<Spinner/>}>
           <SearchBar className="text-base flex-1 sm:max-w-[40dvw] lg:max-w-[45dvw] xl:max-w-[55dvw] 2xl:max-w-[60dvw]"/>
