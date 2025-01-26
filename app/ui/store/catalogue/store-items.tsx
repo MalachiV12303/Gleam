@@ -32,7 +32,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                     whileHover={{}}
                     onHoverStart={() => (setHover('1'))}
                     onHoverEnd={() => (setHover('0'))}
-                    className='text-sm relative bg-foreground text-background flex flex-col px-4 py-4 items-center w-min h-fit'>
+                    className='text-sm relative bg-foreground text-background flex flex-col px-4 py-4 items-center w-min h-full'>
                     <Link onClick={() => {
                         // const currentParams = new URLSearchParams(window.location.search)
                         // currentParams.set('test', 'test')
@@ -100,7 +100,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                     whileHover={{}}
                     onHoverStart={() => (setHover('1'))}
                     onHoverEnd={() => (setHover('0'))}
-                    className='text-sm relative bg-foreground text-background flex flex-col px-4 py-4 items-center w-min h-fit'>
+                    className='text-sm relative bg-foreground text-background flex flex-col px-4 py-4 items-center w-min h-full'>
                     <Link onClick={() => {
                         // const currentParams = new URLSearchParams(window.location.search)
                         // currentParams.set('test', 'test')
@@ -125,7 +125,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                             }
                         </div>
                         <p className='mt-1 text-sm uppercase font-bold text-center sm:text-start '>{item.brand}</p>
-                        <p className='text-base text-center sm:text-start text-wrap'>{item.name}</p>
+                        <p className='text-sm text-center sm:text-start text-wrap'>{item.name}</p>
                         <p className='text-lg'>{formattedValue}</p>
                     </Link>
                     <motion.div
