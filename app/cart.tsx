@@ -12,7 +12,7 @@ export function Cart() {
     return (
         <Popover isOpen={isOpen} onOpenChange={(open) => setIsOpen(open)} shouldBlockScroll={true} classNames={{
             trigger: ['border-1 border-foreground bg-background text-foreground', 'min-w-0 px-2 rounded-full h-7'],
-            content: ['border-1 border-foreground rounded-lg bg-background text-foreground text-lg lg:text-sm px-0 py-0', 'flex flex-row', 'max-h-[70dvh] h-[60dvh] w-[85dvw] sm:w-[55dvw] lg:w-[45dvw]'],
+            content: ['border-1 border-foreground rounded-lg bg-background text-foreground text-lg lg:text-sm px-0 py-0', 'flex flex-row', 'max-h-[70dvh] h-[60dvh] w-[80dvw] sm:w-[50dvw] xl:w-[30dvw]'],
         }}>
             <PopoverTrigger>
                 <Button>
@@ -23,7 +23,7 @@ export function Cart() {
             </PopoverTrigger>
             <PopoverContent>
                 <div id='cartPanel' className='h-full border-foreground flex flex-col w-[100%] items-center justify-start'>
-                    <div id='cartItems' className='w-full px-4 overflow-y-auto scrollbar flex-1  select-none'>
+                    <div id='cartItems' className='mt-4  flex flex-col items-start w-full gap-3 px-4 overflow-y-auto scrollbar flex-1 select-none'>
                         {!isEmpty ? items.map((it, index) => (
                             <CartItem key={index} item={it} />
                         )) :
@@ -34,8 +34,8 @@ export function Cart() {
                                 <p>no gear...</p>
                             </div>}
                     </div>
-                    <div id='cartTotal' className='py-3 px-4 w-full text-lg'>
-                        <p>${formatCurrency(cartTotal)}</p>
+                    <div id='cartTotal' className=' flex justify-end py-3 px-4 w-full text-lg'>
+                        <span>${formatCurrency(cartTotal)}</span>
                     </div>
                 </div>
 
