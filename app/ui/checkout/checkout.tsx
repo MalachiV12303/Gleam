@@ -5,6 +5,7 @@ import React, { useRef } from 'react';
 import { formatCurrency } from '@/app/lib/utils';
 import { CartItem } from '@/app/cartitem';
 import { motion } from 'motion/react';
+import clsx from 'clsx';
 
 export function Checkout() {
     const [visible, setVisible] = React.useState(false)
@@ -15,7 +16,7 @@ export function Checkout() {
 
     return (
         <div className='max-h-[80dvh] mt-12 h-[80dvh] w-[60dvw] relative border-1 border-foreground'>
-            <div className='absolute z-20 bg-background px-2 text-2xl font-bold border-foreground border-b-1 border-r-1'>checkout <span className='text-danger'>in progress</span></div>
+            <div className='absolute z-20 bg-background px-4 text-2xl font-bold border-foreground border-b-1 border-r-1'>checkout <span className='text-danger text-sm'>in progress</span></div>
 
             <div className='h-5/6 scrollbar overflow-auto overflow-x-hidden w-full pt-8 pb-12 px-4'>
                 <Accordion defaultExpandedKeys={['cart', 'payment and billing']} selectionMode={'multiple'}>
@@ -55,13 +56,18 @@ export function Checkout() {
                 </Accordion>
             </div>
             <div className='select-none absolute flex items-center justify-between h-1/6 w-full bottom-0 left-0 bg-foreground px-8'>
-                <div className='rounded-full flex px-4 py-2 bg-background text-foreground text-nowrap'>
-                    your total: <span className='underline underline-offset-4'>{formatCurrency(cartTotal)}</span>
+                <div className='rounded-lg flex items-end gap-2 px-4 py-2 bg-background text-foreground text-nowrap'>
+                    <span>your total: </span><span className='underline text-xl underline-offset-4'>{formatCurrency(cartTotal)}</span>
                 </div>
                 <div className='flex gap-2 text-background items-center'>
                     {visible ? <span className='text-sm font-bold text-red-700'> mock videography market project by malachi valle </span> : null}
-                    <Button variant='light' className='bg-background rounded-full' onPress={() => setVisible(true)}>
-                        finalize
+                    <Button variant='light' className={clsx('bg-background rounded-full uppercase font-bold', {'text-sm' : visible})} onPress={() => {
+                        if(!visible){
+                            setVisible(true)
+                        } else{
+                            //link to github?
+                        }}}>
+                        {visible? 'rest' : 'finalize'}
                     </Button>
 
                 </div>
