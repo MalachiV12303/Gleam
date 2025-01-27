@@ -6,7 +6,7 @@ import { ItemsPanel } from '../ui/store/catalogue/items-panel'
 import { SearchParams } from 'nuqs/server'
 import { FilterChips } from '../ui/store/filters/filters-chips'
 import { CategorySwitch } from '../ui/categoryswitch'
-import { list } from '@vercel/blob'
+import { getAllImages } from '../lib/utils'
 
 type PageProps = {
     searchParams: Promise<SearchParams>
@@ -15,14 +15,8 @@ type PageProps = {
 // async - performs database queries
 export default async function Page({ searchParams }: PageProps) {
     const { category } = searchParamsCache.parse(await searchParams)
-    const [items] = await fetchItems(category)
+    const [ items ] = await fetchItems(category)
     const count = items?.length | 0
-
-    async function allImages() {
-        const blobs = await list();
-        return blobs;
-    }
-    const images = await allImages();
 
     function fetchItems(type: string) {
         switch (type) {
@@ -54,7 +48,7 @@ export default async function Page({ searchParams }: PageProps) {
                     <div className="relative hidden sm:inline-block w-1/4 px-2 pt-1">
                         <FiltersPanel itemtype={category} type={'desktop'} />
                     </div>
-                    <ItemsPanel items={items} images={images.blobs} />
+                    <ItemsPanel items={items} images={ await getAllImages() } />
                 </div>
             </div>
         </>

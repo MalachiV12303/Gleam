@@ -1,7 +1,6 @@
 'use client'
 import { Camera, Lense } from '@/app/lib/db/schema'
 import { StoreItem } from '@/app/ui/store/catalogue/store-items'
-
 import { ListBlobResultBlob } from '@vercel/blob'
 
 export function ItemsPanel({ items, images }: { items: Camera[] | Lense[], images: ListBlobResultBlob[]}) {
@@ -26,7 +25,7 @@ export function ItemsPanel({ items, images }: { items: Camera[] | Lense[], image
 
   return (
     <>
-      <div className="py-8 max-h-full w-full sm:w-3/4 no-scrollbar relative grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 h-min gap-y-16 bg-transparent place-items-center">
+      <div className="py-8 max-h-full w-full sm:w-3/4 no-scrollbar relative grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 h-min gap-y-12 bg-transparent place-items-center">
         {items ? items.map((item) => {
           return (
             <StoreItem key={item.id} item={item} image={findImage(item.id)} />

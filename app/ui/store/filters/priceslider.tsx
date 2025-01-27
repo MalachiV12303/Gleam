@@ -1,15 +1,12 @@
 'use client'
-
 import { useFilters } from "@/app/lib/searchParams";
 import { Slider } from "@nextui-org/slider"
 import { useDebouncedCallback } from "use-debounce";
-
 
 export function PriceSlider() {
     const [{price}, setFilters] = useFilters();
 
     const updatePrice = useDebouncedCallback((term) => {
-        console.log("price updated to: " + term )
         setFilters({price: term});
       }, 300); 
       

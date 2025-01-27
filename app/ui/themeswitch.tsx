@@ -11,7 +11,7 @@ export function ThemeSwitch() {
     setMounted(true)
   }, [])
   if (!mounted) {
-    return <Spinner />
+    return <Spinner size='sm'/>
   }
   return (
     <Button

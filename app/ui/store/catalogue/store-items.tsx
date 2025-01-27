@@ -14,9 +14,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
     const params = new URLSearchParams()
     params.set('id', item.id.toString())
     const [hover, setHover] = React.useState<string>('0')
-
     // const [userparams, setUserParams] = useLocalStorage<URLSearchParams>('userparams', new URLSearchParams())
-
     if (isCamera(item))
         return Camera(item)
     else if (isLense(item))
@@ -76,8 +74,8 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                         <motion.div
                             animate={hover}
                             variants={{
-                                '0': { scale: 1, rotate: 45 },
-                                '1': { scale: 1.1, rotate: 0 },
+                                '0': { scale: 1, rotate: 0 },
+                                '1': { scale: 1.2, rotate: 90 },
                             }}
                             className='flex items-center justify-center text-background' >
                             <Button variant='light' className='min-w-min px-0 h-min text-background background-transparent' onPress={() => (addItem(item))}>

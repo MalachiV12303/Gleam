@@ -1,18 +1,25 @@
 import { Item } from 'react-use-cart';
 import { Camera, Lense } from './db/schema';
+import { list } from '@vercel/blob';
 
 export const formatCurrency = (amount: number) => {
   return (amount * 1).toLocaleString('en-US', {
     currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
   });
 };
 
 export const getItemCat = (item: Item) => {
   return isCamera(item) ? 'cam' :
-  isLense(item) ? 'len' :
+    isLense(item) ? 'len' :
       'aer';
 };
 
+export async function getAllImages() {
+  const blobs = await list();
+  return blobs.blobs;
+};
 
 export const filtermap = new Map([
   ['cameratypes', ['DSLR', 'Mirrorless']],
@@ -27,9 +34,9 @@ export const filtermap = new Map([
   ['resolutions', ['1080', '2160', '6144']],
   ['shutterspeeds', ['1/4000 to 30 sec', '1/8000 to 30 sec']],
   ['megapixels', ['20.9', '24.1', '24.2']],
-  ['focallengths', ['0-10','10-17', '18-25', '26-49', '50-69', '70-99', '100-169', '170-499']],
-  ['apertures', ['f/1','f/1.2', 'f/1.4', 'f/1.6', 'f/1.8', 'f/2', 'f/2.5', 'f/2.8', 'f/3.5','f/4', 'f/4.5', 'f/5', 'f/5.6', 'f/6.3']],
-  ['mount', ['Canon EF','Nikon DX','Nikon FX', 'Sony E-Mount', 'Leica L-Mount']],
+  ['focallengths', ['0-10', '10-17', '18-25', '26-49', '50-69', '70-99', '100-169', '170-499']],
+  ['apertures', ['f/1', 'f/1.2', 'f/1.4', 'f/1.6', 'f/1.8', 'f/2', 'f/2.5', 'f/2.8', 'f/3.5', 'f/4', 'f/4.5', 'f/5', 'f/5.6', 'f/6.3']],
+  ['mount', ['Canon EF', 'Nikon DX', 'Nikon FX', 'Sony E-Mount', 'Leica L-Mount']],
 
 ]);
 

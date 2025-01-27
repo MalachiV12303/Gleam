@@ -23,9 +23,9 @@ export function Cart() {
             </PopoverTrigger>
             <PopoverContent>
                 <div id='cartPanel' className='h-full border-foreground flex flex-col w-[100%] items-center justify-start'>
-                    <div id='cartItems' className='mt-4  flex flex-col items-start w-full gap-3 px-4 overflow-y-auto scrollbar flex-1 select-none'>
+                    <div id='cartItems' className='mt-4 flex flex-col items-start w-full gap-3 px-4 overflow-y-auto scrollbar flex-1 select-none'>
                         {!isEmpty ? items.map((it, index) => (
-                            <CartItem key={index} item={it} />
+                            <CartItem key={index} item={it} className={'px-2 py-4'}/>
                         )) :
                             <div className='flex h-full my-auto gap-2 items-center justify-center'>
                                 <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1} stroke='currentColor' className='size-4'>
