@@ -10,8 +10,8 @@ export default function NavBar() {
     // const [ userParams, setUserParams ]= useLocalStorage<URLSearchParams>('userparams', new URLSearchParams())
     return (
         <>
-            <div className='fixed flex items-center justify-center w-screen h-screen'>
-                <div ref={constraintsRef} className='w-[90%] h-[95%]'></div>
+            <div className='pointer-events-none fixed flex items-center justify-center w-screen h-screen'>
+                <div ref={constraintsRef} className='pointer-events-none w-[90%] h-[95%]'></div>
             </div>
             <motion.div dragTransition={{ bounceStiffness: 400, bounceDamping: 10 }} dragConstraints={constraintsRef} className='fixed top-[80%] sm:top-[5%] right-[5%] flex gap-1 z-30 px-2 py-2 rounded-md border-1 border-foreground bg-background text-foreground' drag>
                 {/* bg-red-400 sm:bg-blue-400 md:bg-green-400 lg:bg-pink-400 xl:bg-orange-400 2xl:bg-black */}

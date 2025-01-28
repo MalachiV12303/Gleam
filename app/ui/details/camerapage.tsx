@@ -20,36 +20,12 @@ export function CameraPage({ cam, index, image }: { cam: Camera, index: number, 
     function useParallax(value: MotionValue<number>, distance: number) {
         return useTransform(value, [0, 1], [-distance, distance]);
     }
-    
-    return (
-        <section key={index} className='h-[100dvh] snap-center justify-center items-center flex flex-col lg:flex-row relative'>
-            <div ref={ref} className='max-h-[70dvh] flex items-center w-full'>
-                <div className='flex flex-col gap-2 w-full items-center '>
-                    <div className='flex flex-col text-nowrap w-full items-center md:items-start'>
-                        <motion.div className='text-4xl flex items-center gap-2' style={{ y }}><span className='text-lg opacity-80'>#{index}</span>{cam.name}</motion.div>
-                        <span className='text-2xl lg:ml-4'>{cam.brand}</span>
-                        <div className='lg:mt-12 lg:ml-4 flex gap-2 max-w-[60%]'>
-                            <div>res:</div>
-                            <div>{cam.res}p</div>
-                        </div>
-                        <div className='ml-4 flex gap-2 max-w-[80%]'>
-                            <div>spe:</div>
-                            <div className='max-w-full max-h-16 scrollbar pr-1 overflow-y-scroll text-wrap'>{cam.shutter}</div>
-                        </div>
-                    </div>
-                    <Accordion className='mt-2 w-10/12' itemClasses={{ content: 'pl-2', indicator: 'text-foreground' }} isCompact>
-                        <AccordionItem key='description' aria-label='description' title='description'>
-                            <p className='text-sm'>{cam.description}</p>
-                        </AccordionItem>
-                        <AccordionItem key='compatible with' aria-label='compatible with' title='compatible with'>
-                            <div className='flex flex-wrap gap-2'>storage: {cam.storage?.map((sdtype, index) => (<div key={index}>{sdtype}</div>))}</div>
-                            <div className='flex gap-2'>lense type: {cam.mount?.map((lentype, index) => (<div key={index}>{lentype}</div>))}</div>
-                        </AccordionItem>
-                    </Accordion>
-                </div>
 
-                <div className='mr-0 md:mr-8'>
-                    <div className='hidden lg:flex lg:w-[300px] xl:w-[400px] border-1 border-foreground aspect-square items-center justify-center'>
+    return (
+        <section key={index} className='z-10 flex flex-row h-[100dvh] w-full snap-center items-center'>
+            <div ref={ref} className='flex flex-col md:flex-row lg:gap-8 items-center w-full'>
+                <div id='leftPanel'>
+                    <div className='flex w-[200px] lg:w-[300px] xl:w-[400px] border-1 bg-foreground border-foreground aspect-square items-center justify-center'>
                         {image ?
                             <Image
                                 key={cam.id}
@@ -66,14 +42,36 @@ export function CameraPage({ cam, index, image }: { cam: Camera, index: number, 
                             </div>
                         }
                     </div>
+                    <div className=' flex gap-2 items-center justify-evenly'>
+                        <p className='text-3xl'>{cam.price}</p>
+                        <Button size='sm' onPress={() => {
+                            addItem(cam);
+                            setIsOpen(!isOpen);
+                        }} className='text-sm text-nowrap border-1 border-foreground bg-transparent text-foreground'>add to cart</Button>
+                    </div>
                 </div>
-            </div>
-            <div className='mr-auto ml-8 mt-12 lg:mt-0 lg:ml-0 flex flex-col gap-2 items-end justify-center'>
-                <p className='text-3xl'>{cam.price}</p>
-                <Button size='sm' onPress={() => {
-                    addItem(cam);
-                    setIsOpen(!isOpen);
-                }} className='text-sm text-nowrap border-1 border-foreground bg-transparent text-foreground'>add to cart</Button>
+
+                <div id='rightPanel' className='flex-1 flex flex-col gap-2 min-w-[70%] items-center '>
+                    <div className='flex flex-col gap-2 text-nowrap w-full items-center md:items-start'>
+                        <motion.div className='text-3xl flex items-center gap-2' style={{ y }}><span className='text-lg opacity-80'>#{index}</span>{cam.brand} {cam.name}</motion.div>
+                        <span className='text-2xl lg:ml-4'>{cam.res}p</span>
+                        <div className='ml-4 flex gap-2 max-w-[60%]'>
+                        </div>
+                    </div>
+                    <Accordion className='mt-2 w-10/12' itemClasses={{ trigger:'text-nowrap', content: 'pl-2', indicator: 'text-foreground' }} isCompact>
+                        <AccordionItem key='description' aria-label='description' title='description'>
+                            <p className='text-sm'>{cam.description}</p>
+
+                        </AccordionItem>
+                        <AccordionItem key='shutter' aria-label='shutter' title='shutter'>
+                            <div className='max-w-full scrollbar pr-1 overflow-y-scroll text-wrap'>{cam.shutter}</div>
+                        </AccordionItem>
+                        <AccordionItem key='compatible with' aria-label='compatible with' title='compatible with'>
+                            <div className='flex flex-wrap gap-2'>storage: {cam.storage?.map((sdtype, index) => (<div key={index}>{sdtype}</div>))}</div>
+                            <div className='flex gap-2'>lense type: {cam.mount?.map((lentype, index) => (<div key={index}>{lentype}</div>))}</div>
+                        </AccordionItem>
+                    </Accordion>
+                </div>
             </div>
         </section>
     )

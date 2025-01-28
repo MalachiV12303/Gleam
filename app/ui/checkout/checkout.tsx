@@ -34,7 +34,7 @@ export function Checkout() {
                             <motion.div drag dragConstraints={constraintsRef2} className='flex flex-col gap-2 border-1 border-background px-2 py-2'>
                                 <p>PERSON INFO</p>
                                 <label className='flex gap-2'><span className='font-bold'>NAME </span><input className='w-full bg-foreground px-2 border-1 border-background' placeholder='wayde' type='text' /></label>
-                                <label className='flex gap-2'><span className='font-bold'>ADDRESS </span><input disabled className='w-full bg-foreground px-2 border-1 border-background' placeholder='mock website' type='text' /></label>
+                                <label className='flex gap-2'><span className='font-bold'>ADDRESS </span><input disabled className='w-full bg-foreground px-2 border-1 border-background' placeholder='0022 hawthorne' type='text' /></label>
                                 <label className='flex gap-2'><span className='font-bold'>DISCOUNT </span><input className='w-full bg-foreground px-2 border-1 border-background' placeholder='try?' type='text' /></label>
                             </motion.div>
                             <motion.div drag dragConstraints={constraintsRef2} className='flex items-end flex-col gap-2 border-1 border-background px-2 py-2'>

@@ -8,7 +8,7 @@ export default function Layout({
 
   return (
     <div id='checkoutLayout'>
-      <div id='test' className='z-20 text-4xl fixed top-4 px-8 flex w-full'>
+      <div className='z-20 text-4xl fixed top-4 px-8 flex w-full'>
         <IndexLink />
       </div>
       <main className="w-10/12 mx-auto">

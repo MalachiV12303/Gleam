@@ -6,7 +6,6 @@ import { fetchCameras, fetchLenses } from '../lib/db/queries';
 import { LensePage } from '@/app/ui/details/lensepage';
 import { Camera, Lense } from '../lib/db/schema';
 import { isCamera, isLense } from '../lib/utils';
-import { ScrollProgress } from '../ui/details/scrollprogress';
 import { list } from '@vercel/blob';
 
 type PageProps = {
@@ -59,7 +58,6 @@ export default async function Page({ searchParams }: PageProps) {
         <>  
             {matchingIdItem? displayItem(matchingIdItem, count += 1) : undefined}
             {displayedItems.map((item) => (displayItem(item, count += 1)))}
-            <ScrollProgress />
         </>
     )
 }
