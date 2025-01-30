@@ -1,4 +1,4 @@
-import { PT_Sans, Bona_Nova, Inconsolata, Jersey_15, Cinzel } from 'next/font/google';
+import { PT_Sans, Bona_Nova, Inconsolata, Cinzel } from 'next/font/google';
 
 export const ptsans = PT_Sans({
   weight: ['400', '700'],
@@ -12,11 +12,6 @@ export const bnova = Bona_Nova({
 
 export const inc = Inconsolata({
   weight: ['300'],
-  subsets: ['latin'],
-});
-
-export const jersey = Jersey_15({
-  weight: ['400'],
   subsets: ['latin'],
 });
 

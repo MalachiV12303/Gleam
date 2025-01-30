@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.pixelate {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated;
+  image-rendering: optimize-contrast;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

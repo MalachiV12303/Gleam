@@ -10,16 +10,15 @@ import clsx from 'clsx';
 export function Checkout() {
     const [visible, setVisible] = React.useState(false)
     const { items, isEmpty, cartTotal } = useCart();
-    const tools = ['next', 'drizzle orm', 'psql', 'vercel', 'tailwind', 'motion', 'typescript']
+    const tools = ['next.js', 'three.js', 'drizzle orm', 'psql', 'vercel', 'tailwind', 'motion', 'typescript' ]
     const constraintsRef = useRef(null)
     const constraintsRef2 = useRef(null)
 
     return (
-        <div className='max-h-[80dvh] mt-12 h-[80dvh] w-[60dvw] relative border-1 border-foreground'>
-            <div className='absolute z-20 bg-background px-4 text-2xl font-bold border-foreground border-b-1 border-r-1'>checkout <span className='text-danger text-sm'>in progress</span></div>
+        <div className='max-h-[80dvh] mt-12 h-[80dvh] w-[60dvw] relative'>
 
             <div className='h-5/6 scrollbar overflow-auto overflow-x-hidden w-full pt-8 pb-12 px-4'>
-                <Accordion defaultExpandedKeys={['cart', 'payment and billing']} selectionMode={'multiple'}>
+                <Accordion defaultExpandedKeys={['cart', 'payment', 'tools']} selectionMode={'multiple'}>
                     <AccordionItem key='cart' aria-label='your items' title='your items'>
                         <div className='grid grid-cols-2 gap-8 px-4'>
                             {!isEmpty ? items.map((it, index) => (
@@ -29,7 +28,7 @@ export function Checkout() {
                         </div>
 
                     </AccordionItem>
-                    <AccordionItem key='billing and payment' aria-label='billing and payment' title='billing and payment'>
+                    <AccordionItem key='payment' aria-label='billing and payment' title='billing and payment'>
                         <form ref={constraintsRef2} className='bg-foreground text-background flex items-center justify-evenly py-8 gap-2 border-1'>
                             <motion.div drag dragConstraints={constraintsRef2} className='flex flex-col gap-2 border-1 border-background px-2 py-2'>
                                 <p>PERSON INFO</p>
@@ -44,7 +43,7 @@ export function Checkout() {
                             </motion.div>
                         </form>
                     </AccordionItem>
-                    <AccordionItem key='tools used' aria-label='tools used' title='tools used'>
+                    <AccordionItem key='tools' aria-label='tools used' title='tools used'>
                         <div ref={constraintsRef} className='bg-foreground text-background px-8 py-8 grid grid-cols-3 gap-y-8 gap-4'>
                             {tools.map((tool, index) => (
                                 <motion.div dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }} drag dragConstraints={constraintsRef} key={index} className='border-background flex justify-center border-1 py-2 rounded-lg uppercase font-bold tracking-wider'>
@@ -55,7 +54,7 @@ export function Checkout() {
                     </AccordionItem>
                 </Accordion>
             </div>
-            <div className='select-none absolute flex items-center justify-between h-1/6 w-full bottom-0 left-0 bg-foreground px-8'>
+            <div className='select-none absolute flex items-center justify-between h-1/6 w-full bottom-0 left-0 px-8'>
                 <div className='rounded-lg flex items-end gap-2 px-4 py-2 bg-background text-foreground text-nowrap'>
                     <span>your total: </span><span className='underline text-xl underline-offset-4'>{formatCurrency(cartTotal)}</span>
                 </div>
