@@ -1,22 +1,23 @@
 'use client'
 
 import * as THREE from 'three'
-import React, { Suspense, useRef } from 'react'
+import { useTheme } from 'next-themes'
+import { Canvas } from '@react-three/fiber'
+import React, { Suspense, useEffect, useRef, useState } from 'react'
 import { useFrame, ThreeElements, useThree } from '@react-three/fiber'
-import { Canvas } from "@react-three/fiber";
-import { Center, Text3D } from '@react-three/drei';
+import { Center, Sparkles, Text3D } from '@react-three/drei'
 
 export default function LogoAnimation() {
-
   return (
-    <Canvas gl={{ antialias: true }} dpr={0.35}>
-      {/* <color attach="background" args={['black']} /> */}
+    <Canvas
+      dpr={0.35}
+      gl={{ antialias: false }}>
+      {/* <color attach="background" args={['transparent']} /> */}
       <Suspense fallback={null}>
-        <ambientLight intensity={Math.PI / 2} />
+        <ambientLight intensity={Math.PI} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI * 4} />
         <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-        <MyText position={[0.15, 0, 0]} />
-        <Shape />
+        <MyScene />
         {/* <Camera position={[ 10 , 0 , 0 ]} scale={0.4}/> */}
       </Suspense>
       {/* <AsciiRenderer resolution={0.15} characters={' .:-+*=%@#'} fgColor="white" bgColor="transparent" /> */}
@@ -24,36 +25,49 @@ export default function LogoAnimation() {
   )
 }
 
-function Shape(props: ThreeElements['mesh']) {
-  const meshRef = useRef<THREE.Mesh>(null!)
-  useFrame((state, delta) => (meshRef.current.rotation.x += delta / 4, meshRef.current.rotation.y += delta / 4))
-  return (
-    <mesh
-      {...props}
-      ref={meshRef}>
-      <icosahedronGeometry args={[2]} />
-      <meshStandardMaterial wireframe color={'white'} />
-    </mesh>
-  )
-}
-
-function MyText(props: ThreeElements['mesh']) {
-  const meshRef = useRef<THREE.Mesh>(null!)
-  const { viewport, mouse } = useThree();
-  useFrame(() => {
+function MyScene(props: ThreeElements['mesh']) {
+  const icoRef = useRef<THREE.Mesh>(null!)
+  const textRef = useRef<THREE.Mesh>(null!)
+  const { theme } = useTheme()
+  const { viewport, mouse } = useThree()
+  const [scale, setScale] = useState(1)
+  const [color, setColor] = useState('white')
+  useFrame((state, delta) => {
     const x = (mouse.x * viewport.width) / 2;
     const y = (mouse.y * viewport.height) / 2;
-    meshRef.current.lookAt(x, y, 30);
-  });
+    textRef.current.lookAt(x, y, 30);
+    icoRef.current.rotation.x += delta / 4
+    icoRef.current.rotation.z += delta / 4
+    icoRef.current.rotation.y += delta / 4
+  })
+  useEffect(() => (viewport.width < 5.94 ? setScale(0.65) : setScale(1)), [viewport])
+  useEffect(() => {
+    setColor(theme === 'lighter' ? 'black' : 'white')
+  }, [theme])
+
   return (
-    <mesh {...props} ref={meshRef}>
-      <Center>
-        <Text3D font={'/Cinzel_Regular.json'}>
-          gleam
-          <meshStandardMaterial color={'white'} />
-        </Text3D>
-      </Center>
-    </mesh>
+    <>
+      <mesh
+        {...props}
+        scale={scale}
+        // position={[0.15, 0, 0]} 
+        ref={textRef}>
+        <Center>
+          <Text3D font={'/Cinzel_Regular.json'}>
+            gleam
+            <meshStandardMaterial color={color} />
+          </Text3D>
+        </Center>
+      </mesh>
+        <mesh
+          {...props}
+          scale={scale}
+          ref={icoRef}>
+          <icosahedronGeometry args={[2]} />
+          <meshStandardMaterial wireframe color={color} />
+        </mesh>
+      <Sparkles count={200} color={color} size={2} scale={10} />
+    </>
   )
 }
 
