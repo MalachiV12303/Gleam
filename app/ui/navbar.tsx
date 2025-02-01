@@ -8,6 +8,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import clsx from 'clsx'
 import { Button } from '@nextui-org/react'
 import { CategorySwitch } from './categoryswitch'
+import { Suspense } from 'react'
 
 export default function NavBar() {
     const pathname = usePathname();
@@ -25,7 +26,7 @@ export default function NavBar() {
                         {!pathname.includes('store') ? <Button onPress={() => (router.push('/store'))} className='h-7 min-w-0 bg-background rounded-full inline-flex items-center justify-center px-2' href={`/store?`}>catalogue</Button>: null}
                     </div>
                 </div>
-                {pathname.includes('store') ? <CategorySwitch /> : null}
+                {pathname.includes('store') ? <Suspense><CategorySwitch /></Suspense> : null}
             </div>
         </>
     )
