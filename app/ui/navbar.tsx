@@ -15,7 +15,7 @@ export default function NavBar() {
     const router = useRouter();
     return (
         <>
-            <div className={clsx('sticky top-0 select-none z-30 text-lg tracking-widest w-full', { 'border-b-1 border-foreground bg-background': pathname !== '/' })}>
+            <div className={clsx('fixed top-0 select-none z-30 text-lg tracking-widest w-full', { 'border-b-1 border-foreground bg-background sticky': pathname !== '/' })}>
                 {/* bg-red-400 sm:bg-blue-400 md:bg-green-400 lg:bg-pink-400 xl:bg-orange-400 2xl:bg-black */}
                 {/* <div className='bg-red-400 sm:bg-blue-400 md:bg-green-400 lg:bg-pink-400 xl:bg-orange-400 2xl:bg-black inline-flex border-1 w-4 border-foreground rounded-lg '/> */}
                 <div className='flex items-center justify-center sm:justify-end min-h-16 px-8 py-2 sm:py-0 flex-wrap'>
