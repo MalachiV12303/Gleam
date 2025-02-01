@@ -7,7 +7,7 @@ export default function Home() {
       <div className='pixelate fixed w-screen h-[100dvh]'>
         <LogoAnimation />
       </div>
-      <main className={`h-[100dvh] w-full flex flex-col items-centerlowercase text-xl tracking-wider`}>
+      <main className={`h-[100dvh] w-full flex flex-col items-centerlowercase text-xl tracking-widest`}>
         <div className='h-[30dvh] flex items-center justify-center'>
           <p>mock videography market</p>
         </div>

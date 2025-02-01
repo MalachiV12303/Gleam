@@ -5,7 +5,6 @@ import { fetchCameras, fetchLenses } from '../lib/db/queries'
 import { ItemsPanel } from '../ui/store/catalogue/items-panel'
 import { SearchParams } from 'nuqs/server'
 import { FilterChips } from '../ui/store/filters/filters-chips'
-import { CategorySwitch } from '../ui/categoryswitch'
 import { getAllImages } from '../lib/utils'
 
 type PageProps = {
@@ -31,12 +30,11 @@ export default async function Page({ searchParams }: PageProps) {
 
     return (
         <>
-            <div id='storeContainer' className='relative no-scrollbar overflow-auto max-h-full max-w-[1600px] px-4 flex flex-col mx-auto pt-20 pb-12'>
+            <div id='storeContainer' className='relative no-scrollbar overflow-auto max-h-full max-w-[1600px] px-4 flex flex-col mx-auto py-8'>
                     {/* <Suspense fallback={<Spinner />}>
                         <SearchBar className="text-base flex-1" />
                     </Suspense> */}
                     <div id='topLayer' className='flex flex-col sm:flex-row'>
-                        <div className='w-full sm:w-1/4 hidden sm:inline-flex'><CategorySwitch /></div>
                         <div id='countRow' className='w-full sm:w-3/4 flex justify-between items-center py-1 sm:py-0'>
                             <p className='text-nowrap px-4'>{count === null ? '0 found...' : count + ' items found'}</p>
                             <div className='hidden sm:flex w-full overflow-auto no-scrollbar' ><FilterChips sz={'sm'} /></div>
@@ -46,7 +44,6 @@ export default async function Page({ searchParams }: PageProps) {
                         </div>
                     </div>
                 <div id="filtersAndItems" className="relative sm:flex-none overflow-auto no-scrollbar flex flex-row max-w-full border-t-1 border-foreground">
-                    <div className='sticky left-0 top-0 flex-1 sm:hidden'><CategorySwitch /></div>
                     <div className="relative hidden sm:inline-block w-1/4 px-2 pt-1">
                         <FiltersPanel itemtype={category} type={'desktop'} />
                     </div>

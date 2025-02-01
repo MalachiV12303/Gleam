@@ -36,9 +36,8 @@ function MyScene(props: ThreeElements['mesh']) {
     const x = (mouse.x * viewport.width) / 2;
     const y = (mouse.y * viewport.height) / 2;
     textRef.current.lookAt(x, y, 30);
-    icoRef.current.rotation.x += delta / 4
-    icoRef.current.rotation.z += delta / 4
-    icoRef.current.rotation.y += delta / 4
+    icoRef.current.rotation.x += delta / 2
+    icoRef.current.rotation.z += delta / 2
   })
   useEffect(() => (viewport.width < 5.94 ? setScale(0.65) : setScale(1)), [viewport])
   useEffect(() => {

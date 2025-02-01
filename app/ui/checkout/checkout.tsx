@@ -15,7 +15,7 @@ export function Checkout() {
     const constraintsRef2 = useRef(null)
 
     return (
-        <div className='max-h-[80dvh] mt-12 h-[80dvh] w-[70dvw] relative'>
+        <div className='max-h-[80dvh] h-[80dvh] w-[70dvw] relative'>
             <div className='h-5/6 scrollbar overflow-auto overflow-x-hidden w-full pt-8 pb-12 px-4'>
                 <Accordion defaultExpandedKeys={['cart', 'payment', 'tools']} selectionMode={'multiple'}>
                     <AccordionItem key='cart' aria-label='your items' title='your items'>

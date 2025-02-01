@@ -1,29 +1,30 @@
 'use client'
+
 import React from 'react'
 import clsx from 'clsx'
 import { useQueryState } from 'nuqs'
 import { searchParams, useFilters } from '@/app/lib/searchParams'
 
 export function CategorySwitch(){
-    const CATEGORIES = ['len', 'cam', 'aer']
+    const CATEGORIES = [['len', 'lenses'], ['cam', 'cameras'], ['aer', 'aerial']]
     const [, setFilters]= useFilters()
     const [ category, setCategory ] = useQueryState('category', 
         searchParams.category.withOptions({
             shallow: false
     }))
     return(
-        <div className="flex sm:flex-row flex-col justify-between items-center border-foreground divide-y sm:divide-y-0 sm:divide-x h-full sm:h-6 w-6 sm:w-full"> 
+        <div className="sticky top-0 flex justify-evenly items-center border-foreground h-full w-full"> 
             {CATEGORIES.map((cat)=>(
                 <label
-                    key={cat}
-                    className={clsx('duration-300 ease-in flex w-full h-full basis-1/3 px-1 justify-center border-foreground', { 'bg-foreground text-background' : category === cat })}>
+                    key={cat[0]}
+                    className={clsx('w-full px-8 duration-300 ease-in flex h-full justify-center border-foreground', { 'bg-foreground text-background' : category === cat[0] })}>
                     <button
                         onClick={() => {
-                            setCategory(cat)
+                            setCategory(cat[0])
                             setFilters(null)
                         }}
-                        className='flex w-full sm:flex-row flex-col items-center justify-center'>
-                        {cat.split('').map((letter)=>(<span key={letter}>{letter}</span>))}
+                        className='flex w-full flex-row items-center justify-center'>
+                        {cat[0].split('').map((letter, index)=>(<span key={index}>{letter}</span>))}
                     </button>
                 </label>
             ))}

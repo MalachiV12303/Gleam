@@ -16,7 +16,7 @@ export function ThemeSwitch() {
   return (
     <Button
       variant='light'
-      className='bg-background text-foreground min-w-0 px-2 rounded-full h-7'
+      className='data-[hover=true]:bg-background bg-background text-foreground min-w-0 px-2 rounded-full h-7'
       onPress={() => {
         setIsSelected(!isSelected)
         setTheme(isSelected ? 'darker' : 'lighter')
