@@ -30,7 +30,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                     whileHover={{}}
                     onHoverStart={() => (setHover('1'))}
                     onHoverEnd={() => (setHover('0'))}
-                    className='text-sm relative bg-foreground text-background flex flex-col px-4 py-4 items-center w-min h-full'>
+                    className='text-sm relative bg-white text-black border-1 border-black flex flex-col px-4 py-4 items-center w-min h-full'>
                     <Link onClick={() => {
                         // const currentParams = new URLSearchParams(window.location.search)
                         // currentParams.set('test', 'test')
@@ -39,7 +39,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                         // console.log('saved to local storage')
                     }}
                         className='flex flex-col ' href={`/details?${params}`} >
-                        <div id='imagePlaceholder' className='border-1 border-background w-[150px] h-[150px] sm:w-[175px] sm:h-[175px] flex justify-center items-center'>
+                        <div id='imagePlaceholder' className='border-1 border-black w-[150px] h-[150px] sm:w-[175px] sm:h-[175px] flex justify-center items-center'>
                             {image ?
                                 // eslint-disable-next-line @next/next/no-img-element
                                 <img
@@ -64,7 +64,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                         <p className='text-lg'>{formattedValue}</p>
                     </Link>
                     <motion.div
-                        className='absolute right-0 bottom-0 h-[50px] w-[50px] bg-foreground flex items-center justify-center'
+                        className='absolute right-0 bottom-0 h-[50px] w-[50px] bg-white flex items-center justify-center'
                         animate={hover}
                         transition={{ type: "tween", ease: 'easeInOut', duration: 0.3 }}
                         variants={{

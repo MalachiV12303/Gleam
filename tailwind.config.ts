@@ -41,7 +41,7 @@ const config: Config = {
         extend: "light",
         colors: {
           background: "#FEF8DD",
-          foreground: "#000000",
+          foreground: "#181818",
           
           primary: "#1f1f1f",
           secondary: "#0377fc",

@@ -1,6 +1,6 @@
 import './globals.css'
 import NavBar from './ui/navbar'
-import { inc } from './ui/fonts'
+import { gilda } from './ui/fonts'
 import { Providers } from './providers'
 import type { Metadata } from 'next'
 
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     //global font size, not sure if tailwind is the best way to apply this
-    <html suppressHydrationWarning lang="en" className={`${inc.className} overflow-x-hidden snap-y snap-mandatory no-scrollbar text-[16px] md:text-[18px] lg:text-[22px] scroll-smooth`}>
+    <html suppressHydrationWarning lang="en" className={`${gilda.className} overflow-x-hidden snap-y snap-mandatory no-scrollbar text-[16px] md:text-[18px] lg:text-[22px] scroll-smooth`}>
       <body className={`relative antialiased text-foreground`}>
         <Providers>
           <NavBar />

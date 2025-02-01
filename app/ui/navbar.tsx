@@ -1,35 +1,27 @@
 'use client'
-import Link from 'next/link';
-import { Cart } from '../cart';
-import { ThemeSwitch } from './themeswitch';
-import { motion } from 'motion/react';
-import { useRef } from 'react';
+
+import Link from 'next/link'
+import { Cart } from '../cart'
+import { ThemeSwitch } from './themeswitch'
+import { cinzel } from './fonts'
+import { usePathname } from 'next/navigation'
 
 export default function NavBar() {
-    const constraintsRef = useRef(null)
-    // const [ userParams, setUserParams ]= useLocalStorage<URLSearchParams>('userparams', new URLSearchParams())
+    const pathname = usePathname();
     return (
         <>
-            <div className='pointer-events-none fixed flex items-center justify-center w-screen h-screen'>
-                <div ref={constraintsRef} className='pointer-events-none w-[90%] h-[95%]'></div>
-            </div>
-            <motion.div dragTransition={{ bounceStiffness: 400, bounceDamping: 10 }} dragConstraints={constraintsRef} className='fixed top-[80%] sm:top-[5%] right-[5%] flex gap-1 z-30 px-2 py-2 rounded-md border-1 border-foreground bg-background text-foreground' drag>
+            <div className='fixed select-none px-8 py-4 z-30 text-lg tracking-widest w-full items-center justify-end top-0 flex h-16'>
                 {/* bg-red-400 sm:bg-blue-400 md:bg-green-400 lg:bg-pink-400 xl:bg-orange-400 2xl:bg-black */}
-                <div className='inline-flex border-1 w-4 border-foreground rounded-lg '>
-                </div>
-                <div className='flex flex-col gap-1'>
+                {/* <div className='bg-red-400 sm:bg-blue-400 md:bg-green-400 lg:bg-pink-400 xl:bg-orange-400 2xl:bg-black inline-flex border-1 w-4 border-foreground rounded-lg '/> */}
+                {pathname === '/' ? null : <Link href='/' className={`${cinzel.className} px-2 bg-background text-3xl mr-auto`}>GLEAM</Link>}
+                <div className='flex items-center gap-4 px-4'>
                     <ThemeSwitch />
                     <Cart />
-                </div>
-                <div className='flex flex-col md:flex-row gap-1 justify-between'>
-                    <Link className='bg-background flex-1 border-1 border-foreground rounded-full inline-flex items-center justify-center px-2' href={`/store?`}>
-                        store
+                    <Link className='bg-background rounded-full inline-flex items-center justify-center px-2' href={`/store?`}>
+                        catalogue
                     </Link>
                 </div>
-                {/* <div className='inline-flex sm:hidden border-1 h-4 border-foreground rounded-lg bg-background'>
-                </div> */}
-                {/* <Button onPress={()=>(console.log(userParams))}>log</Button> */}
-            </motion.div>
+            </div>
         </>
     )
 }

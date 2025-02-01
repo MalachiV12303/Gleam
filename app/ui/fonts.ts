@@ -1,4 +1,4 @@
-import { PT_Sans, Bona_Nova, Inconsolata, Cinzel } from 'next/font/google';
+import { PT_Sans, Bona_Nova, Inconsolata, Cinzel, Gilda_Display } from 'next/font/google';
 
 export const ptsans = PT_Sans({
   weight: ['400', '700'],
@@ -16,6 +16,11 @@ export const inc = Inconsolata({
 });
 
 export const cinzel = Cinzel({
+  weight: ['400'],
+  subsets: ['latin'],
+});
+
+export const gilda = Gilda_Display({
   weight: ['400'],
   subsets: ['latin'],
 });

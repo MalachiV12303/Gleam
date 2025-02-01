@@ -9,7 +9,7 @@ export function CartItem({ item, className }: { item: Item, className: string })
     params.set('itemtype', getItemCat(item))
 
     return (
-        <div className={`${className} px-4 w-full flex items-start bg-foreground text-background`}>
+        <div className={`${className} px-4 w-full flex items-start bg-white text-black border-1 border-foreground`}>
             <Link className='flex-1' href={`/details?${params}`}>
                 <span className='text-sm uppercase font-bold'>{item.brand} {getItemCat(item)}</span>
                 <p className='text-base'>{item.name}</p>
