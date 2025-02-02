@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     //global font size, not sure if tailwind is the best way to apply this
-    <html suppressHydrationWarning lang="en" className={`${gilda.className} overflow-x-hidden snap-y snap-mandatory no-scrollbar text-[16px] md:text-[18px] lg:text-[22px] scroll-smooth`}>
+    <html suppressHydrationWarning lang="en" className={`${gilda.className} overflow-x-hidden snap-y snap-mandatory no-scrollbar text-[16px] md:text-[20px] scroll-smooth`}>
       <body className={`relative antialiased text-foreground`}>
         <Providers>
           <NavBar />

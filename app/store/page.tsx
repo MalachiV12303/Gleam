@@ -14,7 +14,7 @@ type PageProps = {
 // async - performs database queries
 export default async function Page({ searchParams }: PageProps) {
     const { category } = searchParamsCache.parse(await searchParams)
-    const [items] = await fetchItems(category)
+    const [ items ] = await fetchItems(category)
     const count = items?.length | 0
 
     function fetchItems(type: string) {
@@ -29,22 +29,23 @@ export default async function Page({ searchParams }: PageProps) {
     }
 
     return (
-        <>
-            <div id='storeContainer' className='relative no-scrollbar overflow-auto max-h-full max-w-[1600px] px-4 flex flex-col mx-auto py-8'>
+        <>  
+            <div id='storeContainer' className='relative max-w-[1600px] flex flex-col mx-auto scrollbar items-center px-4'>
                     {/* <Suspense fallback={<Spinner />}>
                         <SearchBar className="text-base flex-1" />
                     </Suspense> */}
-                    <div id='topLayer' className='flex flex-col sm:flex-row'>
-                        <div id='countRow' className='w-full sm:w-3/4 flex justify-between items-center py-1 sm:py-0'>
-                            <p className='text-nowrap px-4'>{count === null ? '0 found...' : count + ' items found'}</p>
+                    <div id='topLayer' className='bg-background sticky sm:relative top-0 w-full flex py-2 px-4 justify-between border-b-1 border-foreground'>
+                        {/* <div id='countRow' className='w-full sm:w-3/4 flex justify-between items-center py-1 sm:py-0'> */}
+                            <p className='text-nowrap'>{count === null ? '0 found...' : count + ' items found'}</p>
                             <div className='hidden sm:flex w-full overflow-auto no-scrollbar' ><FilterChips sz={'sm'} /></div>
                             <div className='flex sm:hidden items-center'>
-                                <FiltersPanel contentClassname={'w-[80dvw]'} itemtype={category} type={'mobile'} />
+                                <FiltersPanel contentClassname={'w-[60dvw]'} itemtype={category} type={'mobile'} />
                             </div>
-                        </div>
+                        {/* </div> */}
                     </div>
-                <div id="filtersAndItems" className="relative sm:flex-none overflow-auto no-scrollbar flex flex-row max-w-full border-t-1 border-foreground">
-                    <div className="relative hidden sm:inline-block w-1/4 px-2 pt-1">
+                    
+                <div id="filtersAndItems" className="px-4 py-4 relative sm:flex-none overflow-auto no-scrollbar flex flex-row">
+                    <div className="relative hidden sm:inline-block w-1/3 md:w-1/4 h-fit">
                         <FiltersPanel itemtype={category} type={'desktop'} />
                     </div>
                     <ItemsPanel items={items} images={await getAllImages()} />

@@ -1,7 +1,7 @@
 'use client'
 import React, { useRef } from 'react'
 import { Filters } from './filters'
-import { Button, Popover, PopoverContent, PopoverTrigger, ScrollShadow } from '@nextui-org/react'
+import { Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react'
 import { motion, useScroll, useSpring } from 'motion/react'
 import { FilterChips } from './filters-chips'
 
@@ -26,7 +26,7 @@ export default function FiltersPanel({
 
   return type === 'desktop'
     ? (<>
-      <div ref={ref} className="lowercase py-2 no-scrollbar overflow-x-hidden">
+      <div ref={ref} className="lowercase no-scrollbar overflow-x-hidden py-2">
         <Filters it={itemtype} />
       </div>
       <motion.div
@@ -65,10 +65,10 @@ export default function FiltersPanel({
           },
         }}
 
-        placement="bottom-end" 
+        placement="bottom-end"
         classNames={{
-          content: "bg-background border-1 border-foreground mt-1 mr-1",
-          trigger: "h-6 border-1 border-foreground",
+          content: "bg-background border-1 border-foreground mt-4 py-2",
+          trigger: "h-6 bg-foreground text-background",
         }}>
         <PopoverTrigger >
           <Button variant='light'>
@@ -78,11 +78,11 @@ export default function FiltersPanel({
           </Button>
         </PopoverTrigger>
         <PopoverContent className={`${contentClassname} relative max-h-[75dvh]`}>
-          <ScrollShadow ref={ref} className="text-xl w-full lowercase h-full scrollbar overflow-x-hidden">
+          <div ref={ref} className="text-xl w-full lowercase h-full scrollbar overflow-x-hidden">
             <Filters it={itemtype} />
-          </ScrollShadow>
+          </div>
           <div className='w-full overflow-y-hidden overflow-auto no-scrollbar'>
-            <FilterChips sz={'lg'}/>
+            <FilterChips sz={'lg'} />
           </div>
         </PopoverContent>
       </Popover>

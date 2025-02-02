@@ -25,7 +25,7 @@ export function ItemsPanel({ items, images }: { items: Camera[] | Lense[], image
 
   return (
     <>
-      <div className="py-8 px-4 max-h-full w-full sm:w-3/4 no-scrollbar relative grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 h-min gap-y-12 bg-transparent place-items-center">
+      <div className="max-h-full sm:px-8 w-full no-scrollbar relative grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 h-min gap-y-12 gap-x-4 sm:gap-x-12 bg-transparent place-items-center">
         {items ? items.map((item) => {
           return (
             <StoreItem key={item.id} item={item} image={findImage(item.id)} />

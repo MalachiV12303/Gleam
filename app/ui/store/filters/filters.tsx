@@ -14,7 +14,7 @@ export function Filters({ it }: { it: string }) {
 function CameraFilters() {
     const [{ type, brand, res, shutter, mgp }] = useFilters()
     return (
-        <Accordion defaultExpandedKeys={['price', "type", "brand", "res", "shutter", "megapixels"]} itemClasses={{indicator: 'text-foreground'}} isCompact={true} selectionMode="multiple">
+        <Accordion className='px-2' fullWidth defaultExpandedKeys={['price', 'type', 'brand', 'res', 'shutter', 'megapixels']} itemClasses={{ content: 'py-4 px-4', title: 'text-background', indicator: 'text-background', trigger: 'my-1 bg-foreground text-background px-4'}} isCompact={true} selectionMode="multiple">
             <AccordionItem key="price" aria-label="price" title={'price'}>
                 <PriceSlider />
             </AccordionItem>
@@ -97,7 +97,7 @@ function FilterSet({ filters, param, p, text, textClassname, containerClassname 
             {filters?.map((fil) => (
                 <Checkbox 
                 classNames={{
-                    wrapper: 'before:border-foreground before:border-1 after:bg-transparent',
+                    wrapper: 'before:border-foreground before:border-1 after:bg-transparent overflow-visible',
                 }}
                 className='min-w-full text-foreground' key={fil} value={fil}>{fil}<span className={`${textClassname}`}>{text}</span></Checkbox>
             ))}
