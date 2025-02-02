@@ -25,16 +25,18 @@ export function ItemsPanel({ items, images }: { items: Camera[] | Lense[], image
 
   return (
     <>
-      <div className="max-h-full sm:px-8 w-full no-scrollbar relative grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 h-min gap-y-12 gap-x-4 sm:gap-x-12 bg-transparent place-items-center">
-        {items ? items.map((item) => {
+      <div className="sm:px-8 w-full h-min no-scrollbar relative grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-y-12 gap-x-4 sm:gap-x-12 bg-transparent place-items-center">
+        {items && items.length !==0 ? items.map((item) => {
           return (
             <StoreItem key={item.id} item={item} image={findImage(item.id)} />
           )
         }) :
-          <div className="m-8 mx-auto flex">
-            <p className="text-m mx-auto"> no items found...</p>
+          <div className="mt-12 text-lg col-span-2 lg:col-span-3 2xl:col-span-4 flex">
+            <p> no items found...</p>
           </div>
         }
+        <div className='w-full h-[1px] col-span-2 lg:col-span-3 2xl:col-span-4 bg-foreground' />
+        
       </div>
       {/* <motion.div
         className="absolute top-0 right-0 w-[1px] h-full bg-foreground origin-top "

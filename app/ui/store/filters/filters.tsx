@@ -14,7 +14,7 @@ export function Filters({ it }: { it: string }) {
 function CameraFilters() {
     const [{ type, brand, res, shutter, mgp }] = useFilters()
     return (
-        <Accordion className='px-2' fullWidth defaultExpandedKeys={['price', 'type', 'brand', 'res', 'shutter', 'megapixels']} itemClasses={{ content: 'py-4 px-4', title: 'text-background', indicator: 'text-background', trigger: 'my-1 bg-foreground text-background px-4'}} isCompact={true} selectionMode="multiple">
+        <Accordion defaultExpandedKeys={['price', 'type', 'brand', 'res', 'shutter', 'megapixels']} className='px-2' fullWidth itemClasses={{ content: 'py-4 px-4', title: 'text-background', indicator: 'text-background', trigger: 'my-1 bg-foreground text-background px-4'}} isCompact={true} selectionMode="multiple">
             <AccordionItem key="price" aria-label="price" title={'price'}>
                 <PriceSlider />
             </AccordionItem>
@@ -40,7 +40,7 @@ function CameraFilters() {
 function LenseFilters() {
     const [{ type, brand, minfl, maxfl, maxap, mount }] = useFilters()
     return (
-        <Accordion defaultExpandedKeys={['price', "type", "brand", "maxap", "minfl", "maxfl", "mount"]} itemClasses={{indicator: 'text-foreground'}} isCompact={true} selectionMode="multiple">
+        <Accordion defaultExpandedKeys={['price', "type", "brand", "maxap", "minfl", "maxfl", "mount"]} className='px-2' fullWidth itemClasses={{ content: 'py-4 px-4', title: 'text-background', indicator: 'text-background', trigger: 'my-1 bg-foreground text-background px-4'}} isCompact={true} selectionMode="multiple">
             <AccordionItem key="price" aria-label="price" title="price">
                 <PriceSlider />
             </AccordionItem>
@@ -69,7 +69,7 @@ function LenseFilters() {
 function AerialFilters() {
     const [{ type, brand }] = useFilters()
     return (
-        <Accordion itemClasses={{indicator: 'text-foreground'}} isCompact={true} selectionMode="multiple">
+        <Accordion className='px-2' fullWidth itemClasses={{ content: 'py-4 px-4', title: 'text-background', indicator: 'text-background', trigger: 'my-1 bg-foreground text-background px-4'}} isCompact={true} selectionMode="multiple">
             <AccordionItem key="price" aria-label="price" title="price">
                 <PriceSlider />
             </AccordionItem>

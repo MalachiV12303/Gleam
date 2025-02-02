@@ -30,7 +30,7 @@ export default async function Page({ searchParams }: PageProps) {
 
     return (
         <>  
-            <div id='storeContainer' className='relative max-w-[1600px] flex flex-col mx-auto scrollbar items-center px-4'>
+            <div id='storeContainer' className='h-full relative max-w-[1600px] flex flex-col mx-auto scrollbar items-center px-4 sm:py-8'>
                     {/* <Suspense fallback={<Spinner />}>
                         <SearchBar className="text-base flex-1" />
                     </Suspense> */}
@@ -39,12 +39,12 @@ export default async function Page({ searchParams }: PageProps) {
                             <p className='text-nowrap'>{count === null ? '0 found...' : count + ' items found'}</p>
                             <div className='hidden sm:flex w-full overflow-auto no-scrollbar' ><FilterChips sz={'sm'} /></div>
                             <div className='flex sm:hidden items-center'>
-                                <FiltersPanel contentClassname={'w-[60dvw]'} itemtype={category} type={'mobile'} />
+                                <FiltersPanel contentClassname={'w-[65dvw]'} itemtype={category} type={'mobile'} />
                             </div>
                         {/* </div> */}
                     </div>
                     
-                <div id="filtersAndItems" className="px-4 py-4 relative sm:flex-none overflow-auto no-scrollbar flex flex-row">
+                <div id="filtersAndItems" className="w-full py-4 relative sm:flex-none overflow-auto no-scrollbar flex flex-row">
                     <div className="relative hidden sm:inline-block w-1/3 md:w-1/4 h-fit">
                         <FiltersPanel itemtype={category} type={'desktop'} />
                     </div>
