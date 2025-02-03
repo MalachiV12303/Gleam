@@ -30,7 +30,7 @@ export default async function Page({ searchParams }: PageProps) {
     }
 
     return (<>
-        <section id='storeButtons' className='max-w-[1600px] w-full mx-auto max-h-[80dvh] h-[80dvh] my-12 sm:my-8 px-12 grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 gap-x-12 gap-y-8'>
+        <section id='storeButtons' className='max-w-[1600px] w-full mx-auto max-h-[80dvh] h-[80dvh] my-8 px-12 grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 gap-x-12 gap-y-8'>
             <Button text='cameras' />
             <Button text='lenses' />
         </section>
