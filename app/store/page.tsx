@@ -29,8 +29,7 @@ export default async function Page({ searchParams }: PageProps) {
     }
 
     return (
-        <>  
-            <div id='storeContainer' className='h-full relative max-w-[1600px] flex flex-col mx-auto scrollbar items-center px-4 sm:py-8'>
+            <div id='storeContainer' className='relative max-w-[1600px] flex flex-col mx-auto scrollbar items-center px-4 sm:py-4'>
                     {/* <Suspense fallback={<Spinner />}>
                         <SearchBar className="text-base flex-1" />
                     </Suspense> */}
@@ -51,6 +50,5 @@ export default async function Page({ searchParams }: PageProps) {
                     <ItemsPanel items={items} images={await getAllImages()} />
                 </div>
             </div>
-        </>
     )
 }

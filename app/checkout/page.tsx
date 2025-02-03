@@ -10,7 +10,7 @@ export default function Page() {
         setIsClient(true)
     }, [])
     return (
-        <div className='h-full relative max-w-[1200px] flex flex-col mx-auto scrollbar items-center py-2 sm:py-8'>
+        <div className='relative max-w-[1200px] flex flex-col mx-auto scrollbar items-center py-2 sm:py-8'>
             {isClient ? <Checkout /> : <Spinner/>}
         </div>
     )

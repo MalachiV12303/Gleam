@@ -5,7 +5,7 @@ export default function Layout({
   children: React.ReactNode
 }) {
   return (
-    <main id="storeLayoutMain" className="relative w-screen overflow-x-hidden">
+    <main id="storeLayoutMain" className="w-full mx-auto flex flex-col flex-1">
       {children}
     </main>
   );
