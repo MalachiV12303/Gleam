@@ -21,7 +21,7 @@ export default function ButtonBackground() {
         <ambientLight intensity={Math.PI} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI * 4} />
         <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-        <MyScene props={{position:[2.5,-1,1.5]}} color={color}/>
+        <MyScene props={{position:[2.5,-1,1.5]}}/>
       </Suspense>
       <AsciiRenderer resolution={0.15} characters={' .:-+*=%@#'} fgColor={color} bgColor="transparent" />
     </Canvas>
