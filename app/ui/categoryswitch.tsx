@@ -1,5 +1,4 @@
 'use client'
-
 import React from 'react'
 import clsx from 'clsx'
 import { useQueryState } from 'nuqs'
@@ -12,6 +11,11 @@ export function CategorySwitch(){
         searchParams.category.withOptions({
             shallow: false
     }))
+    const scrollToSection = (id: string) => {
+        const element = document.getElementById(id)
+        element?.scrollIntoView({ behavior: "smooth" });
+    }
+
     return(
         <div className="sticky top-0 flex justify-evenly items-center border-foreground h-full w-full"> 
             {CATEGORIES.map((cat)=>(
@@ -22,6 +26,7 @@ export function CategorySwitch(){
                         onClick={() => {
                             setCategory(cat[0])
                             setFilters(null)
+                            scrollToSection('storeContent')
                         }}
                         className='flex w-full flex-row items-center justify-center'>
                         {cat[0].split('').map((letter, index)=>(<span key={index}>{letter}</span>))}

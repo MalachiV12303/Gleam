@@ -5,7 +5,6 @@ import { Camera, Lense } from '@/app/lib/db/schema';
 import { formatCurrency, isCamera, isLense } from '@/app/lib/utils';
 import { motion } from 'motion/react';
 import { ListBlobResultBlob } from '@vercel/blob';
-
 import React from 'react';
 
 export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBlobResultBlob | null }) {
@@ -132,7 +131,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
 
                         <div id='itemInfo' className='mb-4'>
                             <div className='text-sm uppercase font-bold text-start'>{item.brand}</div>
-                            <div className='mt-1 text-2xl sm:text-lg text-start '>{item.name}</div>
+                            <div className='mt-1 text-base sm:text-lg text-start '>{item.name}</div>
                             
                         </div>
 
