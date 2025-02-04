@@ -1,6 +1,6 @@
 ## Ecommerce Videography
 Created with create-next-app
-https://ecommerce-videography.vercel.app
+https://gleamstore.vercel.app
 
 uses:
 -nextjs
