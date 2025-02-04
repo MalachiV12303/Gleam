@@ -31,8 +31,8 @@ export default async function Page({ searchParams }: PageProps) {
 
     return (<>
         <section id='storeButtons' className='max-w-[1600px] w-full mx-auto max-h-[80dvh] h-[80dvh] my-8 px-12 grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 gap-x-12 gap-y-8'>
-            <Button text='cameras' />
-            <Button text='lenses' />
+            <Button text='cameras' imageUrl='cameraButton.webp' />
+            <Button text='lenses' imageUrl='lenseButton.jpg'/>
         </section>
         <section id='storeContent' className='scroll-mt-24 relative max-w-[1600px] w-full flex flex-col mx-auto scrollbar items-center px-4 sm:py-4'>
             {/* <Suspense fallback={<Spinner />}>
