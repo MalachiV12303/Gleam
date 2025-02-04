@@ -1,8 +1,13 @@
-## Ecommerce Videography
-Created with create-next-app
+## Gleam Store
 https://gleamstore.vercel.app
 
-uses:
+mock videography market to demonstrate understanding of responsive design and the following technologies:
 -nextjs
 -tailwind
--postgres database
+-postgresql
+-drizzle
+-typescript
+-three.js
+-vercel
+-react motion
+
