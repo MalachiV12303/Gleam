@@ -10,14 +10,14 @@ import { motion } from 'motion/react'
 
 export function Checkout() {
     const [visible, setVisible] = React.useState(false)
-    const { items, isEmpty, cartTotal } = useCart() 
+    const { items, isEmpty, cartTotal } = useCart()
     const tools = ['next.js', 'three.js', 'drizzle', 'psql', 'vercel', 'tailwind', 'motion', 'typescript']
     const constraintsRef = useRef(null)
     const constraintsRef2 = useRef(null)
     return (
         <>
             <div className='max-w-[1200px] flex flex-1 scrollbar overflow-auto overflow-x-hidden w-full text-background'>
-                <Accordion defaultExpandedKeys={['cart', 'payment', 'tools']} itemClasses={{ content: 'py-4 px-4', title: 'text-background text-lg', indicator: 'text-background', trigger: 'my-4 bg-foreground text-background px-4'}} selectionMode={'multiple'}>
+                <Accordion className='px-0' defaultExpandedKeys={['cart', 'payment', 'tools']} itemClasses={{ content: 'py-4 px-4', title: 'text-background text-lg', indicator: 'text-background', trigger: 'my-4 bg-foreground text-background px-4' }} selectionMode={'multiple'}>
                     <AccordionItem key='cart' aria-label='your items' title='your items'>
                         <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8'>
                             {!isEmpty ? items.map((it, index) => (
@@ -53,20 +53,23 @@ export function Checkout() {
                 </Accordion>
             </div>
 
-            <div className='mx-2 mt-2 bg-foreground py-4 select-none flex items-center flex-wrap justify-between w-full px-8'>
-                <div className='h-10 rounded-full flex items-center px-8 bg-background text-foreground text-nowrap'>
-                    <span className='text-xl'>{formatCurrency(cartTotal)}</span>
-                </div>
-                <div className='flex gap-2 text-background items-center'>
-                    {visible ? <span className='text-sm font-bold text-red-700'> mock videography market project by malachi valle </span> : null}
-                    <Button variant='light' className={clsx('bg-background rounded-full uppercase font-bold', {'text-sm' : visible})} onPress={() => {
-                        if(!visible){
-                            setVisible(true)
-                        } else{
-                            //link to github?
-                        }}}>
-                        {visible? 'rest' : 'finalize'}
-                    </Button>
+            <div className='mx-2 mt-2 bg-foreground py-4 select-none flex flex-col w-full px-8'>
+                {visible ? <span className='mx-auto text-sm font-bold text-red-700 pb-4'> mock videography market project by malachi valle </span> : null}
+                <div className='flex items-center flex-wrap justify-between w-full'>
+                    <div className='h-10 rounded-full flex items-center px-8 bg-background text-foreground text-nowrap'>
+                        <span className='text-xl'>{formatCurrency(cartTotal)}</span>
+                    </div>
+                    <div className='flex gap-2 text-background items-center'>
+                        <Button variant='light' className={clsx('bg-background rounded-full uppercase font-bold', { 'text-sm': visible })} onPress={() => {
+                            if (!visible) {
+                                setVisible(true)
+                            } else {
+                                //link to github?
+                            }
+                        }}>
+                            {visible ? 'rest' : 'finalize'}
+                        </Button>
+                    </div>
                 </div>
             </div>
         </>

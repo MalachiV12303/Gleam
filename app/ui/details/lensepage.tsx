@@ -1,44 +1,26 @@
 'use client'
 
+import BackButton from './backbutton'
 import Image from 'next/image'
-import React, { useRef } from 'react'
+import React from 'react'
 import { useCart } from 'react-use-cart'
-import { Lense } from '@/app/lib/db/schema'
-import { Button } from '@nextui-org/react'
+import { Accordion, AccordionItem, Button } from '@nextui-org/react'
 import { notFound } from 'next/navigation'
 import { ListBlobResultBlob } from '@vercel/blob'
-import { motion, MotionValue, useScroll, useTransform } from 'motion/react'
+import { Lense } from '@/app/lib/db/schema'
 
 export function LensePage({ len, image }: { len: Lense, image: ListBlobResultBlob | null }) {
-    const ref = useRef(null)
-    const { scrollYProgress } = useScroll({ target: ref })
     const { addItem } = useCart()
     const [isOpen, setIsOpen] = React.useState(false);
-    const y = useParallax(scrollYProgress, 100)
     if (len === undefined) {
         return notFound();
     }
-    function useParallax(value: MotionValue<number>, distance: number) {
-        return useTransform(value, [0, 1], [-distance, distance]);
-    }
     return (
-        <section className='h-[100dvh] snap-center justify-center items-center flex flex-col lg:flex-row relative'>
-            <div ref={ref} className='max-h-[70dvh] flex items-center w-full'>
-                <div className='flex flex-col gap-2 w-full items-center '>
-                    <div className='flex flex-col w-full items-center md:items-start'>
-                        <motion.div className='text-4xl' style={{ y }}>{len.name}</motion.div>
-                        <span className='text-2xl lg:ml-4'>{len.brand}</span>
-                        <div className='lg:mt-12 lg:ml-4 flex gap-2 max-w-[60%]'>
-                            <div>{len.minfl}mm - {len.maxfl}mm</div>
-
-                        </div>
-                        <div className='ml-4 flex gap-2 max-w-[80%]'>
-                            <div>{len.maxap}</div>
-                        </div>
-                    </div>
-                </div>
-                <div className='mr-0 md:mr-8'>
-                    <div className='hidden lg:flex lg:w-[300px] xl:w-[450px] border-1 border-foreground aspect-square items-center justify-center'>
+        <section className='flex min-h-[100dvh] mx-auto max-w-[1200px] items-center px-4 sm:px-12 xl:px-0'>
+            <div className='pt-[80px] pb-12 lg:pt-0 sm:pb-0 flex flex-col md:flex-row gap-4 lg:gap-12 items-center w-full'>
+                <div className='flex flex-col gap-4' id='leftPanel'>
+                    <BackButton />
+                    <div className='flex w-full lg:w-[300px] xl:w-[400px] border-1 bg-white border-foreground aspect-square items-center justify-center'>
                         {image ?
                             <Image
                                 key={len.id}
@@ -46,7 +28,7 @@ export function LensePage({ len, image }: { len: Lense, image: ListBlobResultBlo
                                 alt='image'
                                 width={400}
                                 height={400}
-                                style={{ width: 'auto', height: '80%' }}
+                                style={{ width: '80%', height: 'auto' }}
                             /> :
                             <div className='flex h-full items-center justify-center'>
                                 <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1} stroke='currentColor' className='size-6'>
@@ -55,14 +37,29 @@ export function LensePage({ len, image }: { len: Lense, image: ListBlobResultBlo
                             </div>
                         }
                     </div>
+                    <div className='flex gap-2 items-center justify-evenly'>
+                        <p className='text-3xl font-bold'>{len.price}</p>
+                        <Button size='sm' onPress={() => {
+                            addItem(len);
+                            setIsOpen(!isOpen);
+                        }} className='text-sm text-nowrap border-1 border-foreground bg-transparent text-foreground'>add to cart</Button>
+                    </div>
                 </div>
-            </div>
-            <div className='mr-auto ml-8 mt-12 lg:mt-0 lg:ml-0 flex flex-col gap-2 items-end justify-center'>
-                <p className='text-3xl'>{len.price}</p>
-                <Button size='sm' onPress={() => {
-                    addItem(len);
-                    setIsOpen(!isOpen);
-                }} className='text-sm text-nowrap border-1 border-foreground bg-transparent text-foreground'>add to cart</Button>
+                <div id='rightPanel' className='flex-1 flex flex-col gap-8 items-center '>
+                    <div className='flex flex-col gap-2 text-nowrap w-full items-center md:items-start'>
+                        <div className='text-xl lg:text-2xl flex items-center gap-2 bg-foreground text-background px-4 py-2 text-wrap'>{len.name} - {len.brand}</div>
+                    </div>
+                    <Accordion defaultExpandedKeys={['description']} selectionMode={'multiple'} className='px-0' itemClasses={{ content: 'py-4 px-4 bg-background bg-opacity-80', title: 'text-background', indicator: 'text-background', trigger: 'my-1 bg-foreground text-background px-4'}} isCompact>
+                        <AccordionItem key='description' aria-label='description' title='description'>
+                            <p className='text-sm'>minimum fl: {len.minfl}mm</p>
+                            <p className='text-sm'>maximum fl: {len.maxfl}mm</p>
+                            <p className='text-sm'>maximum aperture: {len.maxap}</p>
+                        </AccordionItem>
+                        <AccordionItem key='compat' aria-label='compatible with' title='compatible with'>
+                            <div className='flex gap-2'>mount type: {len.mount?.map((lentype, index) => (<div key={index}>{lentype}</div>))}</div>
+                        </AccordionItem>
+                    </Accordion>
+                </div>
             </div>
         </section>
     )

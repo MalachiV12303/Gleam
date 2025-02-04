@@ -1,9 +1,10 @@
 'use client'
+
 import { useRef } from 'react'
 import { useQueryState } from 'nuqs'
-import { searchParams, useFilters } from '@/app/lib/searchParams'
 import { motion } from 'motion/react'
 import { Chip } from '@nextui-org/react'
+import { searchParams, useFilters } from '@/app/lib/searchParams'
 
 export function FilterChips({sz}:{sz? : 'sm'| 'md'| 'lg' }) {
     const [{ type, brand, res, shutter, mgp, maxap, minfl, maxfl }, setFilters] = useFilters();
@@ -26,7 +27,7 @@ export function FilterChips({sz}:{sz? : 'sm'| 'md'| 'lg' }) {
                     </Chip> : null}
                 {test.map((fil, index) =>
                 (fil.map((f) => (
-                    <Chip classNames={{ base: 'sm:h-5' }} size={sz? sz: 'sm'} key={index + f} variant="flat" onClose={() => handleClose(i[index], f, index)}>
+                    <Chip classNames={{ base: 'bg-foreground text-background px-2' }} size={sz? sz: 'sm'} key={index + f} variant="flat" onClose={() => handleClose(i[index], f, index)}>
                         {i[index]}: 
                         {' '+f}
                     </Chip>

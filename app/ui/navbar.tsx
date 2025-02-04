@@ -1,14 +1,14 @@
 'use client'
 
 import Link from 'next/link'
-import { Cart } from '../cart'
-import { ThemeSwitch } from './themeswitch'
-import { cinzel } from './fonts'
-import { usePathname, useRouter } from 'next/navigation'
 import clsx from 'clsx'
+import { Cart } from '../cart'
+import { cinzel } from './fonts'
 import { Button } from '@nextui-org/react'
-import { CategorySwitch } from './categoryswitch'
 import { Suspense } from 'react'
+import { ThemeSwitch } from './themeswitch'
+import { CategorySwitch } from './categoryswitch'
+import { usePathname, useRouter } from 'next/navigation'
 
 export default function NavBar() {
     const pathname = usePathname();
@@ -21,9 +21,9 @@ export default function NavBar() {
                 <div className='flex items-center justify-end min-h-16 px-8 py-2 sm:py-0 flex-wrap'>
                     {pathname === '/' ? null : <Link href='/' className={`${cinzel.className} px-2 text-3xl mr-auto`}>GLEAM</Link>}
                     <div className='flex items-center gap-4 px-4'>
+                        {pathname.includes('store') ? <Cart /> : null}
+                        {!pathname.includes('store') ? <Button onPress={() => (router.push('/store'))} className='h-7 min-w-0 bg-background rounded-full inline-flex items-center justify-center px-2' href={`/store?`}>store</Button> : null}
                         <ThemeSwitch />
-                        {pathname.includes('store') || pathname.includes('item') ? <Cart/> : null}
-                        {!pathname.includes('store') ? <Button onPress={() => (router.push('/store'))} className='h-7 min-w-0 bg-background rounded-full inline-flex items-center justify-center px-2' href={`/store?`}>store</Button>: null}
                     </div>
                 </div>
                 {pathname.includes('store') ? <Suspense><CategorySwitch /></Suspense> : null}

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useFilters } from '@/app/lib/searchParams'
-import { Accordion, AccordionItem, Checkbox, CheckboxGroup } from '@nextui-org/react'
 import { filtermap } from '@/app/lib/utils'
 import { PriceSlider } from './priceslider'
+import { Accordion, AccordionItem, Checkbox, CheckboxGroup } from '@nextui-org/react'
 
 export function Filters({ it }: { it: string }) {
     return it === 'cam' ? <CameraFilters/> :
@@ -14,7 +14,7 @@ export function Filters({ it }: { it: string }) {
 function CameraFilters() {
     const [{ type, brand, res, shutter, mgp }] = useFilters()
     return (
-        <Accordion defaultExpandedKeys={['price', 'type', 'brand', 'res', 'shutter', 'megapixels']} className='px-2' fullWidth itemClasses={{ content: 'py-4 px-4', title: 'text-background', indicator: 'text-background', trigger: 'my-1 bg-foreground text-background px-4'}} isCompact={true} selectionMode="multiple">
+        <Accordion defaultExpandedKeys={['price', 'type', 'brand', 'res', 'shutter', 'megapixels']} fullWidth itemClasses={{ content: 'py-4 px-4', title: 'text-background', indicator: 'text-background', trigger: 'my-1 bg-foreground text-background px-4'}} isCompact={true} selectionMode="multiple">
             <AccordionItem key="price" aria-label="price" title={'price'}>
                 <PriceSlider />
             </AccordionItem>

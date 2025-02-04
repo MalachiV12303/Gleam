@@ -30,7 +30,7 @@ export default async function Page({ searchParams }: PageProps) {
     }
 
     return (<>
-        <section id='storeButtons' className='max-w-[1600px] pt-[143px] sm:pt-[168px] pb-12 w-full mx-auto h-[100dvh] px-12 grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 gap-x-12 gap-y-8'>
+        <section id='storeButtons' className='max-w-[1600px] pt-[143px] lg:pt-[168px] sm:pb-[25px] pb-12 lg:pb-12 w-full mx-auto h-[100dvh] px-12 grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 gap-x-12 gap-y-8'>
             <Button text='cameras' />
             <Button text='lenses' lenseImage={true} />
         </section>
@@ -38,7 +38,7 @@ export default async function Page({ searchParams }: PageProps) {
             {/* <Suspense fallback={<Spinner />}>
                         <SearchBar className="text-base flex-1" />
                     </Suspense> */}
-            <div id='topLayer' className='bg-background sticky sm:relative top-0 w-full flex py-2 px-4 justify-between border-b-1 border-foreground'>
+            <div id='topLayer' className='bg-background sticky sm:relative top-0 w-full flex gap-4 py-2 px-4 justify-between border-b-1 border-foreground'>
                 {/* <div id='countRow' className='w-full sm:w-3/4 flex justify-between items-center py-1 sm:py-0'> */}
                 <p className='text-nowrap'>{count === null ? '0 found...' : count + ' items found'}</p>
                 <div className='hidden sm:flex w-full overflow-auto no-scrollbar' ><FilterChips sz={'sm'} /></div>
