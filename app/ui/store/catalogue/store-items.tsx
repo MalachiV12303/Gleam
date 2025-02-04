@@ -1,11 +1,11 @@
-import Link from 'next/link';
-import { useCart } from 'react-use-cart';
-import { Button } from '@nextui-org/react';
-import { Camera, Lense } from '@/app/lib/db/schema';
-import { formatCurrency, isCamera, isLense } from '@/app/lib/utils';
-import { motion } from 'motion/react';
-import { ListBlobResultBlob } from '@vercel/blob';
-import React from 'react';
+import React from 'react'
+import Link from 'next/link'
+import { useCart } from 'react-use-cart'
+import { Button } from '@nextui-org/react'
+import { Camera, Lense } from '@/app/lib/db/schema'
+import { formatCurrency, isCamera, isLense } from '@/app/lib/utils'
+import { motion } from 'motion/react'
+import { ListBlobResultBlob } from '@vercel/blob'
 
 export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBlobResultBlob | null }) {
     const { addItem } = useCart()
@@ -37,7 +37,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                     // setUserParams(currentParams)
                     // console.log('saved to local storage')
                 }}
-                    className='flex flex-col h-full' href={`/details?${params}`} >
+                    className='flex flex-col h-full' href={`/item?${params}`} >
                     <div id='image' className='aspect-square px-4 py-4 bg-white border-b-1 border-black flex justify-center items-center'>
                         {image ?
                             // eslint-disable-next-line @next/next/no-img-element
@@ -56,11 +56,10 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                     </div>
                     <div id='itemInfo' className='mb-4'>
                         <div className='text-sm uppercase font-bold text-start'>{item.brand}</div>
-                        <div className='mt-1 text-2xl sm:text-lg text-start '>{item.name}</div>
-                        <div className='text-xl sm:text-base flex flex-col'>
-                            <p>{item.type === 'DSLR' ? 'digital' : 'mirrorless'}</p>
+                        <div className='mt-1 text-lg sm:text-lg text-start '>{item.name}</div>
+                        <div className='text-base sm:text-base flex flex-col'>
                             <p>{item.megapixels} megapixels</p>
-                            <p></p>
+                            <p>{item.type === 'DSLR' ? 'digital' : 'mirrorless'}</p>
                         </div>
                     </div>
                     <div id='itemPrice' className='mt-4 flex-1 flex flex-col justify-end text-lg'>
@@ -92,7 +91,6 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
             </motion.div>
         )
     }
-
     //lense on store page
     function Lense(item: Lense) {
         params.set('category', 'len')
@@ -110,7 +108,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                         // setUserParams(currentParams)
                         // console.log('saved to local storage')
                     }}
-                        className='flex flex-col h-full' href={`/details?${params}`}>
+                        className='flex flex-col h-full' href={`/item?${params}`}>
                             
                         <div id='image' className='aspect-square max-w-full px-4 py-4 bg-white border-b-1 border-black flex justify-center items-center'>
                             {image ?

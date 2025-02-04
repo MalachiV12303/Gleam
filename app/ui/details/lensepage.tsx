@@ -1,14 +1,15 @@
 'use client'
-import React, { useRef } from 'react';
-import { useCart } from 'react-use-cart';
-import { Lense } from '@/app/lib/db/schema';
-import { Button } from '@nextui-org/react';
-import { motion, MotionValue, useScroll, useTransform } from 'motion/react';
-import { notFound } from 'next/navigation';
-import { ListBlobResultBlob } from '@vercel/blob';
-import Image from 'next/image'
 
-export function LensePage({ len, index, image }: { len: Lense, index: number, image: ListBlobResultBlob | null }) {
+import Image from 'next/image'
+import React, { useRef } from 'react'
+import { useCart } from 'react-use-cart'
+import { Lense } from '@/app/lib/db/schema'
+import { Button } from '@nextui-org/react'
+import { notFound } from 'next/navigation'
+import { ListBlobResultBlob } from '@vercel/blob'
+import { motion, MotionValue, useScroll, useTransform } from 'motion/react'
+
+export function LensePage({ len, image }: { len: Lense, image: ListBlobResultBlob | null }) {
     const ref = useRef(null)
     const { scrollYProgress } = useScroll({ target: ref })
     const { addItem } = useCart()
@@ -21,7 +22,7 @@ export function LensePage({ len, index, image }: { len: Lense, index: number, im
         return useTransform(value, [0, 1], [-distance, distance]);
     }
     return (
-        <section key={index} className='h-[100dvh] snap-center justify-center items-center flex flex-col lg:flex-row relative'>
+        <section className='h-[100dvh] snap-center justify-center items-center flex flex-col lg:flex-row relative'>
             <div ref={ref} className='max-h-[70dvh] flex items-center w-full'>
                 <div className='flex flex-col gap-2 w-full items-center '>
                     <div className='flex flex-col w-full items-center md:items-start'>
@@ -35,7 +36,6 @@ export function LensePage({ len, index, image }: { len: Lense, index: number, im
                             <div>{len.maxap}</div>
                         </div>
                     </div>
-                    <span className='text-base opacity-80 lg:w-full'>#{index}</span>
                 </div>
                 <div className='mr-0 md:mr-8'>
                     <div className='hidden lg:flex lg:w-[300px] xl:w-[450px] border-1 border-foreground aspect-square items-center justify-center'>

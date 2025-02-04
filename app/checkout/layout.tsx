@@ -5,7 +5,7 @@ export default function Layout({
 }) {
 
   return (
-    <main className="w-full mx-auto">
+    <main className='h-[100dvh] w-full mx-auto'>
       {children}
     </main>
   )

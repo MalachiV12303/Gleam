@@ -1,14 +1,16 @@
 'use client'
-import React, { useRef } from 'react';
-import { useCart } from 'react-use-cart';
-import { Camera } from '@/app/lib/db/schema';
-import { Accordion, AccordionItem, Button } from '@nextui-org/react';
-import { motion, MotionValue, useScroll, useTransform } from 'motion/react';
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import { ListBlobResultBlob } from '@vercel/blob';
 
-export function CameraPage({ cam, index, image }: { cam: Camera, index: number, image: ListBlobResultBlob | null }) {
+import BackButton from './backbutton'
+import Image from 'next/image'
+import React, { useRef } from 'react'
+import { useCart } from 'react-use-cart'
+import { Camera } from '@/app/lib/db/schema'
+import { Accordion, AccordionItem, Button } from '@nextui-org/react'
+import { notFound } from 'next/navigation'
+import { ListBlobResultBlob } from '@vercel/blob'
+import { motion, MotionValue, useScroll, useTransform } from 'motion/react'
+
+export function CameraPage({ cam, image }: { cam: Camera, image: ListBlobResultBlob | null }) {
     const ref = useRef(null)
     const { scrollYProgress } = useScroll({ target: ref })
     const { addItem } = useCart()
@@ -22,10 +24,11 @@ export function CameraPage({ cam, index, image }: { cam: Camera, index: number, 
     }
 
     return (
-        <section key={index} className='z-10 flex flex-row h-[100dvh] w-full snap-center items-center'>
+        <section className='flex mx-auto h-full max-w-[1400px] items-center'>
             <div ref={ref} className='flex flex-col md:flex-row lg:gap-8 items-center w-full'>
-                <div id='leftPanel'>
-                    <div className='flex w-[200px] lg:w-[300px] xl:w-[400px] border-1 bg-foreground border-foreground aspect-square items-center justify-center'>
+                <div className='flex flex-col gap-4' id='leftPanel'>
+                    <BackButton />
+                    <div className='flex w-[200px] lg:w-[300px] xl:w-[400px] border-1 bg-white border-foreground aspect-square items-center justify-center'>
                         {image ?
                             <Image
                                 key={cam.id}
@@ -42,7 +45,7 @@ export function CameraPage({ cam, index, image }: { cam: Camera, index: number, 
                             </div>
                         }
                     </div>
-                    <div className=' flex gap-2 items-center justify-evenly'>
+                    <div className='flex gap-2 items-center justify-evenly'>
                         <p className='text-3xl'>{cam.price}</p>
                         <Button size='sm' onPress={() => {
                             addItem(cam);
@@ -53,7 +56,7 @@ export function CameraPage({ cam, index, image }: { cam: Camera, index: number, 
 
                 <div id='rightPanel' className='flex-1 flex flex-col gap-2 min-w-[70%] items-center '>
                     <div className='flex flex-col gap-2 text-nowrap w-full items-center md:items-start'>
-                        <motion.div className='text-3xl flex items-center gap-2' style={{ y }}><span className='text-lg opacity-80'>#{index}</span>{cam.brand} {cam.name}</motion.div>
+                        <motion.div className='text-3xl flex items-center gap-2' style={{ y }}>{cam.brand} {cam.name}</motion.div>
                         <span className='text-2xl lg:ml-4'>{cam.res}p</span>
                         <div className='ml-4 flex gap-2 max-w-[60%]'>
                         </div>

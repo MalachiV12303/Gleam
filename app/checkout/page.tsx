@@ -1,7 +1,8 @@
 'use client'
-import { useEffect, useState } from "react";
-import { Checkout } from "../ui/checkout/checkout";
-import { Spinner } from "@nextui-org/react";
+
+import { useEffect, useState } from 'react'
+import { Checkout } from '../ui/checkout/checkout'
+import { Spinner } from '@nextui-org/react'
 
 export default function Page() {
     //this is to render cart information without ssr errors
@@ -10,8 +11,8 @@ export default function Page() {
         setIsClient(true)
     }, [])
     return (
-        <div className='relative max-w-[1200px] flex flex-col mx-auto scrollbar items-center py-2 sm:py-8'>
+        <section className='pt-[80px] min-h-[100dvh] relative max-w-screen flex flex-col mx-auto scrollbar items-center'>
             {isClient ? <Checkout /> : <Spinner/>}
-        </div>
+        </section>
     )
 }

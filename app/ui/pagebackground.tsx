@@ -7,7 +7,7 @@ import React, { Suspense, useEffect, useRef, useState } from 'react'
 import { useFrame, ThreeElements } from '@react-three/fiber'
 import { AsciiRenderer, Sparkles } from '@react-three/drei'
 
-export default function ButtonBackground() {
+export default function PageBackground() {
   const { theme } = useTheme()
   const [color, setColor] = useState('white')
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function ButtonBackground() {
   return (
     <Canvas
       gl={{ antialias: false }}>
-      <color attach="background" args={['black']} />
+      <color attach='background' args={['black']} />
       <Suspense fallback={null}>
         <ambientLight intensity={Math.PI} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI * 4} />

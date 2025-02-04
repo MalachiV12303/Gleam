@@ -12,7 +12,6 @@ export default function Button({ text, lenseImage }: { text: string, lenseImage?
             shallow: false
     }))
     const [, setFilters]= useFilters()
-    
     const transition = {
         type: "spring",
         duration: 0.7,
@@ -24,9 +23,9 @@ export default function Button({ text, lenseImage }: { text: string, lenseImage?
     }
     return (
         <button onClick={() => {
-            scrollToSection('storeContent')
-            setCategory(text==='lenses' ? 'len' : null)
             setFilters(null)
+            setCategory(text==='lenses' ? 'len' : null)
+            scrollToSection('storeContent')
         }} className={clsx('transition hover:scale-[1.03] delay-50 duration-500 ease-in-out bg-[url(/cameraButton.jpg)] hover:grayscale-0 grayscale bg-opacity-80 bg-cover bg-center bg-no-repeat border-1 border-foreground flex items-center justify-center',  {'bg-[url(/lenseButton.jpg)]' : lenseImage? true : false})}>
             <MotionConfig transition={transition}>
                 <motion.div
