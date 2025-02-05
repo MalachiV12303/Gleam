@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react'
 import { formatCurrency } from './lib/utils'
 import { useCart } from 'react-use-cart'
@@ -17,7 +16,7 @@ export function Cart() {
             trigger: ['bg-background text-foreground', 'min-w-0 px-4 rounded-full h-7'],
             content: ['border-1 border-foreground bg-background text-foreground text-lg lg:text-sm px-0 py-0', 'flex flex-row', 'h-[60dvh] w-[80dvw] sm:w-[60dvw] xl:w-[30dvw]'],
         }}>
-            <Badge content={totalQuantity} className='text-base tracking-tight bg-foreground text-background'>
+            <Badge isInvisible={isEmpty} content={totalQuantity} className='text-sm min-w-6 tracking-tight bg-foreground text-background pr-[1px] pl-[1px] sm:pl-0 pt-[1px]'>
                 <PopoverTrigger>
                     <Button>
                         cart
@@ -26,7 +25,7 @@ export function Cart() {
             </Badge>
             <PopoverContent>
                 <div id='cartPanel' className='h-full border-foreground flex flex-col w-[100%] items-center justify-start'>
-                    <div id='cartItems' className='mt-4 flex flex-col divide-y-1 divide-foreground border-foreground items-start w-full gap-3 px-4 overflow-y-auto no-scrollbar flex-1 select-none'>
+                    <div id='cartItems' className='mt-2 sm:mt-4 px-2 flex flex-col divide-y-1 divide-foreground border-foreground items-start w-full gap-3 overflow-y-auto no-scrollbar flex-1 select-none'>
                         {!isEmpty ? items.map((it, index) => (
                             <CartItem key={index} item={it} className={'px-2 py-4'} />
                         )) :

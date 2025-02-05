@@ -18,7 +18,7 @@ export default function NavBar() {
             <div className={clsx('fixed top-0 select-none z-30 text-xl tracking-widest w-full', { 'border-b-1 border-foreground bg-background': pathname !== '/' })}>
                 {/* bg-red-400 sm:bg-blue-400 md:bg-green-400 lg:bg-pink-400 xl:bg-orange-400 2xl:bg-black */}
                 {/* <div className='bg-red-400 sm:bg-blue-400 md:bg-green-400 lg:bg-pink-400 xl:bg-orange-400 2xl:bg-black inline-flex border-1 w-4 border-foreground rounded-lg '/> */}
-                <div className='flex items-center justify-end min-h-16 px-8 py-2 sm:py-0 flex-wrap'>
+                <div className='flex items-center justify-end min-h-16 px-4 sm:px-8 py-2 sm:py-0 flex-wrap'>
                     {pathname === '/' ? null : <Link href='/' className={`${cinzel.className} px-2 text-3xl mr-auto`}>GLEAM</Link>}
                     <div className='flex items-center gap-2 sm:gap-4 sm:px-4'>
                         {pathname.includes('store') || pathname.includes('item') ? <Cart /> : null}

@@ -9,7 +9,6 @@ export function ThemeSwitch() {
   const [ mounted, setMounted ] = React.useState(false)
   useEffect(() => {
     setMounted(true)
-    console.log(theme)
   }, [])
   if (!mounted) {
     return <Spinner size='sm' />

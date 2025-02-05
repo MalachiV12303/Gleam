@@ -16,6 +16,12 @@ export const getItemCat = (item: Item) => {
       'aer';
 };
 
+export const transition = {
+  type: "spring",
+  duration: 0.7,
+  bounce: 0.2
+}
+
 export async function getAllImages() {
   const blobs = await list();
   return blobs.blobs;

@@ -6,6 +6,7 @@ import { cinzel } from './fonts'
 import { useQueryState } from 'nuqs'
 import { searchParams, useFilters } from '../lib/searchParams'
 import clsx from 'clsx'
+import { transition } from '../lib/utils'
 
 export default function Button({ text, lenseImage }: { text: string, lenseImage?: boolean }) {
     const [, setCategory ] = useQueryState('category', 
@@ -13,11 +14,6 @@ export default function Button({ text, lenseImage }: { text: string, lenseImage?
             shallow: false
     }))
     const [, setFilters]= useFilters()
-    const transition = {
-        type: "spring",
-        duration: 0.7,
-        bounce: 0.2
-    }
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id)
         element?.scrollIntoView({ behavior: "smooth" });

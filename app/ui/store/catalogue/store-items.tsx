@@ -1,27 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useCart } from 'react-use-cart'
 import { Button } from '@nextui-org/react'
 import { Camera, Lense } from '@/app/lib/db/schema'
-import { formatCurrency, isCamera, isLense } from '@/app/lib/utils'
+import { formatCurrency, isCamera, isLense, transition } from '@/app/lib/utils'
 import { motion } from 'motion/react'
 import { ListBlobResultBlob } from '@vercel/blob'
 import { useTheme } from 'next-themes'
 import clsx from 'clsx'
 
 export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBlobResultBlob | null }) {
-    const { theme } = useTheme()
-    const { addItem } = useCart()
-    const formattedValue = formatCurrency(item.price ?? 0)
     const params = new URLSearchParams()
     params.set('id', item.id.toString())
+    const formattedValue = formatCurrency(item.price ?? 0)
+    const { addItem } = useCart()
+    const { theme } = useTheme()
+    const [ themeColor, setThemeColor ] = useState('')
     const [hover, setHover] = React.useState<string>('0')
-    const transition = {
-        type: "spring",
-        duration: 0.7,
-        bounce: 0.2
-    }
-    // const [userparams, setUserParams] = useLocalStorage<URLSearchParams>('userparams', new URLSearchParams())
+    
+    useEffect(()=>{
+        setThemeColor(theme?theme:'')
+    },[theme])
     if (isCamera(item))
         return Camera(item)
     else if (isLense(item))
@@ -29,7 +28,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
     else {
         return <div>unknown item type</div>;
     }
-
+    
     //camera on store page
     function Camera(item: Camera) {
         return (
@@ -38,7 +37,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                 whileHover={{ scale: 1.05 }}
                 onHoverStart={() => (setHover('1'))}
                 onHoverEnd={() => (setHover('0'))}
-                className={clsx('text-sm shadow-md relative text-foreground bg-background border-b-1 border-foreground flex flex-col px-4 py-2 items-center max-w-full h-full', { 'shadow-white/10' : theme === 'darker' })}>
+                className={clsx('text-sm shadow-md relative text-foreground bg-background border-b-1 border-foreground flex flex-col px-4 py-2 items-center max-w-full h-full', { 'shadow-white/10' : themeColor === 'darker' })}>
                 <Link href={`/item?${params}`}
                     className='flex flex-col h-full' >
                     <div id='image' className='aspect-square px-4 py-4 border-b-1 border-foreground flex justify-center items-center'>
