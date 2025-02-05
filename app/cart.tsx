@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { formatCurrency } from './lib/utils'
 import { useCart } from 'react-use-cart'
 import { CartItem } from './cartitem'
@@ -7,12 +7,17 @@ import { Badge, Button, Link, Popover, PopoverContent, PopoverTrigger, Tooltip }
 
 export function Cart() {
     const { items, emptyCart, isEmpty, cartTotal, totalItems  } = useCart()
+    const [ totalQuantity, setTotalQuantity ] = useState(0)
+    useEffect(()=>{
+        setTotalQuantity(totalItems)
+    },[totalItems])
+    useEffect
     return (
         <Popover placement={'bottom-end'} shouldBlockScroll={true} classNames={{
             trigger: ['bg-background text-foreground', 'min-w-0 px-4 rounded-full h-7'],
             content: ['border-1 border-foreground bg-background text-foreground text-lg lg:text-sm px-0 py-0', 'flex flex-row', 'h-[60dvh] w-[80dvw] sm:w-[60dvw] xl:w-[30dvw]'],
         }}>
-            <Badge content={totalItems? totalItems: null} className='text-base bg-foreground text-background'>
+            <Badge content={totalQuantity} className='text-base tracking-tight bg-foreground text-background'>
                 <PopoverTrigger>
                         <Button>
                             cart
