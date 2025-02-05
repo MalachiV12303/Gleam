@@ -15,12 +15,12 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
     const formattedValue = formatCurrency(item.price ?? 0)
     const { addItem } = useCart()
     const { theme } = useTheme()
-    const [ themeColor, setThemeColor ] = useState('')
+    const [themeColor, setThemeColor] = useState('')
     const [hover, setHover] = React.useState<string>('0')
-    
-    useEffect(()=>{
-        setThemeColor(theme?theme:'')
-    },[theme])
+
+    useEffect(() => {
+        setThemeColor(theme ? theme : '')
+    }, [theme])
     if (isCamera(item))
         return Camera(item)
     else if (isLense(item))
@@ -28,7 +28,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
     else {
         return <div>unknown item type</div>;
     }
-    
+
     //camera on store page
     function Camera(item: Camera) {
         return (
@@ -37,7 +37,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                 whileHover={{ scale: 1.05 }}
                 onHoverStart={() => (setHover('1'))}
                 onHoverEnd={() => (setHover('0'))}
-                className={clsx('text-sm shadow-md relative text-foreground bg-background border-b-1 border-foreground flex flex-col px-4 py-2 items-center max-w-full h-full', { 'shadow-white/10' : themeColor === 'darker' })}>
+                className={clsx('text-sm shadow-md relative text-foreground bg-background border-b-1 border-foreground flex flex-col px-4 py-2 items-center max-w-full h-full', { 'shadow-white/10': themeColor === 'darker' })}>
                 <Link href={`/item?${params}`}
                     className='flex flex-col h-full' >
                     <div id='image' className='aspect-square px-4 py-4 border-b-1 border-foreground flex justify-center items-center'>
@@ -91,10 +91,11 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
         return (
             <>
                 <motion.div
-                    whileHover={{}}
+                    transition={transition}
+                    whileHover={{ scale: 1.05 }}
                     onHoverStart={() => (setHover('1'))}
                     onHoverEnd={() => (setHover('0'))}
-                    className={clsx('text-sm shadow-md relative text-foreground bg-background border-b-1 border-foreground flex flex-col px-4 py-2 items-center max-w-full h-full', { 'shadow-white/10' : theme === 'dark' })}>
+                    className={clsx('text-sm shadow-md relative text-foreground bg-background border-b-1 border-foreground flex flex-col px-4 py-2 items-center max-w-full h-full', { 'shadow-white/10': theme === 'dark' })}>
                     <Link href={`/item?${params}`}
                         className='flex flex-col h-full'>
                         <div id='image' className='aspect-square max-w-full px-4 py-4 border-b-1 border-foreground flex justify-center items-center'>
@@ -118,32 +119,24 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                             <div className='mt-1 text-base sm:text-lg text-start '>{item.name}</div>
 
                         </div>
-                        <div id='itemPrice' className='mt-4 flex-1 flex flex-col justify-end text-lg'>
+                        <div id='itemPrice' className='mt-2 flex-1 flex flex-col justify-end font-bold text-lg'>
                             {formattedValue}
                         </div>
                     </Link>
-                    <motion.div
-                        className='absolute right-0 bottom-0 h-[50px] w-[50px] flex items-center justify-center'
-                        animate={hover}
-                        transition={{ type: "tween", ease: 'easeInOut', duration: 0.3 }}
-                        variants={{
-                            '0': { y: 0 },
-                            '1': { y: 50 },
-                        }}>
+                    <div className='absolute right-0 bottom-0 h-[50px] w-[50px] flex items-center justify-center'>
                         <motion.div
-                            animate={hover}
-                            variants={{
-                                '0': { scale: 1, rotate: 0 },
-                                '1': { scale: 1.2, rotate: 90 },
+                            transition={transition}
+                            whileHover={{
+                                scale: 1.5,
                             }}
-                            className='flex items-center justify-center' >
-                            <Button variant='light' className='min-w-min px-0 h-min text-foreground background-transparent' onPress={() => (addItem(item))}>
+                            className='flex items-center justify-center text-foreground' >
+                            <Button variant='light' className='min-w-min px-0 h-min background-transparent' onPress={() => (addItem(item))}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="size-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                 </svg>
                             </Button>
                         </motion.div>
-                    </motion.div>
+                    </div>
                 </motion.div>
             </>
         )
