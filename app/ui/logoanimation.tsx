@@ -41,7 +41,7 @@ function MyScene(props: ThreeElements['mesh']) {
   })
   useEffect(() => (viewport.width < 5.94 ? setScale(0.65) : setScale(1)), [viewport])
   useEffect(() => {
-    setColor(theme === 'light' ? 'black' : 'white')
+    setColor(theme === 'lighter' ? 'black' : 'white')
   }, [theme])
 
   return (

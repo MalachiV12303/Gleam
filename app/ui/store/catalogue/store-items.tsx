@@ -38,7 +38,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                 whileHover={{ scale: 1.05 }}
                 onHoverStart={() => (setHover('1'))}
                 onHoverEnd={() => (setHover('0'))}
-                className={clsx('text-sm shadow-md relative text-foreground bg-background border-b-1 border-foreground flex flex-col px-4 py-2 items-center max-w-full h-full', { 'shadow-white/10' : theme === 'dark' })}>
+                className={clsx('text-sm shadow-md relative text-foreground bg-background border-b-1 border-foreground flex flex-col px-4 py-2 items-center max-w-full h-full', { 'shadow-white/10' : theme === 'darker' })}>
                 <Link href={`/item?${params}`}
                     className='flex flex-col h-full' >
                     <div id='image' className='aspect-square px-4 py-4 border-b-1 border-foreground flex justify-center items-center'>

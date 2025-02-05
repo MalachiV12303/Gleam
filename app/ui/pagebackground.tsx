@@ -11,7 +11,7 @@ export default function PageBackground() {
   const { theme } = useTheme()
   const [color, setColor] = useState('white')
   useEffect(() => {
-    setColor(theme === 'light' ? 'black' : 'white')
+    setColor(theme === 'lighter' ? 'black' : 'white')
   }, [theme])
   return (
     <Canvas
