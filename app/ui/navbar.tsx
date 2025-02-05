@@ -22,7 +22,7 @@ export default function NavBar() {
                     {pathname === '/' ? null : <Link href='/' className={`${cinzel.className} px-2 text-3xl mr-auto`}>GLEAM</Link>}
                     <div className='flex items-center gap-2 sm:gap-4 sm:px-4'>
                         {pathname.includes('store') || pathname.includes('item') ? <Cart /> : null}
-                        {!pathname.includes('store') ? <Button onPress={() => (router.push('/store'))} className='h-7 min-w-0 bg-background rounded-full inline-flex items-center justify-center px-2' href={`/store?`}>store</Button> : null}
+                        {!pathname.includes('store') && !pathname.includes('item') ? <Button onPress={() => (router.push('/store'))} className='h-7 min-w-0 bg-background rounded-full inline-flex items-center justify-center px-2' href={`/store?`}>store</Button> : null}
                         <ThemeSwitch />
                     </div>
                 </div>
