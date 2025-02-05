@@ -27,7 +27,7 @@ const config: Config = {
     nextui({
     defaultTheme: "darker",
     themes: {
-      "darker": {
+      dark: {
         extend: "dark",
         colors: {
           background: "#050505",
@@ -36,7 +36,7 @@ const config: Config = {
           secondary: "#141414",
         }
       },
-      "lighter": {
+      light: {
         extend: "light",
         colors: {
           background: "#FEF8DD",

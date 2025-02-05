@@ -1,9 +1,10 @@
 
 import Link from 'next/link'
-import { Item } from 'react-use-cart'
+import { Item, useCart } from 'react-use-cart'
 import { formatCurrency, getItemCat } from './lib/utils'
-import { ItemQuantityButton } from './ui/itemquantitybutton'
+import { Button } from '@nextui-org/react'
 export function CartItem({ item, className }: { item: Item, className: string }) {
+    const { updateItemQuantity } = useCart() 
     const params = new URLSearchParams()
     params.set('id', item.id.toString())
     params.set('itemtype', getItemCat(item))
@@ -18,7 +19,13 @@ export function CartItem({ item, className }: { item: Item, className: string })
             <div className='flex flex-col items-end '>
                 <span className='font-bold'>  {item.quantity ? formatCurrency(item.price * item.quantity) : formatCurrency(item.price)}</span>
                 <span>{item.quantity} in cart</span>
-                <ItemQuantityButton id={item.id} />
+                <Button variant='light'
+                    className='w-fit min-h-0 h-fit'
+                    isIconOnly
+                    disableRipple
+                    onPress={() => (updateItemQuantity(item.id, item.quantity? item.quantity - 1 : 0))}>
+                    remove one?
+                </Button>
             </div>
         </div>
     )

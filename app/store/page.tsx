@@ -45,7 +45,6 @@ export default async function Page({ searchParams }: PageProps) {
                 </div>
                 {/* </div> */}
             </div>
-
             <div id="filtersAndItems" className="w-full h-fit py-4 relative sm:flex-none overflow-auto no-scrollbar flex flex-row">
                 <div className="relative hidden sm:inline-block w-1/3 md:w-1/4 h-fit">
                     <FiltersPanel itemtype={category} type={'desktop'} />

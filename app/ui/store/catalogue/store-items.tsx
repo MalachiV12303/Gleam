@@ -6,8 +6,11 @@ import { Camera, Lense } from '@/app/lib/db/schema'
 import { formatCurrency, isCamera, isLense } from '@/app/lib/utils'
 import { motion } from 'motion/react'
 import { ListBlobResultBlob } from '@vercel/blob'
+import { useTheme } from 'next-themes'
+import clsx from 'clsx'
 
 export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBlobResultBlob | null }) {
+    const { theme } = useTheme()
     const { addItem } = useCart()
     const formattedValue = formatCurrency(item.price ?? 0)
     const params = new URLSearchParams()
@@ -31,19 +34,14 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
     function Camera(item: Camera) {
         return (
             <motion.div
-                whileHover={{}}
+                transition={transition}
+                whileHover={{ scale: 1.05 }}
                 onHoverStart={() => (setHover('1'))}
                 onHoverEnd={() => (setHover('0'))}
-                className='text-sm relative bg-foreground text-background flex flex-col px-4 py-2 items-center max-w-full h-full'>
-                <Link onClick={() => {
-                    // const currentParams = new URLSearchParams(window.location.search)
-                    // currentParams.set('test', 'test')
-                    // console.log(currentParams)
-                    // setUserParams(currentParams)
-                    // console.log('saved to local storage')
-                }}
-                    className='flex flex-col h-full' href={`/item?${params}`} >
-                    <div id='image' className='aspect-square px-4 py-4 border-b-1 border-background flex justify-center items-center'>
+                className={clsx('text-sm shadow-md relative text-foreground bg-background border-b-1 border-foreground flex flex-col px-4 py-2 items-center max-w-full h-full', { 'shadow-white/10' : theme === 'dark' })}>
+                <Link href={`/item?${params}`}
+                    className='flex flex-col h-full' >
+                    <div id='image' className='aspect-square px-4 py-4 border-b-1 border-foreground flex justify-center items-center'>
                         {image ?
                             // eslint-disable-next-line @next/next/no-img-element
                             <img
@@ -61,7 +59,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                     </div>
                     <div id='itemInfo' className='mb-4'>
                         <div className='text-sm uppercase font-bold text-start'>{item.brand}</div>
-                        <div className='mt-1 text-lg sm:text-lg text-start '>{item.name}</div>
+                        <div className='mt-2 text-lg text-start '>{item.name}</div>
                         <div className='text-base sm:text-base flex flex-col'>
                             <p>{item.megapixels} megapixels</p>
                             <p>{item.type === 'DSLR' ? 'digital' : 'mirrorless'}</p>
@@ -77,8 +75,8 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                         whileHover={{
                             scale: 1.5,
                         }}
-                        className='flex items-center justify-center text-background' >
-                        <Button variant='light' className='min-w-min px-0 h-min text-background background-transparent' onPress={() => (addItem(item))}>
+                        className='flex items-center justify-center text-foreground' >
+                        <Button variant='light' className='min-w-min px-0 h-min background-transparent' onPress={() => (addItem(item))}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="size-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
@@ -97,17 +95,10 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                     whileHover={{}}
                     onHoverStart={() => (setHover('1'))}
                     onHoverEnd={() => (setHover('0'))}
-                    className='text-sm relative bg-white text-black flex flex-col px-4 py-2 items-center max-w-full h-full'>
-                    <Link onClick={() => {
-                        // const currentParams = new URLSearchParams(window.location.search)
-                        // currentParams.set('test', 'test')
-                        // console.log(currentParams)
-                        // setUserParams(currentParams)
-                        // console.log('saved to local storage')
-                    }}
-                        className='flex flex-col h-full' href={`/item?${params}`}>
-
-                        <div id='image' className='aspect-square max-w-full px-4 py-4 bg-white border-b-1 border-black flex justify-center items-center'>
+                    className={clsx('text-sm shadow-md relative text-foreground bg-background border-b-1 border-foreground flex flex-col px-4 py-2 items-center max-w-full h-full', { 'shadow-white/10' : theme === 'dark' })}>
+                    <Link href={`/item?${params}`}
+                        className='flex flex-col h-full'>
+                        <div id='image' className='aspect-square max-w-full px-4 py-4 border-b-1 border-foreground flex justify-center items-center'>
                             {image ?
                                 // eslint-disable-next-line @next/next/no-img-element
                                 <img
@@ -123,22 +114,17 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                                 </div>
                             }
                         </div>
-
                         <div id='itemInfo' className='mb-4'>
                             <div className='text-sm uppercase font-bold text-start'>{item.brand}</div>
                             <div className='mt-1 text-base sm:text-lg text-start '>{item.name}</div>
 
                         </div>
-
-
                         <div id='itemPrice' className='mt-4 flex-1 flex flex-col justify-end text-lg'>
                             {formattedValue}
                         </div>
-
                     </Link>
-
                     <motion.div
-                        className='absolute right-0 bottom-0 h-[50px] w-[50px] bg-white flex items-center justify-center'
+                        className='absolute right-0 bottom-0 h-[50px] w-[50px] flex items-center justify-center'
                         animate={hover}
                         transition={{ type: "tween", ease: 'easeInOut', duration: 0.3 }}
                         variants={{
@@ -151,8 +137,8 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                                 '0': { scale: 1, rotate: 0 },
                                 '1': { scale: 1.2, rotate: 90 },
                             }}
-                            className='flex items-center justify-center text-background' >
-                            <Button variant='light' className='min-w-min px-0 h-min text-black background-transparent' onPress={() => (addItem(item))}>
+                            className='flex items-center justify-center' >
+                            <Button variant='light' className='min-w-min px-0 h-min text-foreground background-transparent' onPress={() => (addItem(item))}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="size-6">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                 </svg>

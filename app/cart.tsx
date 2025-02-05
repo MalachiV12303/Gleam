@@ -6,12 +6,12 @@ import { CartItem } from './cartitem'
 import { Badge, Button, Link, Popover, PopoverContent, PopoverTrigger, Tooltip } from '@nextui-org/react'
 
 export function Cart() {
-    const { items, emptyCart, isEmpty, cartTotal, totalItems  } = useCart()
-    const [ totalQuantity, setTotalQuantity ] = useState(0)
-    useEffect(()=>{
+    const { items, emptyCart, isEmpty, cartTotal, totalItems } = useCart()
+    const [totalQuantity, setTotalQuantity] = useState(0)
+    useEffect(() => {
         setTotalQuantity(totalItems)
-    },[totalItems])
-    useEffect
+    }, [totalItems])
+
     return (
         <Popover placement={'bottom-end'} shouldBlockScroll={true} classNames={{
             trigger: ['bg-background text-foreground', 'min-w-0 px-4 rounded-full h-7'],
@@ -19,9 +19,9 @@ export function Cart() {
         }}>
             <Badge content={totalQuantity} className='text-base tracking-tight bg-foreground text-background'>
                 <PopoverTrigger>
-                        <Button>
-                            cart
-                        </Button>
+                    <Button>
+                        cart
+                    </Button>
                 </PopoverTrigger>
             </Badge>
             <PopoverContent>

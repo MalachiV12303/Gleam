@@ -5,16 +5,6 @@ import { StoreItem } from '@/app/ui/store/catalogue/store-items'
 import { ListBlobResultBlob } from '@vercel/blob'
 
 export function ItemsPanel({ items, images }: { items: Camera[] | Lense[], images: ListBlobResultBlob[]}) {
-  // const ref = useRef(null)
-  // const { scrollYProgress } = useScroll({
-  //   container: ref,
-  // })
-  // const scaleY = useSpring(scrollYProgress, {
-  //   stiffness: 100,
-  //   damping: 30,
-  //   restDelta: 0.001
-  // });
-
   function findImage(searchTerm: string){
     const matchingImageBlobs = images.filter(blob => 
       blob.pathname.includes(searchTerm)
@@ -22,7 +12,6 @@ export function ItemsPanel({ items, images }: { items: Camera[] | Lense[], image
     // Return the first matching image blob (if any)
     return matchingImageBlobs.length > 0 ? matchingImageBlobs[0] : null
   }
-
   return (
     <>
       <div className=" sm:px-8 py-3 w-full sm:h-min no-scrollbar relative grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-y-12 gap-x-4 sm:gap-x-12 bg-transparent place-items-center">
