@@ -3,24 +3,26 @@ import React from 'react'
 import { formatCurrency } from './lib/utils'
 import { useCart } from 'react-use-cart'
 import { CartItem } from './cartitem'
-import { Button, Link, Popover, PopoverContent, PopoverTrigger, Tooltip } from '@nextui-org/react'
+import { Badge, Button, Link, Popover, PopoverContent, PopoverTrigger, Tooltip } from '@nextui-org/react'
 
 export function Cart() {
-    const { items, emptyCart, isEmpty, cartTotal } = useCart()
+    const { items, emptyCart, isEmpty, cartTotal, totalItems  } = useCart()
     return (
         <Popover placement={'bottom-end'} shouldBlockScroll={true} classNames={{
-            trigger: ['bg-background text-foreground', 'min-w-0 px-2 rounded-full h-7'],
+            trigger: ['bg-background text-foreground', 'min-w-0 px-4 rounded-full h-7'],
             content: ['border-1 border-foreground bg-background text-foreground text-lg lg:text-sm px-0 py-0', 'flex flex-row', 'h-[60dvh] w-[80dvw] sm:w-[60dvw] xl:w-[30dvw]'],
         }}>
-            <PopoverTrigger>
-                <Button>
-                    cart
-                </Button>
-            </PopoverTrigger>
+            <Badge content={totalItems? totalItems: null} className='text-base bg-foreground text-background'>
+                <PopoverTrigger>
+                        <Button>
+                            cart
+                        </Button>
+                </PopoverTrigger>
+            </Badge>
             <PopoverContent>
                 <div id='cartPanel' className='h-full border-foreground flex flex-col w-[100%] items-center justify-start'>
                     <div id='cartItems' className='mt-4 flex flex-col divide-y-1 divide-foreground border-foreground items-start w-full gap-3 px-4 overflow-y-auto no-scrollbar flex-1 select-none'>
-                        {!isEmpty ? items.map((it, index) =>(
+                        {!isEmpty ? items.map((it, index) => (
                             <CartItem key={index} item={it} className={'px-2 py-4'} />
                         )) :
                             <div className='w-full flex h-full my-auto gap-2 items-center justify-center'>

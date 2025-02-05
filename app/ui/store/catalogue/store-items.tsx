@@ -13,6 +13,11 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
     const params = new URLSearchParams()
     params.set('id', item.id.toString())
     const [hover, setHover] = React.useState<string>('0')
+    const transition = {
+        type: "spring",
+        duration: 0.7,
+        bounce: 0.2
+    }
     // const [userparams, setUserParams] = useLocalStorage<URLSearchParams>('userparams', new URLSearchParams())
     if (isCamera(item))
         return Camera(item)
@@ -66,28 +71,20 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                         {formattedValue}
                     </div>
                 </Link>
-                <motion.div
-                    className='absolute right-0 bottom-0 h-[50px] w-[50px] bg-foreground flex items-center justify-center'
-                    animate={hover}
-                    transition={{ type: "tween", ease: 'easeInOut', duration: 0.3 }}
-                    variants={{
-                        '0': { y: 0 },
-                        '1': { y: 50 },
-                    }}>
+                <div className='absolute right-0 bottom-0 h-[50px] w-[50px] flex items-center justify-center'>
                     <motion.div
-                        animate={hover}
-                        variants={{
-                            '0': { scale: 1, rotate: 0 },
-                            '1': { scale: 1.2, rotate: 90 },
+                        transition={transition}
+                        whileHover={{
+                            scale: 1.5,
                         }}
                         className='flex items-center justify-center text-background' >
-                        <Button variant='light' className='min-w-min px-0 h-min text-black background-transparent' onPress={() => (addItem(item))}>
+                        <Button variant='light' className='min-w-min px-0 h-min text-background background-transparent' onPress={() => (addItem(item))}>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="size-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
                         </Button>
                     </motion.div>
-                </motion.div>
+                </div>
             </motion.div>
         )
     }
@@ -109,7 +106,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                         // console.log('saved to local storage')
                     }}
                         className='flex flex-col h-full' href={`/item?${params}`}>
-                            
+
                         <div id='image' className='aspect-square max-w-full px-4 py-4 bg-white border-b-1 border-black flex justify-center items-center'>
                             {image ?
                                 // eslint-disable-next-line @next/next/no-img-element
@@ -130,7 +127,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                         <div id='itemInfo' className='mb-4'>
                             <div className='text-sm uppercase font-bold text-start'>{item.brand}</div>
                             <div className='mt-1 text-base sm:text-lg text-start '>{item.name}</div>
-                            
+
                         </div>
 
 

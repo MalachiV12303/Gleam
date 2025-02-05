@@ -21,14 +21,6 @@ export async function getAllImages() {
   return blobs.blobs;
 };
 
-export async function getImageUrl(id: string) {
-  const blobs = await list();
-  const matchingImageBlobs = blobs.blobs.filter(blob =>
-    blob.pathname.includes(id)
-  )
-  return matchingImageBlobs.length > 0 ? matchingImageBlobs[0].url : ''
-};
-
 export const filtermap = new Map([
   ['cameratypes', ['DSLR', 'Mirrorless']],
   ['camerabrands', ['Canon', 'Nikon', 'Sony', 'Panasonic']],
