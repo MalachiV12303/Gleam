@@ -16,7 +16,6 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
     const { addItem } = useCart()
     const { theme } = useTheme()
     const [themeColor, setThemeColor] = useState('')
-    const [hover, setHover] = React.useState<string>('0')
 
     useEffect(() => {
         setThemeColor(theme ? theme : '')
@@ -35,8 +34,6 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
             <motion.div
                 transition={transition}
                 whileHover={{ scale: 1.05 }}
-                onHoverStart={() => (setHover('1'))}
-                onHoverEnd={() => (setHover('0'))}
                 className={clsx('text-sm shadow-md relative text-foreground bg-background border-b-1 border-foreground flex flex-col px-4 py-2 items-center max-w-full h-full', { 'shadow-white/10': themeColor === 'darker' })}>
                 <Link href={`/item?${params}`}
                     className='flex flex-col h-full' >
@@ -93,8 +90,6 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                 <motion.div
                     transition={transition}
                     whileHover={{ scale: 1.05 }}
-                    onHoverStart={() => (setHover('1'))}
-                    onHoverEnd={() => (setHover('0'))}
                     className={clsx('text-sm shadow-md relative text-foreground bg-background border-b-1 border-foreground flex flex-col px-4 py-2 items-center max-w-full h-full', { 'shadow-white/10': theme === 'dark' })}>
                     <Link href={`/item?${params}`}
                         className='flex flex-col h-full'>
