@@ -29,7 +29,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                 whileHover={{}}
                 onHoverStart={() => (setHover('1'))}
                 onHoverEnd={() => (setHover('0'))}
-                className='text-sm relative bg-white text-black flex flex-col px-4 py-2 items-center max-w-full h-full'>
+                className='text-sm relative bg-foreground text-background flex flex-col px-4 py-2 items-center max-w-full h-full'>
                 <Link onClick={() => {
                     // const currentParams = new URLSearchParams(window.location.search)
                     // currentParams.set('test', 'test')
@@ -38,7 +38,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                     // console.log('saved to local storage')
                 }}
                     className='flex flex-col h-full' href={`/item?${params}`} >
-                    <div id='image' className='aspect-square px-4 py-4 bg-white border-b-1 border-black flex justify-center items-center'>
+                    <div id='image' className='aspect-square px-4 py-4 border-b-1 border-background flex justify-center items-center'>
                         {image ?
                             // eslint-disable-next-line @next/next/no-img-element
                             <img
@@ -62,12 +62,12 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                             <p>{item.type === 'DSLR' ? 'digital' : 'mirrorless'}</p>
                         </div>
                     </div>
-                    <div id='itemPrice' className='mt-4 flex-1 flex flex-col justify-end text-lg'>
+                    <div id='itemPrice' className='mt-2 flex-1 flex flex-col justify-end font-bold text-lg'>
                         {formattedValue}
                     </div>
                 </Link>
                 <motion.div
-                    className='absolute right-0 bottom-0 h-[50px] w-[50px] bg-white flex items-center justify-center'
+                    className='absolute right-0 bottom-0 h-[50px] w-[50px] bg-foreground flex items-center justify-center'
                     animate={hover}
                     transition={{ type: "tween", ease: 'easeInOut', duration: 0.3 }}
                     variants={{

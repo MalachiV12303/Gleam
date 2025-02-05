@@ -17,7 +17,6 @@ export default async function Page({ searchParams }: PageProps) {
     const { category } = searchParamsCache.parse(await searchParams)
     const [items] = await fetchItems(category)
     const count = items?.length | 0
-
     function fetchItems(type: string) {
         switch (type) {
             case "cam":
@@ -28,13 +27,12 @@ export default async function Page({ searchParams }: PageProps) {
                 return []
         }
     }
-
     return (<>
         <section id='storeButtons' className='max-w-[1600px] pt-[143px] lg:pt-[168px] sm:pb-[25px] pb-12 lg:pb-12 w-full mx-auto h-[100dvh] px-12 grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-2 gap-x-12 gap-y-8'>
             <Button text='cameras' />
             <Button text='lenses' lenseImage={true} />
         </section>
-        <section id='storeContent' className='scroll-mt-24 min-h-[90dvh] relative max-w-[1600px] w-full flex flex-col mx-auto scrollbar items-center px-4 sm:py-4'>
+        <section id='storeContent' className='scroll-mt-24 min-h-[90dvh] relative max-w-[1600px] w-full flex flex-col mx-auto scrollbar items-center px-4'>
             {/* <Suspense fallback={<Spinner />}>
                         <SearchBar className="text-base flex-1" />
                     </Suspense> */}
@@ -48,7 +46,7 @@ export default async function Page({ searchParams }: PageProps) {
                 {/* </div> */}
             </div>
 
-            <div id="filtersAndItems" className="bg-background bg-opacity-80 w-full h-fit py-4 relative sm:flex-none overflow-auto no-scrollbar flex flex-row">
+            <div id="filtersAndItems" className="w-full h-fit py-4 relative sm:flex-none overflow-auto no-scrollbar flex flex-row">
                 <div className="relative hidden sm:inline-block w-1/3 md:w-1/4 h-fit">
                     <FiltersPanel itemtype={category} type={'desktop'} />
                 </div>

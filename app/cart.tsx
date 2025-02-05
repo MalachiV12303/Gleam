@@ -1,4 +1,3 @@
-'use client'
 
 import React from 'react'
 import { formatCurrency } from './lib/utils'
@@ -8,10 +7,8 @@ import { Button, Link, Popover, PopoverContent, PopoverTrigger, Tooltip } from '
 
 export function Cart() {
     const { items, emptyCart, isEmpty, cartTotal } = useCart()
-    const [ isOpen, setIsOpen ] = React.useState(false);
-
     return (
-        <Popover placement={'bottom-end'} isOpen={isOpen} onOpenChange={(open) => setIsOpen(open)} shouldBlockScroll={true} classNames={{
+        <Popover placement={'bottom-end'} shouldBlockScroll={true} classNames={{
             trigger: ['bg-background text-foreground', 'min-w-0 px-2 rounded-full h-7'],
             content: ['border-1 border-foreground bg-background text-foreground text-lg lg:text-sm px-0 py-0', 'flex flex-row', 'h-[60dvh] w-[80dvw] sm:w-[60dvw] xl:w-[30dvw]'],
         }}>
@@ -23,15 +20,16 @@ export function Cart() {
             <PopoverContent>
                 <div id='cartPanel' className='h-full border-foreground flex flex-col w-[100%] items-center justify-start'>
                     <div id='cartItems' className='mt-4 flex flex-col divide-y-1 divide-foreground border-foreground items-start w-full gap-3 px-4 overflow-y-auto no-scrollbar flex-1 select-none'>
-                        {!isEmpty ? items.map((it, index) => (
-                            <CartItem key={index} item={it} className={'px-2 py-4'}/>
+                        {!isEmpty ? items.map((it, index) =>(
+                            <CartItem key={index} item={it} className={'px-2 py-4'} />
                         )) :
                             <div className='w-full flex h-full my-auto gap-2 items-center justify-center'>
                                 <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1} stroke='currentColor' className='size-4'>
                                     <path strokeLinecap='round' strokeLinejoin='round' d='m7.848 8.25 1.536.887M7.848 8.25a3 3 0 1 1-5.196-3 3 3 0 0 1 5.196 3Zm1.536.887a2.165 2.165 0 0 1 1.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 1 1-5.196 3 3 3 0 0 1 5.196-3Zm1.536-.887a2.165 2.165 0 0 0 1.083-1.838c.005-.352.054-.695.14-1.025m-1.223 2.863 2.077-1.199m0-3.328a4.323 4.323 0 0 1 2.068-1.379l5.325-1.628a4.5 4.5 0 0 1 2.48-.044l.803.215-7.794 4.5m-2.882-1.664A4.33 4.33 0 0 0 10.607 12m3.736 0 7.794 4.5-.802.215a4.5 4.5 0 0 1-2.48-.043l-5.326-1.629a4.324 4.324 0 0 1-2.068-1.379M14.343 12l-2.882 1.664' />
                                 </svg>
                                 <p>no gear...</p>
-                            </div>}
+                            </div>
+                        }
                     </div>
                     <div id='cartTotal' className='bg-foreground text-background flex py-3 px-4 w-full text-lg'>
                         <span>bag total:</span>
@@ -40,7 +38,7 @@ export function Cart() {
                 </div>
 
                 <div id='cartButtons' className='border-l-1 border-foreground text-background h-full flex flex-col gap-2'>
-                    <Tooltip
+                    {/* <Tooltip
                         content='close'
                         classNames={{
                             content: ['text-xs h-min w-min rounded-full select-none'],
@@ -51,7 +49,7 @@ export function Cart() {
                                 <path strokeLinecap='round' strokeLinejoin='round' d='M6 18 18 6M6 6l12 12' />
                             </svg>
                         </Button>
-                    </Tooltip>
+                    </Tooltip> */}
                     <Tooltip
                         content='empty cart'
                         classNames={{

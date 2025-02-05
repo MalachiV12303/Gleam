@@ -52,10 +52,9 @@ export function CameraPage({ cam, image }: { cam: Camera, image: ListBlobResultB
                             {cam.megapixels} megapixel {cam.type} camera
                         </div>
                     </div>
-                    <Accordion defaultExpandedKeys={['description']} selectionMode={'multiple'} className='px-0' itemClasses={{ content: 'py-4 px-4 bg-background bg-opacity-80', title: 'text-background', indicator: 'text-background', trigger: 'my-1 bg-foreground text-background px-4'}} isCompact>
+                    <Accordion defaultExpandedKeys={['description']} selectionMode={'multiple'} className='px-0' itemClasses={{ content: 'py-4 px-4 bg-background bg-opacity-80', title: 'text-background', indicator: 'text-background', trigger: 'mt-1 bg-foreground text-background px-4'}} isCompact>
                         <AccordionItem key='description' aria-label='description' title='description'>
                             <p className='text-sm'>{cam.description}</p>
-
                         </AccordionItem>
                         <AccordionItem key='shutter' aria-label='shutter' title='shutter'>
                             <div className='max-w-full scrollbar pr-1 overflow-y-scroll text-wrap'>{cam.shutter}</div>
