@@ -7,8 +7,8 @@ import { cinzel } from './fonts'
 import { Button } from '@nextui-org/react'
 import { Suspense } from 'react'
 import { ThemeSwitch } from './themeswitch'
-import { CategorySwitch } from './categoryswitch'
 import { usePathname, useRouter } from 'next/navigation'
+import { CategorySwitch } from './store/categoryswitch'
 
 export default function NavBar() {
     const pathname = usePathname();

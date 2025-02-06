@@ -2,11 +2,11 @@
 
 import React from 'react'
 import { motion, MotionConfig } from 'motion/react'
-import { cinzel } from './fonts'
+import { cinzel } from '../fonts'
 import { useQueryState } from 'nuqs'
-import { searchParams, useFilters } from '../lib/searchParams'
+import { searchParams, useFilters } from '../../lib/searchParams'
 import clsx from 'clsx'
-import { transition } from '../lib/utils'
+import { transition } from '../../lib/utils'
 
 export default function Button({ text, lenseImage }: { text: string, lenseImage?: boolean }) {
     const [, setCategory ] = useQueryState('category', 

@@ -1,10 +1,10 @@
 import React from 'react'
 import { list } from '@vercel/blob'
-import { CameraPage } from '@/app/ui/details/camerapage'
+import { CameraPage } from '@/app/ui/item/camerapage'
 import { searchParamsCache } from '../lib/searchParams'
 import { SearchParams } from 'nuqs/server'
 import { fetchCameras, fetchLenses } from '../lib/db/queries'
-import { LensePage } from '@/app/ui/details/lensepage'
+import { LensePage } from '@/app/ui/item/lensepage'
 import { Camera, Lense } from '../lib/db/schema'
 import { isCamera, isLense } from '../lib/utils'
 

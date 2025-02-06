@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../ui/storebutton'
+import Button from '../ui/store/storebutton'
 import FiltersPanel from '../ui/store/filters/filters-panel'
 import { searchParamsCache } from '@/app/lib/searchParams'
 import { fetchCameras, fetchLenses } from '../lib/db/queries'
