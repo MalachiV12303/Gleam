@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useEffect, useRef, useState }  from 'react'
-import { motion } from 'motion/react'
 import { CheckoutCart } from '../ui/checkout/checkoutcart'
 import { Accordion, AccordionItem, Spinner } from '@nextui-org/react'
 
