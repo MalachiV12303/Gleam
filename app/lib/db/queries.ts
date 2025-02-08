@@ -6,7 +6,7 @@ import { SliderValue } from '@nextui-org/slider';
 
 const priceFilter = (itemtype: string, price: SliderValue) => {
     const psv = price.toString().split(',');
-    const p = psv.map(parseInt)
+    const p = psv.map(parseFloat)
     if(p[0]===0 && p[1] === 3000) //may not be triggered when its supposed to, causing filters to never be undefined
       return undefined;
     return itemtype === 'cam' ? between(cameras.price, p[0], p[1]) :
