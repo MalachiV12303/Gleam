@@ -6,7 +6,6 @@ import { Accordion, AccordionItem, Spinner } from '@nextui-org/react'
 
 export default function Page() {
     const tools = ['next.js', 'three.js', 'drizzle', 'psql', 'vercel', 'tailwind', 'motion', 'typescript']
-    const constraintsRef = useRef(null)
     //this is to render cart information without ssr errors
     const [isClient, setIsClient] = useState(false)
     useEffect(() => {
