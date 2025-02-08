@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState }  from 'react'
+import React, { useEffect, useState }  from 'react'
 import { CheckoutCart } from '../ui/checkout/checkoutcart'
 import { Accordion, AccordionItem, Spinner } from '@nextui-org/react'
 
