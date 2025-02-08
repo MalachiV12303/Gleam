@@ -33,11 +33,11 @@ export default function Page() {
                             </form>
                         </AccordionItem>
                         <AccordionItem key='tools' aria-label='tools used' title='tools used'>
-                            <div ref={constraintsRef} className='min-h-56 text-sm sm:text-base text-background grid grid-cols-3 gap-y-2 sm:gap-y-8 gap-x-2'>
+                            <div className='min-h-[50dvh] text-sm sm:text-base text-foreground grid grid-cols-3 gap-y-12 gap-x-8'>
                                 {tools.map((tool, index) => (
-                                    <motion.div dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }} drag dragConstraints={constraintsRef} key={index} className='w-full border-black bg-foreground flex items-center justify-center border-1 py-2 rounded-lg uppercase tracking-wider'>
+                                    <div key={index} className='w-full border-foreground flex items-center justify-center border-1 py-2 rounded-lg uppercase tracking-wider'>
                                         {tool}
-                                    </motion.div>
+                                    </div>
                                 ))}
                             </div>
                         </AccordionItem>
