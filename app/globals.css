@@ -9,6 +9,17 @@
   image-rendering: optimize-contrast;
 }
 
+.checkoutInput{
+  border-color: hsl(var(--nextui-foreground));
+  border-width: 1px;
+  background-color: hsl(var(--nextui-background));
+  border-radius: 0.375rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
