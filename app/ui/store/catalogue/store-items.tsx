@@ -36,14 +36,14 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                 whileHover={{ scale: 1.05 }}
                 className={clsx('text-sm shadow-lg relative text-foreground bg-background border-b-1 border-foreground flex flex-col px-4 py-2 items-center max-w-full h-full', { 'shadow-white/10': themeColor === 'darker' })}>
                 <Link href={`/item?${params}`}
-                    className='flex flex-col h-full' >
+                    className='flex flex-col h-full'>
                     <div id='image' className='aspect-square px-4 py-4 border-b-1 border-foreground flex justify-center items-center'>
                         {image ?
                             // eslint-disable-next-line @next/next/no-img-element
                             <img
                                 key={item.id}
                                 src={image.url}
-                                alt='image'
+                                alt={item.name}
                                 className='w-full'
                             /> :
                             <div className='flex h-full items-center justify-center'>
@@ -57,9 +57,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                         <div className='text-sm uppercase font-bold text-start'>{item.brand}</div>
                         <div className='mt-2 text-lg text-start '>{item.name}</div>
                         <div className='text-base sm:text-base flex flex-col'>
-                            <p>{item.megapixels} megapixels</p>
-                            <p>{item.shutter}</p>
-
+                            <p>{item.megapixels} megapixels</p> 
                             <p>{item.type === 'DSLR' ? 'digital' : 'mirrorless'}</p>
                         </div>
                     </div>
@@ -101,7 +99,7 @@ export function StoreItem({ item, image }: { item: Camera | Lense, image: ListBl
                                 <img
                                     key={item.id}
                                     src={image.url}
-                                    alt='image'
+                                    alt={item.name}
                                     className='h-full object-scale-down'
                                 /> :
                                 <div className='flex h-full items-center justify-center'>
