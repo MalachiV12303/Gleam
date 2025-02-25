@@ -5,9 +5,10 @@ import Image from 'next/image'
 import React from 'react'
 import { useCart } from 'react-use-cart'
 import { Camera } from '@/app/lib/db/schema'
-import { Accordion, AccordionItem, Button } from '@nextui-org/react'
 import { notFound } from 'next/navigation'
 import { ListBlobResultBlob } from '@vercel/blob'
+import { Accordion, AccordionItem, Button } from '@nextui-org/react'
+import Link from 'next/link'
 
 export function CameraPage({ cam, image }: { cam: Camera, image: ListBlobResultBlob | null }) {
     const { addItem } = useCart()
@@ -15,6 +16,7 @@ export function CameraPage({ cam, image }: { cam: Camera, image: ListBlobResultB
     if (cam === undefined) {
         return notFound();
     }
+   
     return (
         <section className='flex min-h-[100dvh] mx-auto max-w-[1200px] items-center px-4 sm:px-12 xl:px-0'>
             <div className='pt-[80px] pb-12 lg:pt-0 sm:pb-0 flex flex-col md:flex-row gap-4 lg:gap-12 items-center w-full'>
@@ -56,12 +58,21 @@ export function CameraPage({ cam, image }: { cam: Camera, image: ListBlobResultB
                         <AccordionItem key='description' aria-label='description' title='description'>
                             <p className='text-sm'>{cam.description}</p>
                         </AccordionItem>
-                        <AccordionItem key='shutter' aria-label='shutter' title='shutter'>
-                            <div className='max-w-full scrollbar pr-1 overflow-y-scroll text-wrap'>{cam.shutter}</div>
+                        <AccordionItem key='details' aria-label='details' title='details'>
+                            <div>shutter speed: {cam.shutter}</div>
+                            <div>resolution: {cam.res}p</div>
                         </AccordionItem>
                         <AccordionItem key='compat' aria-label='compatible with' title='compatible with'>
                             <div className='flex flex-wrap gap-2'>storage: {cam.storage?.map((sdtype, index) => (<div key={index}>{sdtype}</div>))}</div>
-                            <div className='flex gap-2'>mount type: {cam.mount?.map((lentype, index) => (<div key={index}>{lentype}</div>))}</div>
+                            <div className='flex gap-2'>mount type: {cam.mount?.map((lentype, index) => {
+                                const params= new URLSearchParams()
+                                params.set('category','len')
+                                params.set('mount', lentype)
+                                return(
+                                    <Link href={`/store?${params}`} key={index}>{lentype}</Link>
+                                )
+                            }
+                            )}</div>
                         </AccordionItem>
                     </Accordion>
                 </div>

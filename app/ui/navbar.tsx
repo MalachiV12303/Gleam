@@ -5,10 +5,8 @@ import clsx from 'clsx'
 import { Cart } from '../cart'
 import { cinzel } from './fonts'
 import { Button } from '@nextui-org/react'
-import { Suspense } from 'react'
 import { ThemeSwitch } from './themeswitch'
 import { usePathname, useRouter } from 'next/navigation'
-import { CategorySwitch } from './store/categoryswitch'
 
 export default function NavBar() {
     const pathname = usePathname();
@@ -26,7 +24,7 @@ export default function NavBar() {
                         <ThemeSwitch />
                     </div>
                 </div>
-                {pathname.includes('store') ? <Suspense><CategorySwitch /></Suspense> : null}
+                {/* {pathname.includes('store') ? <Suspense><CategorySwitch /></Suspense> : null} */}
             </div>
         </>
     )

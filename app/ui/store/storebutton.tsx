@@ -31,7 +31,7 @@ export default function Button({ text, lenseImage }: { text: string, lenseImage?
                         scale: 1.2,
                     }}>
                     <motion.p
-                    className='px-4 bg-foreground text-background rounded-full'
+                    className='px-4 text-foreground shadow-xl bg-background/30'
                         whileHover={{
                             scale: 1.2,
                         }}

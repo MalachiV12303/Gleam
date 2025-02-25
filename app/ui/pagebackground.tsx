@@ -31,8 +31,8 @@ export default function PageBackground() {
 function MyScene({props}:{props?: ThreeElements['mesh']}) {
   const icoRef = useRef<THREE.Mesh>(null!)
   useFrame((state, delta) => {
-    icoRef.current.rotation.y += delta / 2
-    icoRef.current.rotation.z += delta / 2
+    icoRef.current.rotation.y += delta / 4
+    icoRef.current.rotation.z += delta / 4
   })
   return (
     <group scale={1}>
