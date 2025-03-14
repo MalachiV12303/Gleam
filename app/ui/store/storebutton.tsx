@@ -19,7 +19,11 @@ export default function Button({ text, lenseImage }: { text: string, lenseImage?
         element?.scrollIntoView({ behavior: "smooth" });
     }
     return (
-        <button onClick={() => {
+        <motion.button 
+        
+        animate={{ opacity: [0, 1] }}
+        transition={{ type: "easeInOut", duration: 3 }}
+        onClick={() => {
             setFilters(null)
             setCategory(text === 'lenses' ? 'len' : null)
             scrollToSection('storeContent')
@@ -39,6 +43,6 @@ export default function Button({ text, lenseImage }: { text: string, lenseImage?
 
                 </motion.div>
             </MotionConfig>
-        </button >
+        </motion.button >
     )
 }
