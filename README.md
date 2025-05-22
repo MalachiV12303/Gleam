@@ -1,4 +1,4 @@
-## Gleam Store - Mock Videography Market (Full-Stack Development) 
+## Gleam Store - Mock Videography Market (Full-Stack Development)  
 https://gleamstore.vercel.app  
 ### Demonstrates understanding of the following technologies/concepts:  
 - Responsive Design  
