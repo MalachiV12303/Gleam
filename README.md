@@ -1,14 +1,12 @@
-## Gleam Store
-https://gleamstore.vercel.app
-
-mock videography market by Malachi Valle to demonstrate understanding of responsive design and the following technologies/concepts:  
--html and css  
--responsive design  
--nextjs  
--tailwind  
--postgresql  
--drizzle  
--typescript  
--three.js  
--vercel  
--react motion  
+## Gleam Store - Mock Videography Market (Full-Stack Development)  
+https://gleamstore.vercel.app  
+### Demonstrates understanding of the following technologies/concepts:  
+- Responsive Design  
+- HTML and CSS  
+- Next.js  
+- Tailwind  
+- PostgreSQL  
+- DrizzleORM  
+- Typescript  
+- Three.js  
+- motion/react  
